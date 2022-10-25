@@ -32,19 +32,19 @@ export const projectsData = [
     img: 'hms.png',
     title: 'Hospital Management System',
     info: 'Based on CRUD operations using Java SpringBoot and maven, used PostgreSQL as database and thymeleaf for frontend.',
-    info2: 'It has a login page for doctors and patients, options to add appointments update and delete them similarly doctors can update and delete patient details.',
+    info2: 'It has a login page for doctors and patients, options to add appointments update and delete them similarly doctors can update and delete patient details.Used Docker-Compose to dockerize the application, hosting the images on Docker Hub for easy deployment.',
     url: 'https://hospital-management-system-sql.herokuapp.com/',
     repo: 'https://github.com/mshivam019/Hospital_Management', // if no repo, the button will not show up
   },
   
   {
     id: nanoid(),
-    img: 'excel.png',
-    title: 'Excel Reader',
-    info: 'Using Springboot and java I upload an excel file through a rest call and then using Apache POI it reads the contents and stores it into the database. Here I used mySQL as database.',
-    info2: 'I learnt about Multipart files and ApachePOI library also JSON library to be able to make a rest post call using the data in the excel file. This was an attempt to make a data driven automatic api testing program.',
-    url: 'https://github.com/mshivam019/Excel-to-SQL',
-    repo: '', // if no repo, the button will not show up
+    img: 'kanban.png',
+    title: 'Notes App',
+    info: 'Developed a Notes app to store user’s daily tasks, logs, to-do, etc with help of Firebase.',
+    info2: 'Used Firestore as database, lazy-login using google sign-in and traditional login using email and password.Used Docker to containerize the application, currently using Vercel to host and call the serverless functions.',
+    url: 'https://kanban-notes.vercel.app/',
+    repo: 'https://github.com/mshivam019/notes-app', // if no repo, the button will not show up
   },
   {
     id: nanoid(),
@@ -57,21 +57,21 @@ export const projectsData = [
   },
   {
     id: nanoid(),
-    img: 'wp.JPG',
-    title: 'AWS Wordpress',
-    info: 'This WordPress website is deployed on AWS EC2 instance with the help of nginx and php7.2. I have used t2 micro instance for vm and mariadb for database.',
-    info2: 'I have converted the website to a static form using HTTrack and currently hosting it on GitHub.',
-    url: 'https://mshivam019.github.io/wordpress/',
-    repo: 'https://github.com/mshivam019/wordpress', // if no repo, the button will not show up
+    img: 'butterfly.png',
+    title: 'https://social-butterfly.vercel.app/',
+    info: 'Twitter like web-app where you can send, edit, like, delete and share Flutters(Tweets). You can also search Flutters sent by anyone and shareit using actual twitter',
+    info2: 'Built with React for frontend, Mongodb as database and Auth0 with JWT token for authentication. Mongodb Data API is used to handle the serverless functions to perform CRUD operations, Atlas serach is used to indexing the Flutters, App services with triggers is used to add users from Auth0 to the database.',
+    url: 'https://social-butterfly.vercel.app/',
+    repo: 'https://github.com/mshivam019/Social-Butterfly', // if no repo, the button will not show up
   },
   {
     id: nanoid(),
-    img: 'apps.png',
+    img: 'app.png',
     title: 'App Development',
-    info: 'I have worked several basic apps like Just Java coffee ordering app using Java and XML, Weather app using Flutter and a Text-to-Speech app using Swift UI. For more details click the link below.',
-    info2: 'I also had the chance to work on my University\'s Android Study Jam app using Kotlin where we built an all-in-one app to use all features at one common point.',
+    info: 'I have worked several basic apps like Just-Java coffee ordering app using Java and XML, Weather app using Flutter, A Grocery-List app using Kotlin and a Text-to-Speech app using Swift UI. For more details click the link below.',
+    info2: 'I also had the chance to work as the Compose Camp Facilitator teaching 250+ students about Jetpack Compose, the new way of building native android apps. Also built an Instagram-Clone app using Jetpack Compose with Kotlin for final app submission.',
     url: 'https://mshivam019.github.io/portfolio/',
-    repo: 'https://github.com/mshivam019?tab=repositories', // if no repo, the button will not show up
+    repo: '', // if no repo, the button will not show up
   },
   {
     id: nanoid(),
