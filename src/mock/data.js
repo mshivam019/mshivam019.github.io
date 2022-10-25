@@ -60,7 +60,7 @@ export const projectsData = [
     img: 'butterfly.png',
     title: 'Social-Butterfly',
     info: 'Twitter like web-app where you can send, edit, like, delete and share Flutters(Tweets). You can also search Flutters sent by anyone and shareit using actual twitter',
-    info2: 'Built with React for frontend, Mongodb as database and Auth0 with JWT token for authentication. Mongodb Data API is used to handle the serverless functions to perform CRUD operations, Atlas serach is used to indexing the Flutters, App services with triggers is used to add users from Auth0 to the database.',
+    info2: 'Built with React for frontend, Mongodb as database and Auth0 with JWT token for authentication. Mongodb Data API is used to handle the serverless functions to perform CRUD operations, Atlas search is used to indexing the Flutters, App services with triggers is used to add users from Auth0 to the database.',
     url: 'https://social-butterfly.vercel.app/',
     repo: 'https://github.com/mshivam019/Social-Butterfly', // if no repo, the button will not show up
   },
