@@ -2,4 +2,4 @@
  
 All licensed code belongs to the respective owners. For any queries- mshivam019@gmail.com  
 
-Built using Gatsby(React), deployed on vercel.
+Built using Gatsby(React), Deployed on vercel.
