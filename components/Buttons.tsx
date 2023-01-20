@@ -2,9 +2,10 @@ import React from 'react';
 
 export default function Buttons() {
   return (
-    <div className="flex flex-wrap space-x-4 ">
+    <div className="flex flex-wrap space-x-4">
+
       <button
-        className="btn2 px-3 py-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
+        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
         type="button"
         onClick={() => window.open('https://mshivam019.github.io/portfolio/')}
       >
@@ -16,7 +17,7 @@ export default function Buttons() {
       </button>
 
       <button
-        className="btn2 px-3 py-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
+        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
         type="button"
         onClick={() => window.open('https://www.linkedin.com/in/mshivam019/')}
       >
@@ -28,7 +29,7 @@ export default function Buttons() {
       </button>
 
       <button
-        className="btn2 px-3 py-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
+        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
         type="button"
         onClick={() => window.open('https://github.com/mshivam019')}
       >
@@ -40,7 +41,7 @@ export default function Buttons() {
       </button>
 
       <button
-        className="btn2 px-3 py-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black  tracking-wider leading-none overflow-hidden "
+        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black  tracking-wider leading-none overflow-hidden "
         type="button"
         onClick={() =>
           window.open(
@@ -56,7 +57,7 @@ export default function Buttons() {
       </button>
 
       <button
-        className="btn2 px-3 py-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black  tracking-wider leading-none overflow-hidden "
+        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black  tracking-wider leading-none overflow-hidden "
         type="button"
         onClick={() => window.open('mailto:mshivam019@gmail.com')}
       >

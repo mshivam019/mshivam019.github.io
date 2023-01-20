@@ -18,13 +18,13 @@ export default function Projects() {
       </h1>
       <div className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl">
         <div className="md:flex ">
-          <div className="md:shrink-0 mt-7 pl-6">
+          <div className="md:shrink-0 mt-7 px-6">
             <Link href="https://e-commerce-mshivam019.vercel.app/">
               <Image
                 height={76}
                 width={96}
                 sizes="90vw"
-                className="h-70 w-96 rounded-lg md:h-70 md:w-45 hover:scale-125 transition-all duration-500 cursor-pointer"
+                className="h-70 w-96 rounded-lg md:h-70 md:w-45 lg:hover:scale-125 transition-all duration-500 cursor-pointer"
                 src="/img/ecom.png"
                 alt="E-commerce website home screen"
               />
@@ -81,13 +81,13 @@ export default function Projects() {
         className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl"
       >
         <div className="md:flex ">
-          <div className="md:shrink-0 mt-7 pl-6">
+          <div className="md:shrink-0 mt-7 px-6">
             <Link href="https://hm-system.fly.dev/">
               <Image
                 height={76}
                 width={96}
                 sizes="90vw"
-                className="h-70 w-96 rounded-lg md:h-70 md:w-45 hover:scale-125 transition-all duration-500 cursor-pointer "
+                className="h-70 w-96 rounded-lg md:h-70 md:w-45 lg:hover:scale-125 transition-all duration-500 cursor-pointer "
                 src="/img/hospital.png"
                 alt="Hospital website welcome screen"
               />
@@ -146,13 +146,13 @@ export default function Projects() {
         className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl"
       >
         <div className="md:flex ">
-          <div className="md:shrink-0 mt-7 pl-6">
+          <div className="md:shrink-0 mt-7 px-6">
             <Link href="https://social-butterfly.vercel.app/">
               <Image
                 height={76}
                 width={96}
                 sizes="90vw"
-                className="h-70 w-96 rounded-lg md:h-70 md:w-45 hover:scale-125 transition-all duration-500 cursor-pointer "
+                className="h-70 w-96 rounded-lg md:h-70 md:w-45 lg:hover:scale-125 transition-all duration-500 cursor-pointer "
                 src="/img/butterfly.png"
                 alt="Social website Home screen"
               />
@@ -211,13 +211,13 @@ API is used to handle the server-less functions to perform CRUD operations.<br/>
         className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl"
       >
         <div className="md:flex ">
-          <div className="md:shrink-0 mt-7 pl-6">
+          <div className="md:shrink-0 mt-7 px-6">
             <Link href="https://kanban-notes.vercel.app/">
               <Image
                 height={76}
                 width={96}
                 sizes="90vw"
-                className="h-70 w-96 rounded-lg md:h-70 md:w-45 hover:scale-125 transition-all duration-500 cursor-pointer "
+                className="h-70 w-96 rounded-lg md:h-70 md:w-45 lg:hover:scale-125 transition-all duration-500 cursor-pointer "
                 src="/img/kanban.png"
                 alt="Notes app main screen"
               />

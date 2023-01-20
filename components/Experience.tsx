@@ -51,19 +51,19 @@ function Tabs() {
               <div className={openTab === 1 ? 'block' : 'hidden'} id="link1">
                 <div className="container mt-8 mx-auto p-4 md:p-0">
                   <div className="shadow-lg flex flex-wrap w-full mx-auto">
-                    <div className="bg-cover bg-bottom w-full md:w-1/3 h-64 md:h-auto relative">
+                    <div className="bg-cover bg-bottom w-full md:w-1/3 h-64 md:h-auto relative z-10">
                       <Image
                         className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                         fill
                         style={{ objectFit: 'cover' }}
                         src="/gcer.png"
-                        alt=""
+                        alt="Google certificate"
                       />
                     </div>
 
                     <div className="dark:bg-neutral-700 bg-gray-300 w-full md:w-2/3 lg:rounded-r-md sm:rounded-b-md">
                       <div className="h-full mx-auto px-6 md:px-0 md:pt-6 md:-ml-6 relative">
-                        <div className="dark:bg-zinc-800 rounded-md bg-white lg:h-full p-6 -mt-6 md:mt-0 relative mb-4 md:mb-0 flex flex-wrap md:flex-wrap items-center">
+                        <div className="dark:bg-zinc-800 rounded-md bg-white lg:h-full p-8 -mt-6 md:mt-0 relative mb-4 md:mb-0 flex flex-wrap md:flex-wrap items-center">
                           <div className="w-full lg:w-1/5 lg:border-right lg:border-solid text-center md:text-left">
                             <h3 className="text-black dark:text-slate-200">
                               Android Developer
@@ -84,7 +84,7 @@ function Tabs() {
                               <br />
                               <span className="pr-4 z-10">
                                 • Experienced the kanban-board style for
-                                handling managing and completing tasks.Used Git
+                                handling managing and completing tasks. Used Git
                                 for Submitting the project.
                               </span>
                               <br />
@@ -117,7 +117,7 @@ function Tabs() {
                   <div className="shadow-lg flex flex-wrap w-full mx-auto">
                     <div className="bg-cover bg-bottom w-full md:w-1/3 h-64 md:h-auto relative">
                       <Image
-                        className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                        className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg z-10"
                         fill
                         style={{ objectFit: 'cover' }}
                         src="/mcer.png"
@@ -125,9 +125,9 @@ function Tabs() {
                       />
                     </div>
 
-                    <div className="dark:bg-neutral-700 bg-gray-300 w-full md:w-2/3">
+                    <div className="dark:bg-neutral-700 bg-gray-300 w-full md:w-2/3 lg:rounded-r-md sm:rounded-b-md">
                       <div className="h-full mx-auto px-6 md:px-0 md:pt-6 md:-ml-6 relative">
-                        <div className="dark:bg-zinc-800 rounded-md bg-white lg:h-full p-6 -mt-6 md:mt-0 relative mb-4 md:mb-0 flex flex-wrap md:flex-wrap items-center">
+                        <div className="dark:bg-zinc-800 rounded-md bg-white lg:h-full p-8 -mt-6 md:mt-0 relative mb-4 md:mb-0 flex flex-wrap md:flex-wrap items-center">
                           <div className="w-full lg:w-1/5 lg:border-right lg:border-solid text-center md:text-left">
                             <h3 className="text-black dark:text-slate-200">
                               Azure Developer
