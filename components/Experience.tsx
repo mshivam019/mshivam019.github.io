@@ -77,15 +77,15 @@ function Tabs() {
                             <p className="text-md mt-4 lg:mt-0 text-justify md:text-left text-sm dark:text-zinc-200 text-zinc-800">
                               <span className="pr-4 z-10">
                                 • Completed Android Basics course and attended
-                                8-weeks of training, learning about Layouts and
-                                Navigation in Kotlin.
+                                8-weeks of training, learning about building
+                                android apps using Kotlin.
                               </span>
                               <br />
                               <br />
                               <span className="pr-4 z-10">
-                                • Experienced the kanban-board style for
-                                handling managing and completing tasks. Used Git
-                                for Submitting the project.
+                                • Learned about Step-by-Step procedure to
+                                develop mobile application from wire-framing to
+                                data persistence.
                               </span>
                               <br />
                               <br />
@@ -149,8 +149,9 @@ function Tabs() {
                               <br />
                               <span className="pr-4 z-10">
                                 • Experienced the daily hands-on tasks of an
-                                Azure Developer (AZ-204) and learn from the
-                                Industry sessions.
+                                Azure Developer (AZ-204) like utilizing Azure
+                                Storage, implementing authentication and
+                                authorization.
                               </span>
                               <br />
                               <br />

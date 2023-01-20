@@ -3,7 +3,7 @@ import { EnvelopeIcon } from '@heroicons/react/24/solid';
 
 export default function Contact() {
   return (
-    <div className="mt-8" id="Contact" data-aos="fade-up">
+    <div className="my-36" id="Contact" data-aos="fade-up">
       <div className="w-full p-4 text-center bg-white rounded-lg shadow-md sm:p-8 dark:bg-neutral-800 ">
         <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
           Let&apos;s Connect

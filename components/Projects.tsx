@@ -44,9 +44,13 @@ export default function Projects() {
               </div>
               <div className="w-full rounded-md py-6 md:p-0  z-8">
                 <p className="dark:text-gray-300 flex flex-wrap">
-                • Developed an E-commerce website with Order-history, Auto-complete Search, Payment-gateway and Cookies.<br/>
-• Built with NextJs, MongoDB as database and Next-auth with JWT token for authentication. MongoDB Realm is used to create and handle the server-less functions to perform.<br/>
-• Used PayPal for payment gateway and Vercel to host the application and monitor the server-less functions.
+                  • Developed an E-commerce website with Order-history,
+                  Auto-complete Search, Payment-gateway and Cookies.
+                  <br />
+                  • Built with NextJs for frontend with SSR, MongoDB as database
+                  and Next-auth with JWT token for authentication.
+                  <br />• MongoDB Realm is used to create and handle the
+                  server-less function calls and PayPal for payment gateway.
                 </p>
               </div>
               <ul
@@ -107,11 +111,16 @@ export default function Projects() {
               </div>
               <div className="w-full rounded-md py-6 md:p-0  z-8">
                 <p className="dark:text-gray-300  flex flex-wrap">
-                • Developed a website to create, read, update, and delete (CRUD) appointments on a hospital website using REST APIs.<br/>
-• Implemented secure login for doctors and patients using Java as the back-end and using Thymeleaf for the front-end.<br/>
-• Created separate databases for appointments and user details using PostgreSQL and JPA Repository.<br/>
-• Used Docker-Compose to dockerize the application, hosting the images on Docker Hub for easy deployment.
-
+                  • Developed a website to create, read, update, and delete
+                  (CRUD) appointments on a hospital website using REST APIs.
+                  <br />
+                  • Implemented secure login for doctors and patients using Java
+                  as the back-end and using Thymeleaf for the front-end.
+                  <br />
+                  • Created separate databases for appointments and user details
+                  using PostgreSQL and JPA Repository.
+                  <br />• Used Docker-Compose to dockerize the application,
+                  hosting the images on Docker Hub for easy deployment.
                 </p>
               </div>
               <ul
@@ -172,11 +181,19 @@ export default function Projects() {
               </div>
               <div className="w-full rounded-md py-6 md:p-0  z-8">
                 <p className="dark:text-gray-300  flex flex-wrap">
-                • Twitter like web-app where you can send, edit, like, delete and share Flutters(Tweets). You can also search Flutters sent
-by anyone and share it using actual twitter.<br/>
-• Built with NextJs for frontend, MongoDB as database and Auth0 with JWT token for authentication. MongoDB Data
-API is used to handle the server-less functions to perform CRUD operations.<br/>
-• Atlas search is used to indexing the Flutters, App services with triggers is used to add users from Auth0 to database<br/>
+                  • Twitter like web-app where you can send, edit, like, delete
+                  and share Flutters(Tweets). You can also search Flutters sent
+                  by anyone and share it using actual twitter.
+                  <br />
+                  • Built with NextJs for frontend, MongoDB as database and
+                  Auth0 with JWT token for authentication. MongoDB Data API is
+                  used to handle the server-less functions to perform CRUD
+                  operations.
+                  <br />
+                  • Data API is used to access and load the flutters, App
+                  services with triggers is used to add users from Auth0 to
+                  database
+                  <br />
                 </p>
               </div>
               <ul
@@ -185,7 +202,7 @@ API is used to handle the server-less functions to perform CRUD operations.<br/>
               >
                 <span className="pr-4 z-8">MongoDB</span>
                 <span className="pr-4 z-8">Mantine</span>
-                <span className="pr-4 z-8">Atlas Search</span>
+                <span className="pr-4 z-8">Data API</span>
                 <span className="pr-4 z-8">Nextjs</span>
                 <span className="pr-4 z-8">Auth0</span>
               </ul>
@@ -237,10 +254,15 @@ API is used to handle the server-less functions to perform CRUD operations.<br/>
               </div>
               <div className="w-full rounded-md py-6 md:p-0  z-8">
                 <p className="dark:text-gray-300  flex flex-wrap">
-                • Developed a Notes app to store user’s daily tasks, logs, to-do, etc with help of Firebase.<br/>
-• Used Firestore as database, lazy-login using google sign-in and traditional login using email and password.<br/>
-• Used Docker to containerize the application, currently using Vercel to host and call the serverless functions.<br/>
-
+                  • Developed a Notes app to store user’s daily tasks, logs,
+                  to-do, etc with help of Firebase.
+                  <br />
+                  • Used Firestore as database, lazy-login using google sign-in
+                  and traditional login using email and password.
+                  <br />
+                  • Used Docker to containerize the application, currently using
+                  Vercel to host and call the serverless functions.
+                  <br />
                 </p>
               </div>
               <ul
@@ -251,7 +273,7 @@ API is used to handle the server-less functions to perform CRUD operations.<br/>
                 <span className="pr-4 z-8">Angular</span>
                 <span className="pr-4 z-8">Docker</span>
                 <span className="pr-4 z-8">Typescript</span>
-                <span className="pr-4 z-8">Express</span>
+                <span className="pr-4 z-8">FireStore</span>
               </ul>
               <div className="z-8 flex fle-row space-x-5 ">
                 <Link href="https://github.com/mshivam019/notes-app">

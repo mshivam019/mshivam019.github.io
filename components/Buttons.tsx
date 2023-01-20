@@ -3,7 +3,6 @@ import React from 'react';
 export default function Buttons() {
   return (
     <div className="flex flex-wrap space-x-4">
-
       <button
         className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
         type="button"

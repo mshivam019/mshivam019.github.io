@@ -7,7 +7,10 @@ import { Analytics } from '@vercel/analytics/react';
 
 import { AppProps } from 'next/app';
 
-export default function App({ Component, pageProps: { ...pageProps } }:AppProps) {
+export default function App({
+  Component,
+  pageProps: { ...pageProps },
+}: AppProps) {
   return (
     <ThemeProvider attribute="class">
       <main>
