@@ -66,7 +66,7 @@ export default function Hero() {
           <div className="flex flex-col space-y-4 sm:text-base text-sm">
             {technologies[0].map((tech) => (
               <div key={tech} className="flex flex-row items-center space-x-2">
-                <ChevronRightIcon className="h-3 w-3 text-AAsecondary" />
+                <ChevronRightIcon className="h-3 w-3 " />
                 <span className="dark:text-gray-400 sm:text-sm text-xs">
                   {tech}
                 </span>
@@ -78,7 +78,7 @@ export default function Hero() {
           <div className="flex flex-col space-y-4 sm:text-base text-sm">
             {technologies[1].map((tech) => (
               <div key={tech} className="flex flex-row items-center space-x-2">
-                <ChevronRightIcon className="h-3 w-3 text-AAsecondary" />
+                <ChevronRightIcon className="h-3 w-3 " />
                 <span className="dark:text-gray-400 sm:text-sm text-xs">
                   {tech}
                 </span>
