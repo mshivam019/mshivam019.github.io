@@ -7,7 +7,7 @@ export default function Container(props: { [x: string]: any; children: any }) {
   const router = useRouter();
   const { children, ...customMeta } = props;
   const meta = {
-    title: 'Shivam Mishra – Developer.',
+    title: 'Shivam Mishra – Developer',
     description: `Full-Stack developer, Android enthusiast, and learner.`,
     image:
       'https://raw.githubusercontent.com/mshivam019/mshivam019/master/Banner.png',
