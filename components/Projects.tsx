@@ -114,8 +114,9 @@ export default function Projects() {
                   • Developed a website to create, read, update, and delete
                   (CRUD) appointments on a hospital website using REST APIs.
                   <br />
-                  • Implemented secure login for doctors and patients using Java
-                  as the back-end and using Thymeleaf for the front-end.
+                  • Implemented login for doctors and patients, try logging in
+                  as &apos;doctor@hmd&apos;, &apos;password1&apos; or
+                  &apos;patient@hmp&apos;, &apos;password2&apos;.
                   <br />
                   • Created separate databases for appointments and user details
                   using PostgreSQL and JPA Repository.
