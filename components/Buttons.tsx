@@ -66,6 +66,18 @@ export default function Buttons() {
         </span>
         Mail
       </button>
+
+      <button
+        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black  tracking-wider leading-none overflow-hidden "
+        type="button"
+        onClick={() => window.open('https://linktr.ee/mshivam019')}
+      >
+        <span className="absolute inset-0 dark:bg-white bg-black" />
+        <span className="absolute inset-0 flex justify-center items-center ">
+          Link Tree
+        </span>
+        Link Tree
+      </button>
     </div>
   );
 }
