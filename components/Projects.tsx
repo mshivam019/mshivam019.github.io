@@ -86,7 +86,7 @@ export default function Projects() {
       >
         <div className="md:flex ">
           <div className="md:shrink-0 mt-7 px-6">
-            <Link href="https://hm-system.fly.dev/">
+            <Link href="https://general-averil-mshivam019.koyeb.app/">
               <Image
                 height={76}
                 width={96}
@@ -103,7 +103,7 @@ export default function Projects() {
             col-span-8 flex flex-col items-start  space-y-3 "
             >
               <div className="flex flex-col ">
-                <Link href="https://hms.onrender.com/">
+                <Link href="https://general-averil-mshivam019.koyeb.app/">
                   <span className="  font-bold text-xl hover:cursor-pointer">
                     Hospital Management System
                   </span>
@@ -114,9 +114,7 @@ export default function Projects() {
                   • Developed a website to create, read, update, and delete
                   (CRUD) appointments on a hospital website using REST APIs.
                   <br />
-                  • Implemented login for doctors and patients, try logging in
-                  as &apos;doctor@hmd&apos;, &apos;password1&apos; or
-                  &apos;patient@hmp&apos;, &apos;password2&apos;.
+                  • Implemented login using Auth0 with support of lazy login and Spring Security 5.
                   <br />
                   • Created separate databases for appointments and user details
                   using PostgreSQL and JPA Repository.
@@ -133,6 +131,7 @@ export default function Projects() {
                 <span className="pr-4 z-8">PostgreSQl</span>
                 <span className="pr-4 z-8">Docker</span>
                 <span className="pr-4 z-8">REST APIs</span>
+                <span className="pr-4 z-8">Auth0</span>
               </ul>
               <div className="z-8 flex fle-row space-x-5 ">
                 <Link href="https://github.com/mshivam019/Hospital_Management">
@@ -140,7 +139,7 @@ export default function Projects() {
                     <CommandLineIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
                   </span>
                 </Link>
-                <Link href="https://hm-system.fly.dev/">
+                <Link href="https://general-averil-mshivam019.koyeb.app/">
                   <span className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0">
                     <ArrowTopRightOnSquareIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
                   </span>
