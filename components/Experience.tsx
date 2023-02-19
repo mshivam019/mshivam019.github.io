@@ -195,7 +195,7 @@ export default function Experience() {
       data-aos="fade-up"
       className="mt-4 flex flex-col justify-center items-center max-w-6xl rounded-md mx-auto"
     >
-      <h1 className="font-semi-bold text-3xl md:text-4xl text-black dark:text-white mr-auto pb-3">
+      <h1 className="font-semi-bold text-3xl lg:pl-0 pl-2 md:text-4xl text-black dark:text-white mr-auto pb-3">
         Experience
       </h1>
       <Tabs />
