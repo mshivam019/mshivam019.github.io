@@ -13,7 +13,7 @@ export default function Projects() {
       id="Projects"
       className="mt-8 flex flex-col justify-center items-center max-w-6xl rounded-md mx-auto"
     >
-      <h1 className="font-semi-bold text-3xl md:text-4xl text-black dark:text-white mr-auto">
+      <h1 className="lg:pl-0 pl-2 font-semi-bold text-3xl md:text-4xl text-black dark:text-white mr-auto">
         Projects
       </h1>
       <div className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl">
