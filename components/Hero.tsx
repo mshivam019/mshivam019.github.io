@@ -57,7 +57,7 @@ export default function Hero() {
       </div>
 
       <div className="flex flex-col-reverse sm:flex-row items-start pb-4">
-        <p className="text-justify text-gray-600 max-w-4xl dark:text-gray-400>
+        <p className="text-justify text-gray-600 max-w-4xl dark:text-gray-400">
           Here are a few technologies I&apos;ve been working with recently:
         </p>
       </div>
