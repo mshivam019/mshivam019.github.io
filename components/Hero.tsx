@@ -40,7 +40,7 @@ export default function Hero() {
             contribute my knowledge and skills to the organization and enhance
             my experience through continuous learning and teamwork. Do check out
             my android apps by clicking the link below. <br/>
-            Here are a few technologies I&apos;ve been working with recently:
+            Here are a few technologies I&apos;ve been working with recently:<br/>
           </p>
         </div>
 
