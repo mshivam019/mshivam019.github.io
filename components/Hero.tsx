@@ -39,7 +39,8 @@ export default function Hero() {
             to have growth oriented and challenging career where I can
             contribute my knowledge and skills to the organization and enhance
             my experience through continuous learning and teamwork. Do check out
-            my android apps by clicking the link below.
+            my android apps by clicking the link below. <br/>
+            Here are a few technologies I&apos;ve been working with recently:
           </p>
         </div>
 
@@ -57,9 +58,9 @@ export default function Hero() {
       
 
 
-        <p className="text-justify text-gray-600 max-w-4xl dark:text-gray-400">
-          Here are a few technologies I&apos;ve been working with recently:
-        </p>
+        
+          
+
       </div>
       <div className="font-Header tracking-wide flex flex-row space-x-16 pb-6">
         <div className="flex flex-row space-x-2 items-center">
