@@ -32,7 +32,7 @@ export default function Hero() {
               Lovely Professional University
             </span>
           </h2>
-          <p className="text-gray-600 max-w-4xl dark:text-gray-400">
+          <p className="text-justify text-gray-600 max-w-4xl dark:text-gray-400">
             Hello I am a senior sophist, CSE Student at Lovely Professional
             University, having holistic knowledge over software development,IT
             Support, UX design and also experienced in Dev-Ops. My objective is
