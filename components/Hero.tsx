@@ -56,10 +56,10 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="font-Header tracking-wide pb-4 ">
-        <span className="dark:text-gray-400">
+      <div className="flex flex-col-reverse sm:flex-row items-start pb-4">
+        <p className="text-justify text-gray-600 max-w-4xl dark:text-gray-400>
           Here are a few technologies I&apos;ve been working with recently:
-        </span>
+        </p>
       </div>
       <div className="font-Header tracking-wide flex flex-row space-x-16 pb-6">
         <div className="flex flex-row space-x-2 items-center">
