@@ -114,7 +114,8 @@ export default function Projects() {
                   • Developed a website to create, read, update, and delete
                   (CRUD) appointments on a hospital website using REST APIs.
                   <br />
-                  • Implemented login using Auth0 with support of lazy login and Spring Security 5.
+                  • Implemented login using Auth0 with support of lazy login and
+                  Spring Security 5.
                   <br />
                   • Created separate databases for appointments and user details
                   using PostgreSQL and JPA Repository.
@@ -150,6 +151,147 @@ export default function Projects() {
         </div>
       </div>
       {/* 2 project ends */}
+      <div
+        data-aos="fade-up"
+        className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl"
+      >
+        <div className="md:flex ">
+          <div className="md:shrink-0 mt-7 px-6">
+            <Link href="https://kanban-notes.vercel.app/">
+              <Image
+                height={76}
+                width={96}
+                sizes="90vw"
+                className="h-70 w-96 rounded-lg md:h-70 md:w-45 lg:hover:scale-125 transition-all duration-500 cursor-pointer "
+                src="/img/kanban.png"
+                alt="Notes app main screen"
+              />
+            </Link>
+          </div>
+          <div className="p-8">
+            <div
+              className=" sm:pt-12 md:py-0 xl:col-span-6   
+            col-span-8 flex flex-col items-start  space-y-3 "
+            >
+              <div className="flex flex-col ">
+                <Link href="https://kanban-notes.vercel.app/">
+                  <span className=" font-bold text-xl hover:cursor-pointer">
+                    Kanban Notes
+                  </span>
+                </Link>
+              </div>
+              <div className="w-full rounded-md py-6 md:p-0  z-8">
+                <p className="dark:text-gray-300  flex flex-wrap">
+                  • Developed a Notes app to store user’s daily tasks, logs,
+                  to-do, etc with help of Firebase.
+                  <br />
+                  • Used Firestore as database, lazy-login using google sign-in
+                  and traditional login using email and password.
+                  <br />
+                  • Used Docker to containerize the application, currently using
+                  Vercel to host and call the serverless functions.
+                  <br />
+                </p>
+              </div>
+              <ul
+                className="flex flex-wrap w-full dark:text-gray-300 md:text-gray-600
+               text-sm font-Text2 md:justify-start"
+              >
+                <span className="pr-4 z-8">Firebase</span>
+                <span className="pr-4 z-8">Angular</span>
+                <span className="pr-4 z-8">Docker</span>
+                <span className="pr-4 z-8">Typescript</span>
+                <span className="pr-4 z-8">FireStore</span>
+              </ul>
+              <div className="z-8 flex fle-row space-x-5 ">
+                <Link href="https://github.com/mshivam019/notes-app">
+                  <span className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0">
+                    <CommandLineIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
+                  </span>
+                </Link>
+                <Link href="https://kanban-notes.vercel.app/">
+                  <span className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0">
+                    <ArrowTopRightOnSquareIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* 3 project ends */}
+      <div
+        data-aos="fade-up"
+        className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl"
+      >
+        <div className="md:flex ">
+          <div className="md:shrink-0 mt-7 px-6">
+            <Link href="https://mood-swinger.vercel.app/">
+              <Image
+                height={76}
+                width={96}
+                sizes="90vw"
+                className="h-70 w-96 rounded-lg md:h-70 md:w-45 lg:hover:scale-125 transition-all duration-500 cursor-pointer "
+                src="/img/mood.png"
+                alt="Social website Home screen"
+              />
+            </Link>
+          </div>
+          <div className="p-8">
+            <div
+              className=" sm:pt-12 md:py-0 xl:col-span-6   
+            col-span-8 flex flex-col items-start  space-y-3 "
+            >
+              <div className="flex flex-col ">
+                <Link href="https://mood-swinger.vercel.app/">
+                  <span className=" font-bold text-xl hover:cursor-pointer">
+                    Mood Swinger
+                  </span>
+                </Link>
+              </div>
+              <div className="w-full rounded-md py-6 md:p-0  z-8">
+                <p className="dark:text-gray-300  flex flex-wrap">
+                  • Mood tarcking web-app where you can store your moods, see
+                  your average mood, create notes, see your mood history. You
+                  can also identify your mood triggers and overcome them.
+                  <br />
+                  • Built with ReactJs for frontend, Firestore as database and
+                  OAuth with Firebase for authentication. Firebase storage is
+                  used for storing user data such as profile picture.
+                  <br />
+                  • Serverless functions are used to retrieve and store moods,
+                  TailwindCSS is used for handling dark and light mode. Recharts
+                  is used for constructing graphs and charts.
+                  <br />
+                </p>
+              </div>
+              <ul
+                className="flex flex-wrap w-full dark:text-gray-300 md:text-gray-600
+               text-sm font-Text2 md:justify-start"
+              >
+                <span className="pr-4 z-8">Firebase</span>
+                <span className="pr-4 z-8">React</span>
+                <span className="pr-4 z-8">Tailwind CSS</span>
+                <span className="pr-4 z-8">Firestore</span>
+                <span className="pr-4 z-8">OAuth</span>
+              </ul>
+              <div className="z-8 flex fle-row space-x-5 ">
+                <Link href="https://github.com/mshivam019/mood-swinger">
+                  <span className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0">
+                    <CommandLineIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
+                  </span>
+                </Link>
+                <Link href="https://mood-swinger.vercel.app/">
+                  <span className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0">
+                    <ArrowTopRightOnSquareIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* 4 project ends */}
       <div
         data-aos="fade-up"
         className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl"
@@ -222,76 +364,7 @@ export default function Projects() {
           </div>
         </div>
       </div>
-      {/* 3 project ends */}
-      <div
-        data-aos="fade-up"
-        className="max-w-md mx-auto rounded-none shadow-md overflow-visible md:max-w-5xl"
-      >
-        <div className="md:flex ">
-          <div className="md:shrink-0 mt-7 px-6">
-            <Link href="https://kanban-notes.vercel.app/">
-              <Image
-                height={76}
-                width={96}
-                sizes="90vw"
-                className="h-70 w-96 rounded-lg md:h-70 md:w-45 lg:hover:scale-125 transition-all duration-500 cursor-pointer "
-                src="/img/kanban.png"
-                alt="Notes app main screen"
-              />
-            </Link>
-          </div>
-          <div className="p-8">
-            <div
-              className=" sm:pt-12 md:py-0 xl:col-span-6   
-            col-span-8 flex flex-col items-start  space-y-3 "
-            >
-              <div className="flex flex-col ">
-                <Link href="https://kanban-notes.vercel.app/">
-                  <span className=" font-bold text-xl hover:cursor-pointer">
-                    Kanban Notes
-                  </span>
-                </Link>
-              </div>
-              <div className="w-full rounded-md py-6 md:p-0  z-8">
-                <p className="dark:text-gray-300  flex flex-wrap">
-                  • Developed a Notes app to store user’s daily tasks, logs,
-                  to-do, etc with help of Firebase.
-                  <br />
-                  • Used Firestore as database, lazy-login using google sign-in
-                  and traditional login using email and password.
-                  <br />
-                  • Used Docker to containerize the application, currently using
-                  Vercel to host and call the serverless functions.
-                  <br />
-                </p>
-              </div>
-              <ul
-                className="flex flex-wrap w-full dark:text-gray-300 md:text-gray-600
-               text-sm font-Text2 md:justify-start"
-              >
-                <span className="pr-4 z-8">Firebase</span>
-                <span className="pr-4 z-8">Angular</span>
-                <span className="pr-4 z-8">Docker</span>
-                <span className="pr-4 z-8">Typescript</span>
-                <span className="pr-4 z-8">FireStore</span>
-              </ul>
-              <div className="z-8 flex fle-row space-x-5 ">
-                <Link href="https://github.com/mshivam019/notes-app">
-                  <span className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0">
-                    <CommandLineIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
-                  </span>
-                </Link>
-                <Link href="https://kanban-notes.vercel.app/">
-                  <span className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0">
-                    <ArrowTopRightOnSquareIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* 4 project ends */}
+      {/* 5 project ends */}
     </div>
   );
 }
