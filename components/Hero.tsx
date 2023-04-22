@@ -5,9 +5,10 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline';
 
 export default function Hero() {
   const technologies = [
-    ['Java', 'C', 'C++', 'Kotlin', 'JavaScript', 'Typescript', 'Docker'],
+    ['Java', 'C', 'C++', 'Kotlin', 'JavaScript', 'Typescript', 'Docker', 'C#'],
     [
       'MongoDB',
+      'NextJS',
       'Jetpack Compose',
       'Tailwind CSS',
       'Angular',
@@ -35,11 +36,12 @@ export default function Hero() {
           <p className="text-justify text-gray-600 max-w-4xl dark:text-gray-400">
             Hello I am a senior sophist, CSE Student at Lovely Professional
             University, having holistic knowledge over software development,IT
-            Support, UX design and also experienced in Dev-Ops. My objective is
-            to have growth oriented and challenging career where I can
-            contribute my knowledge and skills to the organization and enhance
-            my experience through continuous learning and teamwork. Do check out
-            my android apps by clicking the link below. <br/>
+            Support, UX design, also experienced in Dev-Ops and built games
+            using Unity Engine with C#. My objective is to have growth oriented
+            and challenging career where I can contribute my knowledge and
+            skills to the organization and enhance my experience through
+            continuous learning and teamwork. Do check out my android apps by
+            clicking the link below. <br />
             Here are a few technologies I&apos;ve been working with recently:
           </p>
         </div>
@@ -55,12 +57,6 @@ export default function Hero() {
             className="rounded-full"
           />
         </div>
-      
-
-
-        
-          
-
       </div>
       <div className="font-Header tracking-wide flex flex-row space-x-16 pb-6 pt-2">
         <div className="flex flex-row space-x-2 items-center">
