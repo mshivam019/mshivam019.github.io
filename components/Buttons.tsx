@@ -1,83 +1,49 @@
 import React from 'react';
 
 export default function Buttons() {
+  const buttons = [
+    {
+      label: 'Android Apps',
+      url: 'https://mshivam019.github.io/portfolio/'
+    },
+    {
+      label: 'Linkedin',
+      url: 'https://www.linkedin.com/in/mshivam019/'
+    },
+    {
+      label: 'GitHub',
+      url: 'https://github.com/mshivam019'
+    },
+    {
+      label: 'Certifications',
+      url: 'https://drive.google.com/drive/folders/1q0KZSNVHhTny67mdtN_LUV7pMb8y6T3O?usp=sharing'
+    },
+    {
+      label: 'Mail',
+      url: 'mailto:mshivam019@gmail.com'
+    },
+    {
+      label: 'Link Tree',
+      url: 'https://linktr.ee/mshivam019'
+    }
+  ];
+
   return (
     <div className="flex flex-wrap space-x-4 pl-2">
-      <button
-        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
-        type="button"
-        onClick={() => window.open('https://mshivam019.github.io/portfolio/')}
-      >
-        <span className="absolute inset-0 dark:bg-white bg-black" />
-        <span className="absolute inset-0 flex justify-center items-center ">
-          Android Apps
-        </span>
-        Android Apps
-      </button>
-
-      <button
-        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
-        type="button"
-        onClick={() => window.open('https://www.linkedin.com/in/mshivam019/')}
-      >
-        <span className="absolute inset-0 dark:bg-white bg-black" />
-        <span className="absolute inset-0 flex justify-center items-center ">
-          Linkedin
-        </span>
-        Linkedin
-      </button>
-
-      <button
-        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
-        type="button"
-        onClick={() => window.open('https://github.com/mshivam019')}
-      >
-        <span className="absolute inset-0 dark:bg-white bg-black" />
-        <span className="absolute inset-0 flex justify-center items-center ">
-          GitHub
-        </span>
-        GitHub
-      </button>
-
-      <button
-        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black  tracking-wider leading-none overflow-hidden "
-        type="button"
-        onClick={() =>
-          window.open(
-            'https://drive.google.com/drive/folders/1q0KZSNVHhTny67mdtN_LUV7pMb8y6T3O?usp=sharing'
-          )
-        }
-      >
-        <span className="absolute inset-0 dark:bg-white bg-black" />
-        <span className="absolute inset-0 flex justify-center items-center ">
-          Certifications
-        </span>
-        Certifications
-      </button>
-
-      <button
-        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black  tracking-wider leading-none overflow-hidden "
-        type="button"
-        onClick={() => window.open('mailto:mshivam019@gmail.com')}
-      >
-        <span className="absolute inset-0 dark:bg-white bg-black" />
-        <span className="absolute inset-0 flex justify-center items-center ">
-          Mail
-        </span>
-        Mail
-      </button>
-
-      <button
-        className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black  dark:text-gray-200 dark:hover:text-black  tracking-wider leading-none overflow-hidden "
-        type="button"
-        onClick={() => window.open('https://linktr.ee/mshivam019')}
-      >
-        <span className="absolute inset-0 dark:bg-white bg-black" />
-        <span className="absolute inset-0 flex justify-center items-center ">
-          Link Tree
-        </span>
-        Link Tree
-      </button>
+      {buttons.map((button, index) => (
+        <button
+          key={index}
+          className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden"
+          type="button"
+          onClick={() => window.open(button.url)}
+        >
+          <span className="absolute inset-0 dark:bg-white bg-black" />
+          <span className="absolute inset-0 flex justify-center items-center">
+            {button.label}
+          </span>
+          {button.label}
+        </button>
+      ))}
     </div>
   );
 }
