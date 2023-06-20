@@ -127,14 +127,12 @@ function Tabs() {
 
                             <div className="w-full lg:w-3/5 lg:px-3">
                               <p className="text-md mt-4 lg:mt-0 text-justify md:text-left text-sm dark:text-zinc-200 text-zinc-800">
-                                {tab.description
-                                  .split('\n')
-                                  .map((line) => (
-                                    <span key={line} className="pr-4 z-10">
-                                      {line}
-                                      <br />
-                                    </span>
-                                  ))}
+                                {tab.description.split('\n').map((line) => (
+                                  <span key={line} className="pr-4 z-10">
+                                    {line}
+                                    <br />
+                                  </span>
+                                ))}
                               </p>
                             </div>
 

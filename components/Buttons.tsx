@@ -4,28 +4,28 @@ export default function Buttons() {
   const buttons = [
     {
       label: 'Android Apps',
-      url: 'https://mshivam019.github.io/portfolio/'
+      url: 'https://mshivam019.github.io/portfolio/',
     },
     {
       label: 'Linkedin',
-      url: 'https://www.linkedin.com/in/mshivam019/'
+      url: 'https://www.linkedin.com/in/mshivam019/',
     },
     {
       label: 'GitHub',
-      url: 'https://github.com/mshivam019'
+      url: 'https://github.com/mshivam019',
     },
     {
       label: 'Certifications',
-      url: 'https://drive.google.com/drive/folders/1q0KZSNVHhTny67mdtN_LUV7pMb8y6T3O?usp=sharing'
+      url: 'https://drive.google.com/drive/folders/1q0KZSNVHhTny67mdtN_LUV7pMb8y6T3O?usp=sharing',
     },
     {
       label: 'Mail',
-      url: 'mailto:mshivam019@gmail.com'
+      url: 'mailto:mshivam019@gmail.com',
     },
     {
       label: 'Link Tree',
-      url: 'https://linktr.ee/mshivam019'
-    }
+      url: 'https://linktr.ee/mshivam019',
+    },
   ];
 
   return (
