@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,7 +17,7 @@ interface ProjectProps {
   githubLink: string;
 }
 
-const Project: React.FC<ProjectProps> = ({
+function Project({
   href,
   imageSrc,
   imageAlt,
@@ -24,7 +25,7 @@ const Project: React.FC<ProjectProps> = ({
   description,
   technologies,
   githubLink,
-}) => {
+}: ProjectProps) {
   return (
     <div
       data-aos="fade-up"
@@ -54,14 +55,18 @@ const Project: React.FC<ProjectProps> = ({
               </Link>
             </div>
             <div className="w-full rounded-md py-6 md:p-0 z-8">
-              <p
-                className="dark:text-gray-300 flex flex-wrap"
-                dangerouslySetInnerHTML={{ __html: description }}
-              ></p>
+              <p className="dark:text-gray-300 flex flex-wrap">
+                {description.split('\n').map((line) => (
+                  <span key={line}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
+              </p>
             </div>
             <ul className="flex flex-wrap w-full dark:text-gray-300 md:text-gray-600 text-sm font-Text2 md:justify-start">
-              {technologies.map((technology, index) => (
-                <span key={index} className="pr-4 z-8">
+              {technologies.map((technology) => (
+                <span key={technology} className="pr-4 z-8">
                   {technology}
                 </span>
               ))}
@@ -85,7 +90,7 @@ const Project: React.FC<ProjectProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default function Projects() {
   const projects: ProjectProps[] = [
@@ -95,7 +100,7 @@ export default function Projects() {
       imageAlt: 'E-commerce website home screen',
       title: 'EStore',
       description:
-        ' • Developed an E-commerce website with Order-history,Auto-complete Search, Payment-gateway and Cookies. <br /> • Built with NextJs for frontend with SSR, MongoDB as database and Next-auth with JWT token for authentication.<br /> • MongoDB Realm is used to create and handle the server-less function calls and PayPal for payment gateway.',
+        ' • Developed an E-commerce website with Order-history,Auto-complete Search, Payment-gateway and Cookies. \n\n • Built with NextJs for frontend with SSR, MongoDB as database and Next-auth with JWT token for authentication.\n\n • MongoDB Realm is used to create and handle the server-less function calls and PayPal for payment gateway.',
       technologies: ['MongoDB', 'Tailwind CSS', 'Realm', 'Nextjs', 'PayPal'],
       githubLink: 'https://github.com/mshivam019/e-commerce',
     },
@@ -105,7 +110,7 @@ export default function Projects() {
       imageAlt: 'Hospital website welcome screen',
       title: 'Hospital Management System',
       description:
-        ' • Developed a website to create, read, update, and delete (CRUD) appointments on a hospital website using REST APIs. <br /> • Implemented login using Auth0 with support of lazy login and Spring Security 5. <br /> • Created separate databases for appointments and user details using PostgreSQL and JPA Repository. <br />• Used Docker-Compose to dockerize the application, hosting the images on Docker Hub for easy deployment.',
+        ' • Developed a website to create, read, update, and delete (CRUD) appointments on a hospital website using REST APIs. \n\n • Implemented login using Auth0 with support of lazy login and Spring Security 5. \n\n • Created separate databases for appointments and user details using PostgreSQL and JPA Repository. \n\n• Used Docker-Compose to dockerize the application, hosting the images on Docker Hub for easy deployment.',
       technologies: [
         'Java',
         'SpringBoot',
@@ -122,7 +127,7 @@ export default function Projects() {
       imageAlt: 'Notes app main screen',
       title: 'Kanban Notes',
       description:
-        ' • Developed a Notes app to store user’s daily tasks, logs, to-do, etc with help of Firebase. <br /> • Used Firestore as database, lazy-login using google sign-in and traditional login using email and password. <br /> • Used Docker to containerize the application, currently using Vercel to host and call the serverless functions.',
+        ' • Developed a Notes app to store user’s daily tasks, logs, to-do, etc with help of Firebase. \n\n • Used Firestore as database, lazy-login using google sign-in and traditional login using email and password. \n\n • Used Docker to containerize the application, currently using Vercel to host and call the serverless functions.',
       technologies: [
         'Firebase',
         'Angular',
@@ -138,7 +143,7 @@ export default function Projects() {
       imageAlt: 'Social website Home screen',
       title: 'Mood Swinger',
       description:
-        ' • Mood tarcking web-app where you can store your moods, see your average mood, create notes, see your mood history. You can also identify your mood triggers and overcome them. <br /> • Built with ReactJs for frontend, Firestore as database and OAuth with Firebase for authentication. Firebase storage is used for storing user data such as profile picture. <br /> • Serverless functions are used to retrieve and store moods, TailwindCSS is used for handling dark and light mode. Recharts is used for constructing graphs and charts.',
+        ' • Mood tarcking web-app where you can store your moods, see your average mood, create notes, see your mood history. You can also identify your mood triggers and overcome them. \n\n • Built with ReactJs for frontend, Firestore as database and OAuth with Firebase for authentication. Firebase storage is used for storing user data such as profile picture. \n\n • Serverless functions are used to retrieve and store moods, TailwindCSS is used for handling dark and light mode. Recharts is used for constructing graphs and charts.',
       technologies: ['Firebase', 'React', 'Tailwind CSS', 'Firestore', 'OAuth'],
       githubLink: 'https://github.com/mshivam019/mood-swinger',
     },
@@ -153,8 +158,8 @@ export default function Projects() {
       <h1 className="lg:pl-0 pl-2 font-semi-bold text-3xl md:text-4xl text-black dark:text-white mr-auto">
         Projects
       </h1>
-      {projects.map((project, index) => (
-        <Project key={index} {...project} />
+      {projects.map((project) => (
+        <Project key={project.title} {...project} />
       ))}
     </div>
   );

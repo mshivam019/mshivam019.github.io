@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
@@ -39,12 +42,11 @@ const tabs: Tab[] = [
 interface TabProps {
   tab: Tab;
   activeTab: number;
-  onClick: (tabId: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  onClick: (tab: number) => void;
 }
 
-const Tab: React.FC<TabProps> = ({ tab, activeTab, onClick }) => {
-  const isActive = tab.id === activeTab;
-
+function TabItem({ tab, activeTab, onClick }: TabProps) {
   const handleClick = () => {
     onClick(tab.id);
   };
@@ -53,7 +55,9 @@ const Tab: React.FC<TabProps> = ({ tab, activeTab, onClick }) => {
     <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
       <a
         className={`text-xs font-bold uppercase px-5 py-3 my-2 shadow-lg rounded block leading-normal ${
-          activeTab === tab.id ? 'bg-zinc-600 text-white' : 'dark:bg-zinc-400 bg-zinc-300 text-black-600'
+          activeTab === tab.id
+            ? 'bg-zinc-600 text-white'
+            : 'dark:bg-zinc-400 bg-zinc-300 text-black-600'
         } cursor-pointer`}
         onClick={() => handleClick()}
         data-toggle="tab"
@@ -63,9 +67,9 @@ const Tab: React.FC<TabProps> = ({ tab, activeTab, onClick }) => {
       </a>
     </li>
   );
-};
+}
 
-const Tabs: React.FC = () => {
+function Tabs() {
   const [activeTab, setActiveTab] = useState(1);
 
   const handleTabClick = (tabId: number) => {
@@ -80,7 +84,7 @@ const Tabs: React.FC = () => {
           role="tablist"
         >
           {tabs.map((tab) => (
-            <Tab
+            <TabItem
               key={tab.id}
               tab={tab}
               activeTab={activeTab}
@@ -125,8 +129,8 @@ const Tabs: React.FC = () => {
                               <p className="text-md mt-4 lg:mt-0 text-justify md:text-left text-sm dark:text-zinc-200 text-zinc-800">
                                 {tab.description
                                   .split('\n')
-                                  .map((line, index) => (
-                                    <span key={index} className="pr-4 z-10">
+                                  .map((line) => (
+                                    <span key={line} className="pr-4 z-10">
                                       {line}
                                       <br />
                                     </span>
@@ -155,9 +159,9 @@ const Tabs: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
-const Experience: React.FC = () => {
+function Experience() {
   return (
     <div
       id="Experience"
@@ -170,6 +174,6 @@ const Experience: React.FC = () => {
       <Tabs />
     </div>
   );
-};
+}
 
 export default Experience;

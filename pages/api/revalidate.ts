@@ -20,7 +20,6 @@ export default async function handler(
 
     res.status(200).json({ message: 'Revalidation triggered successfully' });
   } catch (error) {
-    console.error('Error triggering revalidation:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 }
