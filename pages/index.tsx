@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Aos from 'aos';
 import Contact from '@/components/Contact';
 import Container from '@/components/Container';

@@ -4,7 +4,7 @@ const SECRET = process.env.MY_SECRET_TOKEN;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ): Promise<void> {
   try {
     const { secret } = req.query;
