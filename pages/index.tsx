@@ -1,3 +1,4 @@
+import React,{ useEffect } from 'react';
 import Aos from 'aos';
 import Contact from '@/components/Contact';
 import Container from '@/components/Container';
@@ -5,7 +6,6 @@ import Experience from '@/components/Experience';
 import Hero from '@/components/Hero';
 import Projects from '@/components/Projects';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
 import client from '@/client';
 
 export async function getStaticProps() {
