@@ -1,49 +1,57 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { useNextSanityImage } from 'next-sanity-image';
+import client from '@/client';
 
-interface Tab {
+interface ExperienceTab {
   id: number;
+  _key: string;
   title: string;
   date: string;
-  description: string;
-  link: string;
-  imageSrc: string;
+  image: {
+    _type: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
   altText: string;
+  link: string;
+  description: string;
 }
-
-const tabs: Tab[] = [
-  {
-    id: 1,
-    title: 'Google Supported Android Internship - Smartbridge',
-    date: 'August - September 2022',
-    description:
-      '• Completed Android Basics course and attended 8-weeks of training, learning about building android apps using Kotlin.\n\n• Learned about Step-by-Step procedure to develop mobile application from wire-framing to data persistence.\n\n• Built a grocery-list app using Kotlin and XML for my final project with the help of Coroutines, MVVM and ROOM database.',
-    link: 'https://github.com/mshivam019/Grocery-List',
-    imageSrc: '/gcer.png',
-    altText: 'Google certificate',
-  },
-  {
-    id: 2,
-    title: 'Future Ready Talent Cloud Internship - Microsoft',
-    date: 'May - June 2022',
-    description:
-      '• In the Azure Services technology track, I learnt about the roles and duties of an Azure Dev-ops Engineer Associate.\n\n• Experienced the daily hands-on tasks of an Azure Developer (AZ-204) like utilizing Azure Storage, implementing authentication and authorization.\n\n• My final project was a tourism website with a Chat-Bot with CI/CD using GitHub, hosted on Azure Static Web-Apps and Chat-Bot learns from the user dynamically using QnA Maker hosted on Azure Bot Services.',
-    link: 'https://github.com/mshivam019/Tour-Website',
-    imageSrc: '/mcer.png',
-    altText: '',
-  },
-];
-
 interface TabProps {
-  tab: Tab;
+  tab: ExperienceTab;
   activeTab: number;
   // eslint-disable-next-line no-unused-vars
   onClick: (tab: number) => void;
+}
+interface imagePropsTypes {
+  _type: string;
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+}
+
+interface Experiences {
+  _id: string;
+  _updatedAt: string;
+  _createdAt: string;
+  _rev: string;
+  _type: string;
+  tabs: ExperienceTab[];
+}
+interface ExperienceProps {
+  experience: Experiences[];
 }
 
 function TabItem({ tab, activeTab, onClick }: TabProps) {
@@ -69,12 +77,16 @@ function TabItem({ tab, activeTab, onClick }: TabProps) {
   );
 }
 
-function Tabs() {
+function Tabs({ experience }: ExperienceProps) {
   const [activeTab, setActiveTab] = useState(1);
 
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
   };
+  function getsrc(image: imagePropsTypes) {
+    const imageProps = useNextSanityImage(client, image);
+    return imageProps.src;
+  }
 
   return (
     <div className="flex flex-wrap">
@@ -83,10 +95,10 @@ function Tabs() {
           className="flex mb-0 list-none flex-wrap pt-3 pb-2 flex-row"
           role="tablist"
         >
-          {tabs.map((tab) => (
+          {experience[0].tabs.map((item) => (
             <TabItem
-              key={tab.id}
-              tab={tab}
+              key={item.id}
+              tab={item}
               activeTab={activeTab}
               onClick={handleTabClick}
             />
@@ -95,7 +107,7 @@ function Tabs() {
         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded">
           <div className="px-4 py-5 flex-auto">
             <div className="tab-content tab-space">
-              {tabs.map((tab) => (
+              {experience[0].tabs.map((tab) => (
                 <div
                   key={tab.id}
                   className={tab.id === activeTab ? 'block' : 'hidden'}
@@ -106,9 +118,9 @@ function Tabs() {
                       <div className="bg-cover bg-bottom w-full md:w-1/3 h-64 md:h-auto relative z-10">
                         <Image
                           className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                          fill
                           style={{ objectFit: 'cover' }}
-                          src={tab.imageSrc}
+                          src={getsrc(tab.image)}
+                          fill
                           alt={tab.altText}
                         />
                       </div>
@@ -126,14 +138,12 @@ function Tabs() {
                             </div>
 
                             <div className="w-full lg:w-3/5 lg:px-3">
-                              <p className="text-md mt-4 lg:mt-0 text-justify md:text-left text-sm dark:text-zinc-200 text-zinc-800">
-                                {tab.description.split('\n').map((line) => (
-                                  <span key={line} className="pr-4 z-10">
-                                    {line}
-                                    <br />
-                                  </span>
-                                ))}
-                              </p>
+                              <p
+                                className="text-md mt-4 lg:mt-0 text-justify md:text-left text-sm dark:text-zinc-200 text-zinc-800"
+                                dangerouslySetInnerHTML={{
+                                  __html: tab.description,
+                                }}
+                              />
                             </div>
 
                             <div className="w-full lg:w-1/5 mt-6 lg:mt-0 lg:px-4 text-center md:text-left">
@@ -159,7 +169,7 @@ function Tabs() {
   );
 }
 
-function Experience() {
+function Experience({ experience }: ExperienceProps) {
   return (
     <div
       id="Experience"
@@ -169,7 +179,7 @@ function Experience() {
       <h1 className="font-semi-bold text-3xl lg:pl-0 pl-2 md:text-4xl text-black dark:text-white mr-auto pb-3">
         Experience
       </h1>
-      <Tabs />
+      <Tabs experience={experience} />
     </div>
   );
 }
