@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import Image from 'next/image';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useNextSanityImage } from 'next-sanity-image';

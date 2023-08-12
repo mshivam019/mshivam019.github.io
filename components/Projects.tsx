@@ -2,7 +2,6 @@
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
