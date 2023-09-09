@@ -68,13 +68,13 @@ function Project({
             </ul>
             <div className="z-8 flex fle-row space-x-5">
               <Link
-                href={liveLink}
+                href={githubLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
               >
                 <CommandLineIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
               </Link>
               <Link
-                href={githubLink}
+                href={liveLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
               >
                 <ArrowTopRightOnSquareIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
