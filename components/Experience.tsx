@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-danger */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -11,47 +12,12 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useNextSanityImage } from 'next-sanity-image';
 import client from '@/client';
+import { ExperienceProps,ExperienceTab,imagePropsTypes } from '@/types';
 
-interface ExperienceTab {
-  id: number;
-  _key: string;
-  title: string;
-  date: string;
-  image: {
-    _type: string;
-    asset: {
-      _ref: string;
-      _type: string;
-    };
-  };
-  altText: string;
-  link: string;
-  description: string;
-}
 interface TabProps {
   tab: ExperienceTab;
   activeTab: number;
-  // eslint-disable-next-line no-unused-vars
-  onClick: (tab: number) => void;
-}
-interface imagePropsTypes {
-  _type: string;
-  asset: {
-    _ref: string;
-    _type: string;
-  };
-}
-
-interface Experiences {
-  _id: string;
-  _updatedAt: string;
-  _createdAt: string;
-  _rev: string;
-  _type: string;
-  tabs: ExperienceTab[];
-}
-interface ExperienceProps {
-  experience: Experiences[];
+  onClick: (tabId:number) => void;
 }
 
 function TabItem({ tab, activeTab, onClick }: TabProps) {
@@ -95,7 +61,7 @@ function Tabs({ experience }: ExperienceProps) {
           className="flex mb-0 list-none flex-wrap pt-3 pb-2 flex-row"
           role="tablist"
         >
-          {experience[0].tabs.map((item) => (
+          {experience.tabs.map((item) => (
             <TabItem
               key={item.id}
               tab={item}
@@ -107,7 +73,7 @@ function Tabs({ experience }: ExperienceProps) {
         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded">
           <div className="px-4 py-5 flex-auto">
             <div className="tab-content tab-space">
-              {experience[0].tabs.map((tab) => (
+              {experience.tabs.map((tab) => (
                 <div
                   key={tab.id}
                   className={tab.id === activeTab ? 'block' : 'hidden'}

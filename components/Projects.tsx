@@ -10,36 +10,8 @@ import {
 } from '@heroicons/react/24/outline';
 import { useNextSanityImage } from 'next-sanity-image';
 import client from '@/client';
+import { ProjectDetails,ProjectsProps } from '@/types';
 
-interface ProjectDetails {
-  _key: string;
-  title: string;
-  technologies: string[];
-  image: {
-    _type: string;
-    asset: {
-      _ref: string;
-      _type: string;
-    };
-  };
-  githubLink: string;
-  altText: string;
-  description: string;
-  liveLink: string;
-}
-
-interface ProjectType {
-  _id: string;
-  _updatedAt: string;
-  _createdAt: string;
-  _rev: string;
-  _type: string;
-  projects: ProjectDetails[];
-}
-
-interface ProjectsProps {
-  project: ProjectType[];
-}
 
 function Project({
   liveLink,
@@ -125,7 +97,7 @@ export default function Projects({ project }: ProjectsProps) {
       <h1 className="lg:pl-0 pl-2 font-semi-bold text-3xl md:text-4xl text-black dark:text-white mr-auto">
         Projects
       </h1>
-      {project[0].projects.map((item) => (
+      {project.projects.map((item) => (
         <Project key={item._key} {...item} />
       ))}
     </div>

@@ -5,38 +5,10 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useNextSanityImage } from 'next-sanity-image';
 import Buttons from '@/components/Buttons';
 import client from '@/client';
-
-interface Heros {
-  technologies: string[];
-  altText: string;
-  _createdAt: string;
-  _type: string;
-  name: string;
-  _id: string;
-  image: {
-    _type: string;
-    asset: {
-      _ref: string;
-      _type: string;
-    };
-  };
-  buttons: {
-    label: string;
-    _key: string;
-    url: string;
-  }[];
-  _rev: string;
-  description: string;
-  _updatedAt: string;
-  tools: string[];
-}
-
-interface HeroProps {
-  hero: Heros[];
-}
+import { HeroProps } from '@/types';
 
 export default function Hero({ hero }: HeroProps) {
-  const imageProps = useNextSanityImage(client, hero[0].image);
+  const imageProps = useNextSanityImage(client, hero.image);
 
   return (
     <div
@@ -46,7 +18,7 @@ export default function Hero({ hero }: HeroProps) {
       <div className="flex flex-col-reverse sm:flex-row items-start pt-8">
         <div className="flex flex-col pr-8">
           <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
-            {hero[0].name}
+            {hero.name}
           </h1>
           <h2 className="text-gray-700 dark:text-gray-200 mb-4">
             Student at{' '}
@@ -56,7 +28,7 @@ export default function Hero({ hero }: HeroProps) {
           </h2>
           <p
             className="text-justify text-gray-600 max-w-4xl dark:text-gray-400"
-            dangerouslySetInnerHTML={{ __html: hero[0].description }}
+            dangerouslySetInnerHTML={{ __html: hero.description }}
           />
         </div>
 
@@ -75,7 +47,7 @@ export default function Hero({ hero }: HeroProps) {
       <div className="font-Header tracking-wide flex flex-row space-x-16 pb-6 pt-2">
         <div className="flex flex-row space-x-2 items-center">
           <div className="flex flex-col space-y-4 sm:text-base text-sm">
-            {hero[0].technologies.map((tech) => (
+            {hero.technologies.map((tech) => (
               <div key={tech} className="flex flex-row items-center space-x-2">
                 <ChevronRightIcon className="h-3 w-3 " />
                 <span className="dark:text-gray-400 sm:text-sm text-xs">
@@ -87,7 +59,7 @@ export default function Hero({ hero }: HeroProps) {
         </div>
         <div className="flex flex-row space-x-2 items-center">
           <div className="flex flex-col space-y-4 sm:text-base text-sm">
-            {hero[0].tools.map((tech) => (
+            {hero.tools.map((tech) => (
               <div key={tech} className="flex flex-row items-center space-x-2">
                 <ChevronRightIcon className="h-3 w-3 " />
                 <span className="dark:text-gray-400 sm:text-sm text-xs">
@@ -98,7 +70,7 @@ export default function Hero({ hero }: HeroProps) {
           </div>
         </div>
       </div>
-      <Buttons buttons={hero[0].buttons} />
+      <Buttons buttons={hero.buttons} />
     </div>
   );
 }

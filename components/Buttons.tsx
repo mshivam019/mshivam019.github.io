@@ -1,12 +1,4 @@
-interface HeroButton {
-  label: string;
-  _key: string;
-  url: string;
-}
-
-interface ButtonProps {
-  buttons: HeroButton[];
-}
+import { ButtonProps } from "@/types";
 
 export default function Buttons({ buttons }: ButtonProps) {
   return (
