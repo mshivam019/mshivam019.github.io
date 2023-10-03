@@ -10,7 +10,6 @@ import client from '@/client';
 import { HomeProps } from '@/types';
 
 export async function getStaticProps() {
-  // Fetch your content from Sanity
   const projectsQuery = `*[_type == "project"][0]`;
   const project = await client.fetch(projectsQuery);
 

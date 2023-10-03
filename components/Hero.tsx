@@ -1,5 +1,3 @@
-/* eslint-disable react/no-danger */
-/* eslint-disable react/jsx-props-no-spreading */
 import Image from 'next/image';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useNextSanityImage } from 'next-sanity-image';
@@ -9,7 +7,6 @@ import { HeroProps } from '@/types';
 
 export default function Hero({ hero }: HeroProps) {
   const imageProps = useNextSanityImage(client, hero.image);
-
   return (
     <div
       id="About"
@@ -26,15 +23,17 @@ export default function Hero({ hero }: HeroProps) {
               Lovely Professional University
             </span>
           </h2>
-          <p
-            className="text-justify text-gray-600 max-w-4xl dark:text-gray-400"
-            dangerouslySetInnerHTML={{ __html: hero.description }}
-          />
+          <p className="text-justify text-gray-600 max-w-4xl dark:text-gray-400">
+            {hero.description}
+          </p>
+          <p className="text-justify text-gray-600 max-w-4xl dark:text-gray-400">
+            Here are a few technologies I&apos;ve been working with recently:
+          </p>
         </div>
 
         <div className="w-[90px] sm:w-[176px] relative mb-8 sm:mb-0 mr-auto ">
           <Image
-            {...imageProps}
+            src={imageProps.src}
             alt="Shivam Mishra"
             height={176}
             width={176}

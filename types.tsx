@@ -11,10 +11,14 @@ export interface ProjectDetails {
     };
     githubLink: string;
     altText: string;
-    description: string;
+    descriptionOne: string;
+    descriptionTwo: string;
+    descriptionThree: string;
     liveLink: string;
   }
-  
+  export interface ProjectItem {
+    projectItem: ProjectDetails;
+  }
   export interface Project {
     _id: string;
     _updatedAt: string;
@@ -25,20 +29,13 @@ export interface ProjectDetails {
   }
   
   export interface ExperienceTab {
-    id: number;
     _key: string;
     title: string;
     date: string;
-    image: {
-      _type: string;
-      asset: {
-        _ref: string;
-        _type: string;
-      };
-    };
-    altText: string;
-    link: string;
-    description: string;
+    location: string;
+    descriptionOne: string;
+    descriptionTwo: string;
+    descriptionThree: string;
   }
   
   export interface Experiences {
@@ -101,12 +98,4 @@ export interface ProjectDetails {
 
   export interface ExperienceProps {
     experience: Experiences;
-  }
-
-  export interface imagePropsTypes {
-    _type: string;
-    asset: {
-      _ref: string;
-      _type: string;
-    };
   }

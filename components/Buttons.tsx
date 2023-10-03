@@ -2,7 +2,7 @@ import { ButtonProps } from "@/types";
 
 export default function Buttons({ buttons }: ButtonProps) {
   return (
-    <div className="flex flex-wrap space-x-4 pl-2">
+    <div className="flex flex-wrap gap-4">
       {buttons.map((item) => (
         <button
           key={item.label}
