@@ -21,7 +21,7 @@ export default function Experience({ experience }: ExperienceProps) {
       <h1 className="font-semi-bold text-3xl lg:pl-0 pl-2 md:text-4xl text-black dark:text-white mr-auto pb-3">
         Experience
       </h1>
-      <VerticalTimeline lineColor={theme === "light" ? "black" : "gray"}>
+      <VerticalTimeline animate={false} lineColor={theme === "light" ? "black" : "gray"}>
         {experience.tabs.map((item) => (
           <React.Fragment key={item.title}>
             <VerticalTimelineElement
