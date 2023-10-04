@@ -52,15 +52,17 @@ export default function Experience({ experience }: ExperienceProps) {
             >
               <h3 className="font-semibold capitalize">{item.title}</h3>
               <p className="font-normal !mt-0">{item.location}</p>
-              <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
+              <ul className="list-disc">
+              <li className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
                 {item.descriptionOne}
-              </p>
-              <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
+              </li>
+              <li className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
                 {item.descriptionTwo}
-              </p>
-              <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
+              </li>
+              <li className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
                 {item.descriptionThree}
-              </p>
+              </li>
+              </ul>
             </VerticalTimelineElement>
           </React.Fragment>
         ))}

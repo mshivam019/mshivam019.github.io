@@ -13,7 +13,7 @@ export default function Hero({ hero }: HeroProps) {
       className="pl-2 flex flex-col justify-center items-start max-w-6xl border-gray-200 dark:border-gray-700 mx-auto py-6"
     >
       <div className="flex flex-col-reverse sm:flex-row items-start pt-8">
-        <div className="flex flex-col pr-8">
+        <div className="flex flex-col lg:pr-8 pr-2">
           <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
             {hero.name}
           </h1>

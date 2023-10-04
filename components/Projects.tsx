@@ -40,24 +40,26 @@ function ProjectItems({projectItem}: ProjectItem) {
               </Link>
             </div>
             <div className="w-full rounded-md py-6 md:p-0 z-8">
-              <p
-                className="dark:text-gray-300 flex flex-wrap">
+            <ul className="list-disc">
+              <li
+                className="dark:text-gray-300">
                {
                  projectItem.descriptionOne
                 }
-              </p>
-              <p
-                className="dark:text-gray-300 flex flex-wrap">
+              </li>
+              <li
+                className="dark:text-gray-300">
                {
                  projectItem.descriptionTwo
                 }
-              </p>
-              <p
-                className="dark:text-gray-300 flex flex-wrap">
+              </li>
+              <li
+                className="dark:text-gray-300">
                {
                  projectItem.descriptionThree
                 }
-              </p>
+              </li>
+              </ul>
             </div>
             <ul className="flex flex-wrap w-full dark:text-gray-300 md:text-gray-600 text-sm font-Text2 md:justify-start">
               {projectItem.technologies.map((technology) => (
