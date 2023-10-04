@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  ArrowTopRightOnSquareIcon,
-  CommandLineIcon,
+import {CodeBracketIcon, GlobeAltIcon
 } from '@heroicons/react/24/outline';
 import { useNextSanityImage } from 'next-sanity-image';
 import client from '@/client';
@@ -60,13 +58,13 @@ function ProjectItems({projectItem}: ProjectItem) {
                 href={projectItem.githubLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
               >
-                <CommandLineIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
+                <CodeBracketIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
               </Link>
               <Link
                 href={projectItem.liveLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
               >
-                <ArrowTopRightOnSquareIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
+                <GlobeAltIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
               </Link>
             </div>
           </div>
