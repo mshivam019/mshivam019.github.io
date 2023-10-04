@@ -6,7 +6,7 @@ export default function Experience({ experience }: ExperienceProps) {
     <div
       id="Experience"
       data-aos="fade-up"
-      className="flex flex-col justify-center items-start max-w-6xl border-gray-200 dark:border-gray-700 mx-auto pl-6"
+      className="flex flex-col justify-center items-start max-w-6xl border-gray-200 dark:border-gray-700 mx-auto pl-6 pr-2"
     >
       <h1 className="font-semi-bold text-3xl lg:pl-0 pl-2 md:text-4xl text-black dark:text-white mr-auto pb-3 mb-8">
         Experience
