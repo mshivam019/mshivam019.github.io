@@ -40,25 +40,12 @@ function ProjectItems({projectItem}: ProjectItem) {
               </Link>
             </div>
             <div className="w-full rounded-md py-6 md:p-0 z-8">
-            <ul className="list-disc">
-              <li
-                className="dark:text-gray-300">
-               {
-                 projectItem.descriptionOne
-                }
-              </li>
-              <li
-                className="dark:text-gray-300">
-               {
-                 projectItem.descriptionTwo
-                }
-              </li>
-              <li
-                className="dark:text-gray-300">
-               {
-                 projectItem.descriptionThree
-                }
-              </li>
+              <ul className="list-disc">
+                {projectItem.description.split(",,,").map((line) => (
+                  <li className="dark:text-gray-300" key={line.trim()}>
+                    {line}
+                  </li>
+                ))}
               </ul>
             </div>
             <ul className="flex flex-wrap w-full dark:text-gray-300 md:text-gray-600 text-sm font-Text2 md:justify-start">

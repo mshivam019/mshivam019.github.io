@@ -20,22 +20,10 @@ const project = {
               description: 'The title of the project',
             }),
             defineField({
-              name: 'descriptionOne',
-              title: 'Project Description line 1',
+              name: 'description',
+              title: 'Project Description',
               type: 'text',
-              description: 'Point 1 of description of the project',
-            }),
-            defineField({
-              name: 'descriptionTwo',
-              title: 'Project Description line 2',
-              type: 'text',
-              description: 'Point 2 of description of the project',
-            }),
-            defineField({
-              name: 'descriptionThree',
-              title: 'Project Description line 3',
-              type: 'text',
-              description: 'Point 3 of description of the project',
+              description: 'description of the project',
             }),
             defineField({
               name: 'technologies',

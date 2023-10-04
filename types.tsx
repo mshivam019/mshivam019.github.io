@@ -11,9 +11,7 @@ export interface ProjectDetails {
     };
     githubLink: string;
     altText: string;
-    descriptionOne: string;
-    descriptionTwo: string;
-    descriptionThree: string;
+    description: string;
     liveLink: string;
   }
   export interface ProjectItem {
@@ -33,9 +31,7 @@ export interface ProjectDetails {
     title: string;
     date: string;
     location: string;
-    descriptionOne: string;
-    descriptionTwo: string;
-    descriptionThree: string;
+    description: string;
   }
   
   export interface Experiences {
