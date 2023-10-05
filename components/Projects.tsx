@@ -16,16 +16,18 @@ function ProjectItems({projectItem}: ProjectItem) {
     >
       <div className="md:flex">
         <div className="md:shrink-0 mt-7 px-6">
+        <picture className="rounded-lg overflow-hidden block">
           <Link href={projectItem.liveLink}>
             <Image
               src={imageProps.src}
               height={76}
               width={96}
               sizes="90vw"
-              className="h-70 w-96 rounded-lg md:h-70 md:w-45 transition-all duration-500 cursor-pointer"
+              className="h-70 w-96 rounded-lg md:h-70 md:w-45 lg:hover:scale-125 ease-in duration-150 cursor-pointer"
               alt={projectItem.altText}
             />
           </Link>
+          </picture>
         </div>
         <div className="p-8">
           <div className="sm:pt-12 md:py-0 xl:col-span-6 col-span-8 flex flex-col items-start space-y-3">
