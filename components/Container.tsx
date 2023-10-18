@@ -24,11 +24,11 @@ export default function Container(props: { [x: string]: any; children: any }) {
         <meta content={meta.description} name="description" />
         <meta
           property="og:url"
-          content={`https://mshivam019.github.io${router.asPath}`}
+          content={`https://mshivam019.vercel.app/${router.asPath}`}
         />
         <link
           rel="canonical"
-          href={`https://mshivam019.github.io${router.asPath}`}
+          href={`https://mshivam019.vercel.app/${router.asPath}`}
         />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="Shivam Mishra" />
@@ -36,7 +36,7 @@ export default function Container(props: { [x: string]: any; children: any }) {
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@MShivam019" />
+        <meta name="twitter:site" content="@mshivam0019" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
