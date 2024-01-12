@@ -17,7 +17,7 @@ function ProjectItems({projectItem}: ProjectItem) {
       <div className="md:flex">
         <div className="md:shrink-0 mt-7 px-6">
         <picture className="rounded-lg overflow-hidden block">
-          <Link href={projectItem.liveLink}>
+          <Link href={projectItem.liveLink} target="_blank">
             <Image
               src={imageProps.src}
               height={76}
@@ -35,6 +35,7 @@ function ProjectItems({projectItem}: ProjectItem) {
               <Link
                 href={projectItem.liveLink}
                 className="font-bold text-xl hover:cursor-pointer"
+                target="_blank"
               >
                 {projectItem.title}
               </Link>
@@ -59,12 +60,14 @@ function ProjectItems({projectItem}: ProjectItem) {
               <Link
                 href={projectItem.githubLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
+                target="_blank"
               >
                 <CodeBracketIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
               </Link>
               <Link
                 href={projectItem.liveLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
+                target="_blank"
               >
                 <GlobeAltIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
               </Link>
