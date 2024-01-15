@@ -1189,13 +1189,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-vertical-timeline-component@^3.3.4":
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/@types/react-vertical-timeline-component/-/react-vertical-timeline-component-3.3.4.tgz#1a976d8b3946dc9d9bfe6fbf85a0fe2ae5525d08"
-  integrity sha512-s/LpdvdaVK5bq9EH697keO6YaH5XVsDx+KIqSZ3Llq8ESEKtfwUsa5KPtszvR3gVzKKsZ9ZI/xR3OafYQM81ZA==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react@*", "@types/react@^18.0.25":
   version "18.2.24"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.24.tgz#3c7d68c02e0205a472f04abe4a0c1df35d995c05"
@@ -1347,6 +1340,11 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@vercel/analytics/-/analytics-1.0.2.tgz#7af719a1bf33734840aee6f04eb548d2cedab9ec"
   integrity sha512-BZFxVrv24VbNNl5xMxqUojQIegEeXMI6rX3rg1uVLYUEXsuKNBSAEQf4BWEcjQDp/8aYJOj6m8V4PUA3x/cxgg==
+
+"@vercel/speed-insights@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-1.0.3.tgz#ae7175e2b9fd37f815519ff555d0eac4c7a0dfad"
+  integrity sha512-bKIt0HDdF6hP2bJZyS+za3k6sKeAXNRLSIUbwVwvyvKdsHBWS6ILBvmD1wXHZZyTqjU1TP7dTE/F6lHM6rBdKA==
 
 "@vercel/stega@0.1.0":
   version "0.1.0"
