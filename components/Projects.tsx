@@ -61,7 +61,7 @@ function ProjectItems({projectItem}: ProjectItem) {
                 href={projectItem.githubLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
                 target="_blank"
-                aria-label={projectItem.title+" github link"}
+                aria-label={`${projectItem.title} github link`}
               >
                 <CodeBracketIcon className="ml-1 h-7 w-7 dark:text-zinc-200"/>
               </Link>
@@ -69,7 +69,7 @@ function ProjectItems({projectItem}: ProjectItem) {
                 href={projectItem.liveLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
                 target="_blank"
-                aria-label={projectItem.title+" website link"} 
+                aria-label={`${projectItem.title} website link`} 
               >
                 <GlobeAltIcon className="ml-1 h-7 w-7 dark:text-zinc-200"/>
               </Link>
