@@ -51,9 +51,9 @@ function ProjectItems({projectItem}: ProjectItem) {
             </div>
             <ul className="flex flex-wrap w-full dark:text-gray-300 md:text-gray-600 text-sm font-Text2 md:justify-start">
               {projectItem.technologies.map((technology) => (
-                <span key={technology} className="pr-4 z-8">
+                <li key={technology} className="pr-4 z-8">
                   {technology}
-                </span>
+                </li>
               ))}
             </ul>
             <div className="z-8 flex fle-row space-x-5">
@@ -61,15 +61,17 @@ function ProjectItems({projectItem}: ProjectItem) {
                 href={projectItem.githubLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
                 target="_blank"
+                aria-label={projectItem.title+" github link"}
               >
-                <CodeBracketIcon className="ml-1 h-7 w-7 dark:text-zinc-200 " />
+                <CodeBracketIcon className="ml-1 h-7 w-7 dark:text-zinc-200"/>
               </Link>
               <Link
                 href={projectItem.liveLink}
                 className="inline-flex dark:text-zinc-200 text-zinc-700 hover:underline pr-2 mx-4 sm:mx-0"
                 target="_blank"
+                aria-label={projectItem.title+" website link"} 
               >
-                <GlobeAltIcon className="ml-1 h-7 w-7 dark:text-zinc-200" />
+                <GlobeAltIcon className="ml-1 h-7 w-7 dark:text-zinc-200"/>
               </Link>
             </div>
           </div>

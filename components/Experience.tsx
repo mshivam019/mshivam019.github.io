@@ -17,9 +17,9 @@ export default function Experience({ experience }: ExperienceProps) {
           <span className="absolute flex items-center justify-center w-6 h-6 bg-gray-300 rounded-full -left-3 ring-8 ring-gray-200 dark:ring-gray-700 dark:bg-gray-800">
            <BuildingOffice2Icon className="h-4 w-4 text-gray-900 dark:text-gray-100" />
           </span>
-          <h3 className="mb-1 text-lg font-semibold pl-2 dark:text-white">
+          <h2 className="mb-1 text-lg font-semibold pl-2 dark:text-white">
             {tab.title}
-          </h3>
+          </h2>
           <time className="block mb-2 text-sm pl-2 font-normal leading-none  dark:text-gray-300">
             {tab.date}
           </time>

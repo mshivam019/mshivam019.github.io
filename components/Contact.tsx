@@ -4,9 +4,9 @@ export default function Contact() {
   return (
     <div className="my-36" id="Contact" data-aos="fade-up">
       <div className="w-full p-4 text-center bg-white rounded-lg shadow-md sm:p-8 dark:bg-neutral-800 ">
-        <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+        <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
           Let&apos;s Connect
-        </h5>
+        </h1>
         <p className="mb-5 text-base text-gray-700 sm:text-lg dark:text-gray-400">
           I&apos;m currently looking for any new opportunities, my inbox is
           always open. Whether you have a question or just want to say hi.
