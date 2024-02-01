@@ -1,8 +1,8 @@
 import Head from 'next/head';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Header from './Header';
 import Footer from './Footer';
-import { motion } from 'framer-motion';
 
 export default function Container(props: { color?: string; children: any }) {
   const router = useRouter();
