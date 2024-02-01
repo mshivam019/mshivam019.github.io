@@ -6,6 +6,18 @@ const project = {
   type: 'document',
   fields: [
     defineField({
+      name: 'name',
+      title: 'Name',
+      type: 'string',
+      description: 'The name of the person',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      description: 'A brief description about the person',
+    }),
+    defineField({
       name: 'projects',
       title: 'Projects',
       type: 'array',
@@ -58,6 +70,12 @@ const project = {
               title: 'Project Live Link',
               type: 'url',
               description: 'Link to the live version of the project',
+            }),
+            defineField({
+              name: 'className',
+              title: 'custom styling',
+              type: 'string',
+              description: 'add custom styling to the project',
             }),
           ],
         },

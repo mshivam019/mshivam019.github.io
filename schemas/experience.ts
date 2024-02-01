@@ -31,6 +31,12 @@ const experience = {
               type: 'text',
               description: 'description of the experience',
             }),
+            defineField({
+              name: 'icon',
+              title: 'icon for experience',
+              type: 'string',
+              description: 'icon of the experience',
+            }),
           ],
         },
       ],

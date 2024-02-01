@@ -5,17 +5,15 @@ import { ThemeProvider } from 'next-themes';
 
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import PageWithTransition from '@/components/PageWithTransition';
 
 import { AppProps } from 'next/app';
 
-export default function App({
-  Component,
-  pageProps: { ...pageProps },
-}: AppProps) {
+export default function App(props: AppProps) {
   return (
     <ThemeProvider attribute="class">
       <main>
-        <Component {...pageProps} />
+        <PageWithTransition {...props} />
         <SpeedInsights />
         <Analytics />
       </main>

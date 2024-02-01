@@ -3,19 +3,18 @@ import { useRouter } from 'next/router';
 import Header from './Header';
 import Footer from './Footer';
 
-export default function Container(props: { [x: string]: any; children: any }) {
+export default function Container(props: { color?: string; children: any }) {
   const router = useRouter();
-  const { children, ...customMeta } = props;
+  const { children, color } = props;
   const meta = {
     title: 'Shivam Mishra – Developer',
     description: `Full-Stack developer, Android enthusiast, and learner.`,
     image:
       'https://raw.githubusercontent.com/mshivam019/mshivam019/master/Banner.png',
     type: 'website',
-    ...customMeta,
   };
   return (
-    <div>
+    <div className={color || ''}>
       <Head>
         <link rel="icon" type="image/png" href="/image.png" />
 
@@ -41,10 +40,10 @@ export default function Container(props: { [x: string]: any; children: any }) {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
       </Head>
-      <main className="dark:bg-neutral-800 w-full">
-        <Header />
+      <main className="dark:bg-neutral-800">
+        <Header color={color} />
         <div>{children}</div>
-        <Footer />
+        <Footer color={color} />
       </main>
     </div>
   );

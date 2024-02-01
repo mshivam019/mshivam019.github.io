@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@/components/Container';
 import client from '@/client';
 import { ProjectsProps } from '@/types';
-import { HeroParallax } from '@/components/ui/HeroParallax';
+import LayoutGrid from '@/components/ui/LayoutGrid';
 
 export async function getStaticProps() {
   const projectsQuery = `*[_type == "project"][0]`;
@@ -17,9 +17,9 @@ export async function getStaticProps() {
 
 export default function Home({ project }: ProjectsProps) {
   return (
-    <div className="dark:bg-neutral-800 ">
+    <div className="dark:bg-neutral-800">
       <Container>
-        <HeroParallax project={project} />
+        <LayoutGrid project={project} />
       </Container>
     </div>
   );
