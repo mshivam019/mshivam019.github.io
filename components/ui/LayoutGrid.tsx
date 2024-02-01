@@ -124,6 +124,9 @@ export default function LayoutGrid({ project }: ProjectsProps) {
   const handleClick = (projectItem: ProjectDetails) => {
     setLastSelected(selected);
     setSelected(projectItem);
+    if (window) {
+      window?.scrollTo(0, 0);
+    }
   };
 
   const handleOutsideClick = () => {
