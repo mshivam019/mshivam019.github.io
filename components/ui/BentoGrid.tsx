@@ -57,10 +57,7 @@ export function BentoGridItem({
         sizes="90vw"
         quality={100}
         priority
-        className={cn(
-          'overflow-hidden',
-          className,
-        )}
+        className={cn('overflow-hidden', className)}
       />
     </div>
   );
@@ -95,14 +92,12 @@ export function BentoGridItemWithDescription({
       <Image
         src={imageProps?.src}
         alt={altText}
-        height={300}
+        height={200}
         width={300}
-        sizes="100vw"
+        sizes="90vw"
+        quality={100}
         priority
-        className={cn(
-          'aspect-square overflow-hidden object-fit object-center my-4 h-96 w-84',
-          className,
-        )}
+        className={cn('overflow-hidden', className)}
       />
 
       <div className="group-hover/bento:translate-x-2 transition duration-200">

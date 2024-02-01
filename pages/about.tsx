@@ -35,7 +35,7 @@ export default function About({ hero }: HeroProps) {
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8">
                 About Me
               </h1>
-              <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed text-center lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed text-center lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-200">
                 {hero?.description}
               </p>
             </div>

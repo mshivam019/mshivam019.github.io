@@ -115,9 +115,7 @@ export function LampContainer({
         {children}
       </div>
       <div className="w-full max-w-md grid gap-4 z-40 -mt-52">
-        {links?.map((item, index) => (
-          <LinkItem item={item} key={index} />
-        ))}
+        {links?.map((item, index) => <LinkItem item={item} key={index} />)}
       </div>
     </div>
   );

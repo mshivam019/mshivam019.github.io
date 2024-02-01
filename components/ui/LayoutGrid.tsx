@@ -20,7 +20,7 @@ function Card({
 
   const conditionalStyles = isSelected
     ? 'mt-40 lg:w-8/12 lg:mt-0 rounded-t-xl lg:h-full lg:rounded-t-none w-11/12'
-    : 'w-full';
+    : 'w-full overflow-hidden rounded-xl ';
 
   return (
     <Image
@@ -33,7 +33,7 @@ function Card({
       }}
       sizes="100vw"
       quality={100}
-      className={cn('h-90 hover:cursor-pointer', conditionalStyles)}
+      className={cn('h-72 hover:cursor-pointer', conditionalStyles)}
       alt={projectItem.altText}
     />
   );

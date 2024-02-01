@@ -70,9 +70,9 @@ export function ProductCard({
 }
 
 export function HeroParallax({ project }: ProjectsProps) {
-  const firstRow = project?.projects?.slice(0, 5);
-  const secondRow = project?.projects?.slice(5, 10);
-  const thirdRow = project?.projects?.slice(10, 15);
+  const firstRow = project?.projects?.slice(0, 4);
+  const secondRow = project?.projects?.slice(4, 8);
+  const thirdRow = project?.projects?.slice(8, 15);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -110,7 +110,7 @@ export function HeroParallax({ project }: ProjectsProps) {
     <>
       <div
         ref={ref}
-        className="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+        className="sm:h-[310vh] h-[260vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
       >
         <Header project={project} />
         <motion.div
@@ -140,7 +140,7 @@ export function HeroParallax({ project }: ProjectsProps) {
               />
             ))}
           </motion.div>
-          <motion.div className="flex flex-row-reverse mb-20 space-x-reverse space-x-20">
+          <motion.div className="flex flex-row-reverse mb-20 space-x-reverse space-x-20 ">
             {thirdRow.map((projecti) => (
               <ProductCard
                 projectItem={projecti}

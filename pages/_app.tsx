@@ -6,7 +6,6 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { AppProps } from 'next/app';
-import { AnimatePresence } from 'framer-motion';
 
 export default function App({
   Component,
@@ -15,13 +14,7 @@ export default function App({
   return (
     <ThemeProvider attribute="class">
       <main>
-        <AnimatePresence
-          mode="wait"
-          initial={false}
-          onExitComplete={() => window.scrollTo(0, 0)}
-        >
           <Component {...pageProps} />
-        </AnimatePresence>
         <SpeedInsights />
         <Analytics />
       </main>

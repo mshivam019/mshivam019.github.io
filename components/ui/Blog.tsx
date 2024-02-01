@@ -11,9 +11,11 @@ interface BlogType {
 function Blogs({ blog }: BlogType) {
   const imageSources = useNextSanityImage(client, blog.image);
   return (
-    <div key={`content-${blog._key}`} className="mb-10">
-      <p className={twMerge('', 'text-xl mb-4')}>{blog.title}</p>
-
+    <div
+      key={`content-${blog._key}`}
+      className="mb-10 flex flex-col items-center justify-center"
+    >
+      <p className={twMerge('', 'text-2xl mb-4')}>{blog.title}</p>
       <div className="text-base prose prose-sm dark:prose-invert items-center justify-center flex flex-col">
         {blog?.image && (
           <Image
@@ -24,8 +26,11 @@ function Blogs({ blog }: BlogType) {
             className="rounded-lg mb-10 object-cover"
           />
         )}
-        {blog.description}
       </div>
+      <div
+        className="prose min-w-full"
+        dangerouslySetInnerHTML={{ __html: blog.description }}
+      />
     </div>
   );
 }
