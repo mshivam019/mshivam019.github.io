@@ -52,13 +52,13 @@ export function BentoGridItem({
       <Image
         src={imageProps?.src}
         alt={altText}
-        height={300}
-        width={300}
-        sizes="100vw"
+        height={200}
+        width={600}
+        sizes="90vw"
         quality={100}
         priority
         className={cn(
-          'aspect-square overflow-hidden object-fit object-center my-4 h-96 w-84',
+          'overflow-hidden',
           className,
         )}
       />
@@ -85,7 +85,7 @@ export function BentoGridItemWithDescription({
   return (
     <div
       className={cn(
-        'row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-stone-900 dark:border-white/[0.2] bg-stone-300 border border-transparent justify-between flex flex-col space-y-4',
+        'row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-zinc-800 dark:border-white/[0.2] bg-stone-300 border border-transparent justify-between flex flex-col space-y-4',
         '',
       )}
       onClick={() => {
