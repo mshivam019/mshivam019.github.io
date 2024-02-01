@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse,
 ): Promise<void> {
   try {
-    const { secret } = req.query;
+    const { secret, page } = req.query;
 
     // Check if the provided secret matches the expected secret
     if (secret !== SECRET) {
@@ -16,7 +16,20 @@ export default async function handler(
     }
 
     // Trigger the revalidation for the index page
-    await res.revalidate('/');
+    if (page === 'home') await res.revalidate('/');
+    else if (page === 'about') await res.revalidate('/about');
+    else if (page === 'experience') await res.revalidate('/experience');
+    else if (page === 'projects') await res.revalidate('/projects');
+    else if (page === 'contact') await res.revalidate('/contact');
+    else if (page === 'all') {
+      await Promise.all([
+        res.revalidate('/'),
+        res.revalidate('/about'),
+        res.revalidate('/experience'),
+        res.revalidate('/projects'),
+        res.revalidate('/contact'),
+      ]);
+    }
 
     res.status(200).json({ message: 'Revalidation triggered successfully' });
   } catch (error) {
