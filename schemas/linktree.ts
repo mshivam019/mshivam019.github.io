@@ -16,7 +16,7 @@ const linkTree = {
             defineField({
               name: 'url',
               title: 'URL',
-              type: 'url',
+              type: 'string',
               description: 'URL for the  link',
             }),
             defineField({
