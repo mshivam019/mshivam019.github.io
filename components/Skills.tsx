@@ -14,7 +14,7 @@ interface HeroSkillsProps {
 function Skill({ skill }: SingleSkill) {
   const imageProps = useNextSanityImage(client, skill?.svg);
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center justify-center gap-4 min-h-36">
       <Image
         src={imageProps?.src}
         alt={skill.altText}
@@ -43,7 +43,7 @@ export default function SkillsList({ skills }: HeroSkillsProps) {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+        <div className="mx-auto grid max-w-5xl auto-rows-fr items-start gap-6 py-12 lg:grid-cols-3 lg:gap-12">
           {skills?.map((skill, index) => <Skill skill={skill} key={index} />)}
         </div>
       </div>
