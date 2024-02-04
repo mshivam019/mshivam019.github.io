@@ -29,11 +29,6 @@ export default function Header({ color }: { color?: string }) {
   const [hookProps] = useState({
     tabs: [
       {
-        label: 'Home',
-        route: '/',
-        id: 'Home',
-      },
-      {
         label: 'About',
         route: '/about',
         id: 'About',
@@ -54,7 +49,7 @@ export default function Header({ color }: { color?: string }) {
         id: 'Connect',
       },
     ],
-    initialTabId: 'Home',
+    initialTabId: 'About',
   });
   const framer = useTabs(hookProps);
 
