@@ -78,7 +78,7 @@ export default function About({ hero }: HeroProps) {
       </div>
       <div className="flex flex-col items-center justify-center text-center">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl my-8">
-          Read my work
+          Read my blogs
         </h2>
         <BentoGrid className="max-w-6xl mx-auto mb-16">
           {hero?.readmore.map((item, index) => (
