@@ -11,6 +11,7 @@ import {
   HomeIcon,
   CakeIcon,
   ComputerDesktopIcon,
+  DevicePhoneMobileIcon
 } from '@heroicons/react/24/solid';
 import { ExperienceProps, ExperienceTab } from '@/types';
 import { useNextSanityImage } from 'next-sanity-image';
@@ -30,6 +31,8 @@ const getIconCode = (icon: string) => {
       return <CakeIcon />;
     case 'ComputerDesktopIcon':
       return <ComputerDesktopIcon />;
+    case 'DevicePhoneMobileIcon':
+      return <DevicePhoneMobileIcon />;
     default:
       return <BuildingOffice2Icon />;
   }
@@ -89,7 +92,7 @@ function ExperienceItem({ experienceItem }: ExperienceItemProps) {
             width={200}
             sizes="100vw"
             quality={100}
-            className="rounded-md h-60 w-80 my-4 "
+            className="rounded-md h-60 w-96 my-4 "
           />
         )}
         {experienceItem.description && (
@@ -115,7 +118,7 @@ export default function ExperienceTree({ experience }: ExperienceProps) {
   return (
     <div className="my-4 flex flex-col justify-center items-center max-w-6xl rounded-md mx-auto overflow-hidden">
       <h1 className="font-semi-bold text-3xl lg:pl-0 pl-2 md:text-4xl text-black dark:text-white mr-auto pb-3">
-        Experience
+        My Journey
       </h1>
       {experience?.tabs && (
         <VerticalTimeline lineColor={theme === 'light' ? 'black' : 'gray'}>
