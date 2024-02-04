@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/BentoGrid';
 import Buttons from '@/components/ui/linkButtons';
 import SkillsList from '@/components/Skills';
-import Blogs from '@/components/ui/Blog';
 import Button from '@/components/ui/Button';
 
 export async function getStaticProps() {
@@ -71,14 +70,15 @@ export default function About({ hero }: HeroProps) {
             />
           ))}
         </BentoGrid>
-        <Button route="https://drive.google.com/drive/folders/1q0KZSNVHhTny67mdtN_LUV7pMb8y6T3O?usp=drive_link" external={true}  name="View All Certifications" />
-      </div>
-      <div className="max-w-6xl mx-auto antialiased pt-16 relative">
-        {hero?.blogs.map((item, index) => <Blogs key={index} blog={item} />)}
+        <Button
+          route="https://drive.google.com/drive/folders/1q0KZSNVHhTny67mdtN_LUV7pMb8y6T3O?usp=drive_link"
+          external
+          name="View All Certifications"
+        />
       </div>
       <div className="flex flex-col items-center justify-center text-center">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8">
-          Read more
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl my-8">
+          Read my work
         </h2>
         <BentoGrid className="max-w-6xl mx-auto mb-16">
           {hero?.readmore.map((item, index) => (

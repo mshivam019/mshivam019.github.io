@@ -2,6 +2,7 @@ import client from '@/client';
 import { Skill as Skills } from '@/types';
 import { useNextSanityImage } from 'next-sanity-image';
 import Image from 'next/image';
+import { cn } from '@/utils';
 
 interface SingleSkill {
   skill: Skills;
@@ -14,13 +15,13 @@ interface HeroSkillsProps {
 function Skill({ skill }: SingleSkill) {
   const imageProps = useNextSanityImage(client, skill?.svg);
   return (
-    <div className="flex flex-col items-center justify-center gap-4 min-h-36">
+    <div className="flex flex-col items-center justify-center gap-4 min-h-36 max-h-36">
       <Image
         src={imageProps?.src}
         alt={skill.altText}
         height={64}
         width={64}
-        className={skill.classname}
+        className={cn("min-h-24 max-h-24 h-24", skill?.classname)}
       />
       <h3 className="text-lg font-bold">{skill?.name}</h3>
       <p className="text-sm text-gray-500 dark:text-gray-400">{skill.level}</p>

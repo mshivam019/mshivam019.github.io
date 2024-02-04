@@ -109,55 +109,6 @@ const hero = {
       ],
       description: 'Buttons for links',
     }),
-    defineField({
-      name: 'blogs',
-      title: 'Blogs',
-      type: 'array',
-      of: [
-        {
-          type: 'document',
-          name: 'blog',
-          title: 'Blog',
-          fields: [
-            defineField({
-              name: 'title',
-              title: 'Title',
-              type: 'string',
-              description: 'Title of the blog',
-            }),
-            defineField({
-              name: 'description',
-              title: 'Description',
-              type: 'text',
-              description: 'Description of the blog content',
-            }),
-            defineField({
-              name: 'image',
-              title: 'Image',
-              type: 'image',
-              description: 'Image for the blog',
-              options: {
-                hotspot: true,
-              },
-            }),
-            defineField({
-              name: 'altText',
-              title: 'Alt Text',
-              type: 'string',
-              description: 'Alt text for the image',
-            }),
-            defineField({
-              name: 'classname',
-              title: 'Image Class Name',
-              type: 'string',
-              description: 'Classname for the image',
-            }),
-          ],
-        },
-      ],
-      description: 'List of blogs associated with the hero',
-    }),
-
     // Fields for Certificates
     defineField({
       name: 'certificates',

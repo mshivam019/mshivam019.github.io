@@ -6,7 +6,7 @@ interface ButtonProps {
   external?: boolean;
 }
 
-export default function Button({route,name,external}:ButtonProps) {
+export default function Button({ route, name, external }: ButtonProps) {
   const router = useRouter();
   return (
     <button

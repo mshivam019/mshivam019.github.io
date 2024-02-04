@@ -14,7 +14,7 @@ export default function App({
   return (
     <ThemeProvider attribute="class">
       <main>
-          <Component {...pageProps} />
+        <Component {...pageProps} />
         <SpeedInsights />
         <Analytics />
       </main>
