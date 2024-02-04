@@ -37,6 +37,15 @@ const experience = {
               type: 'string',
               description: 'icon of the experience',
             }),
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              description: 'Image of the experience',
+              options: {
+                hotspot: true,
+              },
+            }),
           ],
         },
       ],

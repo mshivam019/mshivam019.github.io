@@ -5,6 +5,13 @@ export interface ExperienceTab {
   location: string;
   description: string;
   icon?: string;
+  image?: {
+    _type: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
 }
 
 export interface Experiences {
