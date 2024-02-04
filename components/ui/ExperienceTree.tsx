@@ -10,6 +10,7 @@ import {
   AcademicCapIcon,
   HomeIcon,
   CakeIcon,
+  ComputerDesktopIcon
 } from '@heroicons/react/24/solid';
 import { ExperienceProps } from '@/types';
 import { useNextSanityImage } from 'next-sanity-image';
@@ -27,6 +28,8 @@ const getIconCode = (icon: string) => {
       return <HomeIcon />;
     case 'CakeIcon':
       return <CakeIcon />;
+    case 'ComputerDesktopIcon':
+      return <ComputerDesktopIcon />;
     default:
       return <BuildingOffice2Icon />;
   }

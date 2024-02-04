@@ -39,9 +39,9 @@ export default function Header({ color }: { color?: string }) {
         id: 'About',
       },
       {
-        label: 'Experience',
-        route: '/experience',
-        id: 'Experience',
+        label: 'Journey',
+        route: '/journey',
+        id: 'Journey',
       },
       {
         label: 'Projects',
@@ -50,8 +50,8 @@ export default function Header({ color }: { color?: string }) {
       },
       {
         label: `Connect`,
-        route: '/contact',
-        id: 'Contact',
+        route: '/connect',
+        id: 'Connect',
       },
     ],
     initialTabId: 'Home',
