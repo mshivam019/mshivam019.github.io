@@ -164,7 +164,7 @@ export function HeroParallax({ project }: ProjectsProps) {
         />
       </div>
       <div className="flex align-center justify-center pb-20 pt-10 ">
-        <Button />
+        <Button route="/projects" name="Projects"/>
       </div>
     </>
   );
