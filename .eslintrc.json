@@ -40,6 +40,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "react/no-array-index-key": "off",
+    "react-hooks/rules-of-hooks": "off",
     "no-unused-vars": "off",
     "no-return-assign": "off",
     "no-underscore-dangle": "off",

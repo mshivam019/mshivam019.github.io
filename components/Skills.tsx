@@ -21,7 +21,7 @@ function Skill({ skill }: SingleSkill) {
         alt={skill.altText}
         height={64}
         width={64}
-        className={cn("min-h-24 max-h-24 h-24", skill?.classname)}
+        className={cn('min-h-24 max-h-24 h-24', skill?.classname)}
       />
       <h3 className="text-lg font-bold">{skill?.name}</h3>
       <p className="text-sm text-gray-500 dark:text-gray-400">{skill.level}</p>

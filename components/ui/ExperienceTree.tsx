@@ -10,12 +10,12 @@ import {
   AcademicCapIcon,
   HomeIcon,
   CakeIcon,
-  ComputerDesktopIcon
+  ComputerDesktopIcon,
 } from '@heroicons/react/24/solid';
-import { ExperienceProps } from '@/types';
+import { ExperienceProps, ExperienceTab } from '@/types';
 import { useNextSanityImage } from 'next-sanity-image';
 import client from '@/client';
-import { ExperienceTab } from '@/types';
+
 import Image from 'next/image';
 
 const getIconCode = (icon: string) => {
@@ -39,7 +39,7 @@ interface ExperienceItemProps {
   experienceItem: ExperienceTab;
 }
 
-const ExperienceItem = ({ experienceItem }: ExperienceItemProps) => {
+function ExperienceItem({ experienceItem }: ExperienceItemProps) {
   const { theme } = useTheme();
   const imageProps = experienceItem.image
     ? useNextSanityImage(client, experienceItem.image)
@@ -107,7 +107,7 @@ const ExperienceItem = ({ experienceItem }: ExperienceItemProps) => {
       </div>
     </VerticalTimelineElement>
   );
-};
+}
 
 export default function ExperienceTree({ experience }: ExperienceProps) {
   const { theme } = useTheme();
