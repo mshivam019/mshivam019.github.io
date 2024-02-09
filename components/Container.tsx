@@ -61,6 +61,6 @@ export default function Container(props: { color?: string; children: any }) {
           <Footer color={color} />
         </main>
       </div>
-    //</motion.main>
+    // </motion.main>
   );
 }
