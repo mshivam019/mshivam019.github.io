@@ -25,7 +25,7 @@ function Card({
   return (
     <Image
       src={imageProps.src}
-      height={76}
+      height={72}
       width={96}
       onClick={() => {
         if (!isSelected) return;
