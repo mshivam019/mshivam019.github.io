@@ -44,7 +44,7 @@ export default function SkillsList({ skills }: HeroSkillsProps) {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-5xl auto-rows-fr items-start gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+        <div className="mx-auto grid max-w-5xl auto-rows-fr items-start gap-12 py-12 lg:grid-cols-3 lg:gap-12">
           {skills?.map((skill, index) => <Skill skill={skill} key={index} />)}
         </div>
       </div>

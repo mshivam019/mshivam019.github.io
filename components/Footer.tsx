@@ -4,7 +4,7 @@ import { cn } from '@/utils';
 export default function Footer({ color }: { color?: string }) {
   const date = new Date();
   const footerClasses = color || 'dark:bg-neutral-800 bg-neutral-200';
-  const textColor = color ? 'text-white' : '';
+  const textColor = color ? 'dark:text-white' : '';
   return (
     <footer className={footerClasses}>
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">

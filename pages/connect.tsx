@@ -16,7 +16,7 @@ export async function getStaticProps() {
 
 export default function Experience({ links }: LinkProps) {
   return (
-    <Container color="bg-gradient-to-br from-slate-950 to-slate-950">
+    <Container>
       <LinkTree links={links.Links} />
     </Container>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@/components/Container';
 import client from '@/client';
 import { ProjectsProps } from '@/types';
-import { HeroParallax } from '@/components/ui/HeroParallax';
+import { HeroSection } from '@/components/ui/HeroSection';
 
 export async function getStaticProps() {
   const projectsQuery = `*[_type == "project"][0]`;
@@ -17,9 +17,9 @@ export async function getStaticProps() {
 
 export default function Home({ project }: ProjectsProps) {
   return (
-    <div className="dark:bg-neutral-800 ">
+    <div className="dark:bg-neutral-800 overflow-y-hidden max-h-screen">
       <Container>
-        <HeroParallax project={project} />
+        <HeroSection project={project} />
       </Container>
     </div>
   );

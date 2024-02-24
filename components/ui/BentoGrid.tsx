@@ -82,7 +82,7 @@ export function BentoGridItemWithDescription({
   return (
     <div
       className={cn(
-        'row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-zinc-800 dark:border-white/[0.2] bg-stone-300 border border-transparent justify-between flex flex-col space-y-4',
+        'row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-zinc-700 dark:border-white/[0.2] bg-stone-200 border border-transparent justify-between flex flex-col space-y-4',
         '',
       )}
       onClick={() => {

@@ -14,7 +14,7 @@ export default function Header({ color }: { color?: string }) {
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const textColor = color ? 'text-white border-white ' : '';
+  const textColor = color ? 'dark:text-white dark:border-white ' : '';
   const navClasses = clsx(
     'sticky',
     'top-0',

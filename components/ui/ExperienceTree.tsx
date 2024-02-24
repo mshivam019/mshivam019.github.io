@@ -11,7 +11,7 @@ import {
   HomeIcon,
   CakeIcon,
   ComputerDesktopIcon,
-  DevicePhoneMobileIcon
+  DevicePhoneMobileIcon,
 } from '@heroicons/react/24/solid';
 import { ExperienceProps, ExperienceTab } from '@/types';
 import { useNextSanityImage } from 'next-sanity-image';
@@ -92,7 +92,7 @@ function ExperienceItem({ experienceItem }: ExperienceItemProps) {
             width={200}
             sizes="100vw"
             quality={100}
-            className="rounded-md h-60 w-96 my-4 "
+            className="rounded-md h-54 w-96 my-4 "
           />
         )}
         {experienceItem.description && (

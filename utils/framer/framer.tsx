@@ -57,7 +57,7 @@ function Tabs({
               {
                 'text-white/60': !isActive,
                 'text-white/90': isActive,
-                'text-white': colors,
+                'dark:text-white': colors,
               },
             )}
             ref={(el) => (buttonRefs[i] = el)}
@@ -82,13 +82,7 @@ function Tabs({
         {hoveredRect && navRect && (
           <motion.div
             key="hover"
-            className={classNames(
-              'absolute p-1 mb-1 z-10 top-0 left-0 rounded-md dark:bg-neutral-700 ',
-              {
-                'bg-zinc-300': !colors,
-                'bg-neutral-700': colors,
-              },
-            )}
+            className="absolute p-1 mb-1 z-10 top-0 left-0 rounded-md bg-zinc-300 dark:bg-zinc-700"
             initial={{
               x: hoveredRect.left - navRect.left,
               y: hoveredRect.top - navRect.top,
