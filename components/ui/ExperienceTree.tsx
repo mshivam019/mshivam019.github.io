@@ -46,7 +46,7 @@ function ExperienceItem({ experienceItem }: ExperienceItemProps) {
   const { theme } = useTheme();
   const imageProps = experienceItem.image
     ? useNextSanityImage(client, experienceItem.image)
-    : null;
+    : { src: '' };
   return (
     <VerticalTimelineElement
       key={experienceItem._key}

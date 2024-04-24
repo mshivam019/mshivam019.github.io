@@ -39,6 +39,11 @@ export function BentoGridItem({
   altText: string;
 }) {
   const imageProps = useNextSanityImage(client, header);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
+      window.open(url);
+    }
+  };
   return (
     <div
       className={cn(
@@ -48,6 +53,9 @@ export function BentoGridItem({
       onClick={() => {
         window.open(url);
       }}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
     >
       <Image
         src={imageProps?.src}
@@ -79,6 +87,11 @@ export function BentoGridItemWithDescription({
   altText: string;
 }) {
   const imageProps = useNextSanityImage(client, header);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
+      window.open(url);
+    }
+  };
   return (
     <div
       className={cn(
@@ -88,6 +101,9 @@ export function BentoGridItemWithDescription({
       onClick={() => {
         window.open(url);
       }}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
     >
       <Image
         src={imageProps?.src}
