@@ -1,5 +1,4 @@
 import Head from 'next/head';
-// import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Header from './Header';
 import Footer from './Footer';
@@ -14,20 +13,7 @@ export default function Container(props: { color?: string; children: any }) {
       'https://raw.githubusercontent.com/mshivam019/mshivam019/master/Banner.png',
     type: 'website',
   };
-  // const variants = {
-  //   hidden: { opacity: 0, x: -200, y: 0 },
-  //   enter: { opacity: 1, x: 0, y: 0 },
-  //   exit: { opacity: 0, x: 0, y: -100 },
-  // };
   return (
-    // <motion.main
-    //   initial="hidden"
-    //   animate="enter"
-    //   exit="exit"
-    //   variants={variants}
-    //   transition={{ type: 'linear' }}
-    //   className=""
-    // >
     <div className={color || ''}>
       <Head>
         <link rel="icon" type="image/png" href="/image.png" />
@@ -61,6 +47,5 @@ export default function Container(props: { color?: string; children: any }) {
         <Footer color={color} />
       </main>
     </div>
-    // </motion.main>
   );
 }
