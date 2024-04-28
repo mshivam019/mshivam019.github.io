@@ -22,7 +22,7 @@ export default function Buttons({ buttons }: ButtonProps) {
           {item.label}
         </button>
       ))}
-      <Link href="/contact">
+      <Link href="/connect">
         <button
           className="btn2 px-3 py-2 my-2 relative border-2 rounded-[16px] hover:text-white dark:border-white border-black dark:text-gray-200 dark:hover:text-black leading-none overflow-hidden "
           type="button"
