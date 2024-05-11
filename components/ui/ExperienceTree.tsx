@@ -44,9 +44,7 @@ interface ExperienceItemProps {
 
 function ExperienceItem({ experienceItem }: ExperienceItemProps) {
   const { theme } = useTheme();
-  const imageProps = experienceItem.image
-    ? useNextSanityImage(client, experienceItem.image)
-    : { src: '' };
+  const imageProps = useNextSanityImage(client, experienceItem.image || '');
   return (
     <VerticalTimelineElement
       key={experienceItem._key}
