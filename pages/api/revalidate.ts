@@ -18,16 +18,16 @@ export default async function handler(
     // Trigger the revalidation for the index page
     if (page === 'home') await res.revalidate('/');
     else if (page === 'about') await res.revalidate('/about');
-    else if (page === 'experience') await res.revalidate('/experience');
+    else if (page === '/journey') await res.revalidate('/journey');
     else if (page === 'projects') await res.revalidate('/projects');
-    else if (page === 'contact') await res.revalidate('/contact');
-    else if (page === 'all') {
+    else if (page === 'connect') await res.revalidate('/connect');
+    else {
       await Promise.all([
         res.revalidate('/'),
         res.revalidate('/about'),
-        res.revalidate('/experience'),
+        res.revalidate('/journey'),
         res.revalidate('/projects'),
-        res.revalidate('/contact'),
+        res.revalidate('/connect'),
       ]);
     }
 
