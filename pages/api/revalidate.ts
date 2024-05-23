@@ -18,7 +18,7 @@ export default async function handler(
     // Trigger the revalidation for the index page
     if (page === 'home') await res.revalidate('/');
     else if (page === 'about') await res.revalidate('/about');
-    else if (page === '/journey') await res.revalidate('/journey');
+    else if (page === 'journey') await res.revalidate('/journey');
     else if (page === 'projects') await res.revalidate('/projects');
     else if (page === 'connect') await res.revalidate('/connect');
     else {
