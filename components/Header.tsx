@@ -9,6 +9,7 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { cn, Framer, useTabs } from '@/utils';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Header({ color }: { color?: string }) {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -28,26 +29,10 @@ export default function Header({ color }: { color?: string }) {
 
   const [hookProps] = useState({
     tabs: [
-      {
-        label: 'About',
-        route: '/about',
-        id: 'About',
-      },
-      {
-        label: 'Journey',
-        route: '/journey',
-        id: 'Journey',
-      },
-      {
-        label: 'Projects',
-        route: '/projects',
-        id: 'Projects',
-      },
-      {
-        label: `Connect`,
-        route: '/connect',
-        id: 'Connect',
-      },
+      { label: 'About', route: '/about', id: 'About' },
+      { label: 'Journey', route: '/journey', id: 'Journey' },
+      { label: 'Projects', route: '/projects', id: 'Projects' },
+      { label: `Connect`, route: '/connect', id: 'Connect' },
     ],
     initialTabId: 'About',
   });
@@ -142,31 +127,39 @@ export default function Header({ color }: { color?: string }) {
         </div>
       </div>
 
-      {isMenuOpen && (
-        <div className="sm:hidden">
-          <div
-            className={cn('px-2 pt-2 pb-3 space-y-1', textColor)}
-            aria-label="Pages"
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="sm:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            {hookProps.tabs.map((item) => (
-              <Link
-                key={item.id}
-                href={item.route}
-                className="hover:bg-zinc-600 hover:text-white
-                  block px-3 py-2 rounded-md text-base font-medium"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <a
-              href="https://drive.google.com/file/d/1aVHDpp9r0Ueh1fbjUgI9Lwi51pHo9UtV/view?usp=share_link"
-              className="block px-3 py-2 rounded-md text-base font-medium"
+            <div
+              className={cn('px-2 pt-2 pb-3 space-y-1', textColor)}
+              aria-label="Pages"
             >
-              Resume
-            </a>
-          </div>
-        </div>
-      )}
+              {hookProps.tabs.map((item) => (
+                <Link
+                  key={item.id}
+                  href={item.route}
+                  className="hover:bg-zinc-600 hover:text-white
+                    block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <a
+                href="https://drive.google.com/file/d/1aVHDpp9r0Ueh1fbjUgI9Lwi51pHo9UtV/view?usp=share_link"
+                className="block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Resume
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

@@ -20,7 +20,7 @@ function Card({
 
   const conditionalStyles = isSelected
     ? 'mt-40 lg:w-8/12 lg:mt-0 rounded-t-xl lg:h-full lg:rounded-t-none w-11/12'
-    : 'w-full overflow-hidden rounded-xl ';
+    : 'w-full overflow-hidden rounded-xl h-full';
 
   return (
     <Image
@@ -120,10 +120,12 @@ function SelectedCard({ projectItem }: ProjectItem) {
 export default function LayoutGrid({ project }: ProjectsProps) {
   const [selected, setSelected] = useState<ProjectDetails | null>(null);
   const [lastSelected, setLastSelected] = useState<ProjectDetails | null>(null);
+  const [windowScrollPosition, setWindowScrollPosition] = useState<number>(0);
 
   const handleClick = (projectItem: ProjectDetails) => {
     setLastSelected(selected);
     setSelected(projectItem);
+    setWindowScrollPosition(window.scrollY);
     if (window) {
       window?.scrollTo(0, 0);
     }
@@ -132,12 +134,15 @@ export default function LayoutGrid({ project }: ProjectsProps) {
   const handleOutsideClick = () => {
     setLastSelected(selected);
     setSelected(null);
+    if (window) {
+      window?.scrollTo(0, windowScrollPosition);
+    }
   };
 
   return (
     <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3  max-w-7xl mx-auto gap-4 ">
       {selected?._key && (
-        <div className="relative z-[99] flex justify-center items-center lg:justify-normal lg:items-end">
+        <div className="relative z-[99] flex justify-center items-center lg:justify-normal lg:items-end sm:hidden">
           <XCircleIcon
             className="h-7 w-7 text-zinc-200"
             onClick={() => setSelected(null)}

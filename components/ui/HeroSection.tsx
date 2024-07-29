@@ -38,6 +38,7 @@ export function ProductCard({ projectItem }: { projectItem: ProjectDetails }) {
     >
       <Link
         href={projectItem.liveLink}
+        target="_blank"
         className="block group-hover/product:shadow-2xl "
       >
         <Image
