@@ -145,7 +145,7 @@ export default function LayoutGrid({ project }: ProjectsProps) {
         <div className="relative z-[99] flex justify-center items-center lg:justify-normal lg:items-end sm:hidden">
           <XCircleIcon
             className="h-7 w-7 text-zinc-200"
-            onClick={() => setSelected(null)}
+            onClick={() => handleOutsideClick()}
           />
         </div>
       )}
