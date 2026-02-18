@@ -1,0 +1,23 @@
+{
+  "name": "Shivam Mishra",
+  "role": "Senior Developer - AI Products",
+  "location": "Hyderabad, India",
+  "email": "mshivam019@gmail.com",
+  "skills": [
+    "JavaScript",
+    "TypeScript",
+    "Next.js",
+    "React",
+    "React Native",
+    "Expo",
+    "Node.js",
+    "Hono",
+    "PostgreSQL",
+    "Drizzle ORM",
+    "Supabase",
+    "Tailwind CSS",
+    "konva.js",
+    "AI/LLM Integration",
+    "Vector Databases"
+  ]
+}

@@ -1,0 +1,105 @@
+export const metadata = {
+  title: "Free Hosting 101 (Part 1): Frontend and Authentication",
+  description: "A comprehensive guide to deploying frontend applications and authentication for free using various platforms like Vercel, Netlify, and GitHub Pages.",
+  alternates: {
+    canonical: "/writing/free-hosting-part-1",
+  },
+};
+
+Back when I was still in college, I started working on a lot of projects. Other students did the same, but to gain an edge, I turned to hosting and cloud services. This led me down a deep rabbit hole of FREE VPS Services, Dockerfiles and many other things.
+
+I have been approached by many of my colleagues, classmates and even random strangers on reddit to help them host their college project, freelance gig or their brand-new SaaS products.
+
+So here it is: a one stop guide to Free hosting, yes you heard it correctly, everything here either provides a free tier or has freemium pricing model.
+
+Let’s get started!
+
+## Frontend
+
+At this point, I think everyone knows how to host a website. However if you're still looking for alternatives here's everything I have used so far.
+
+1. [Vercel](http://vercel.com) — Allows server less functions, server config, image optimizations with Next.js and free PostgreSQL.
+2. [Github Pages](https://pages.github.com/) — Easy Static Deployment.
+3. [CloudFlare](https://developers.cloudflare.com/pages/) — Requires a bit more setup but it's a great option for both websites and server less functions.
+4. [Netlify](https://www.netlify.com/) — Allows server less function and server config.
+5. [Cyclic.sh](http://Cyclic.sh) — Offers AWS S3 and dynamo DB, with a limit of 3 apps.
+
+While hosting a website is relatively simple, there are many things that can go wrong, which creates plenty of opportunities to learn.
+
+Some key points to consider:
+
+- Use GitHub Pages if you only have simple HTML files and are experimenting with things. There's a lot that can be done using GitHub Pages and Jekyll (also, while you're here, study static site generators and try one).
+- Don't create a brand-new Vercel project for a "Hello World" index.html.
+
+If you're hosting a simple Vite (React) project, you might run into an issue where if you directly enter the route to a specific page, or reloading a random page results in a **404 error**, this a common issue and quite popular in the ReactJS Ecosystem. However you are using Next.js you might have never even heard of this issue.
+
+Here's a popular Stack Overflow thread from where I learned about this:
+[Link](https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writing-manually). So, What's the solution I used? I created a catch-all and called it a day as it was just my college project and no one cared except me. It did help me during an interview, though.
+
+Here's the code which worked for my vercel deployment. Just create a `vercel.json` file and put it the root directory. Example project [here](https://github.com/mshivam019/mood-swinger).
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+For Netlify, create a `netlify.toml` file and place it in the root directory:
+
+```toml
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+```
+
+### Bonus
+
+If you don't really trust these providers to host your website or you want to try something different, consider running [Coolify](https://coolify.io/self-hosted) or [Docker](https://nextjs.org/docs/pages/building-your-application/deploying#docker-image) locally on your own machine.
+
+## Authentication
+
+If you're here, chances are your web application is about to be **flooded with millions of users** (or, realistically, maybe one person every other week). Either way, you'll need a **basic authentication layer** to:
+
+- Prevent API spam
+- Avoid database flooding with junk requests
+
+So here are my top picks:
+
+**Auth0**
+
+- **Benefits**: A flexible, drop-in solution to add authentication and authorization services to applications. Supports multiple identity providers and offers extensive documentation.
+- **Pain Points**: The free tier has limitations on the number of active users and may not include advanced features.
+
+_Fun fact: Even ChatGPT uses Auth0!_ I once integrated it into a **Spring Boot** application.
+
+**Auth.js (NextAuth)**
+
+- **Benefits**: A complete open-source authentication solution for Next.js applications. Supports various sign-in methods, including OAuth, magic email and credentials.
+- **Pain Points**: The new version is a bit stable and you might not get everything that you need here as its is a bit tricky to setup.
+
+**Clerk**
+
+- **Benefits**: Provides a suite of authentication and user management solutions with pre-built components. Supports multi-factor authentication and social logins.
+- **Pain Points**: The free tier has limitations on the number of active users and may not include advanced features.
+
+**Build Your OWN**
+
+If you are here then, few advises:
+
+- Use **OTP-based sign-in** — never store passwords, No passwords = no data leaks.
+- OTP sign-in also removes the need for a `"Forgot Password"` flow.
+- When using **JWT authentication**, always **extract the user from the JWT payload** instead of sending it separately in the **body, URL, or query parameters** — this avoids **data leaks.**
+- Do remember about **authorization** as well, setting roles and types of users and even making organizations
+- Another important decision is about merging user accounts, what to do if a user initially signed up using an email address but next time prefers an OAuth service like Google sign-in.
+
+Here's my GitHub project with [Auth.js](https://github.com/mshivam019/designered).
+
+P.S: Before copy-pasting anything, **check the version** and follow the documentation.
+
+All the best! And don't forget to read Part 2, where I cover **Back-end, Database, and Storage solutions.**
+
+---
+
+**Next:** [Part 2: Backend, Database & Storage Solutions](/writing/free-hosting-part-2)

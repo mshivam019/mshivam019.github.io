@@ -1,0 +1,28 @@
+[
+  {
+    "company": "InsideIIM | AltUni Labs",
+    "role": "Senior Developer - AI Products",
+    "location": "Remote",
+    "startDate": "2025-06-01",
+    "isCurrent": true,
+    "achievements": [
+      "Architected End-to-End AI Pipelines: Designed core database schema and system architecture for an automated recruitment platform",
+      "Engineered AI Interview Backend: Built backend state machine for autonomous interview agents with real-time context retention",
+      "System Optimization & Cost Engineering: Designed LLM integration layer to optimize token usage and accuracy"
+    ]
+  },
+  {
+    "company": "Terribly Tiny Tales",
+    "role": "Software Engineer",
+    "location": "Bengaluru",
+    "startDate": "2023-06-01",
+    "endDate": "2025-06-01",
+    "isCurrent": false,
+    "achievements": [
+      "Engineered V2 Learning Platform: Led complete frontend and backend overhaul of student dashboard with gamification logic",
+      "Payment Infrastructure: Integrated Razorpay UPI Mandates with Node.js for recurring subscriptions",
+      "Mobile App Performance: Migrated TTT Tribe App to Expo SDK 51, optimized media handling for AWS S3 uploads",
+      "Core Web Vitals: Rebuilt landing pages using Next.js ISR/ISG, reduced FCP by 40%"
+    ]
+  }
+]
