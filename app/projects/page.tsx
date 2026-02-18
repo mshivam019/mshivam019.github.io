@@ -108,11 +108,11 @@ export default function ProjectsPage() {
       <div className="space-y-10 mb-16">
         {featuredProjects.map((project) => (
           <article key={project.name} className="group">
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
-              <div className="flex items-center gap-3">
-                <h2 className="font-medium">{project.name}</h2>
+            <div className="flex items-center justify-between mb-2 gap-3">
+              <div className="flex items-center gap-3 min-w-0">
+                <h2 className="font-medium truncate">{project.name}</h2>
                 {project.stars > 0 && (
-                  <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-1 text-xs text-muted-foreground shrink-0">
                     <Star className="w-3 h-3" />
                     {project.stars}
                   </span>
@@ -120,7 +120,7 @@ export default function ProjectsPage() {
               </div>
               <Link
                 href={project.url}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
                 target="_blank"
                 rel="noopener noreferrer"
               >
