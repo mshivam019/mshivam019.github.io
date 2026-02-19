@@ -11,21 +11,21 @@ function formatDate(dateString: string) {
 
 export default function WritingPage() {
   return (
-    <main>
-      <h1 className="text-2xl font-medium mb-8">Writing</h1>
+    <>
+      <h1 className="page-heading">Writing</h1>
 
       {posts.length > 0 ? (
-        <div className="space-y-4">
+        <div className="space-y-0">
           {posts.map((post) => (
-            <article key={post.slug} className="group">
+            <article key={post.slug} className="group border-b border-border/65 py-4 sm:py-5 first:pt-0 last:border-b-0 last:pb-0">
               <Link 
                 href={`/writing/${post.slug}`} 
-                className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4"
+                className="row-link flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-6"
               >
-                <h2 className="font-medium group-hover:text-muted-foreground transition-colors">
+                <h2 className="font-medium tracking-[-0.01em] text-[1rem] sm:text-[1.02rem] group-hover:text-foreground/85 transition-colors duration-200">
                   {post.title}
                 </h2>
-                <time className="text-sm text-muted-foreground sm:whitespace-nowrap">
+                <time className="meta-text sm:whitespace-nowrap">
                   {formatDate(post.date)}
                 </time>
               </Link>
@@ -33,23 +33,23 @@ export default function WritingPage() {
           ))}
         </div>
       ) : (
-        <div className="text-muted-foreground">
+        <div className="text-muted-foreground max-w-2xl">
           <p className="mb-4">No writings yet.</p>
-          <p className="text-sm">
+          <p className="text-sm leading-relaxed">
             Check back later for thoughts on AI, web development, and creative
             coding.
           </p>
         </div>
       )}
 
-      <div className="mt-12 pt-8 border-t border-border">
+      <div className="subtle-divider">
         <Link
           href="/"
-          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="editorial-link text-sm text-muted-foreground"
         >
           ← Back to about
         </Link>
       </div>
-    </main>
+    </>
   );
 }

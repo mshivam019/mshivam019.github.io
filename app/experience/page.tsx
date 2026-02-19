@@ -1,6 +1,16 @@
 import { getExperiences } from "@/lib/content";
 import Link from "next/link";
 
+interface Experience {
+  company: string;
+  startDate: string;
+  endDate?: string;
+  isCurrent?: boolean;
+  role: string;
+  location: string;
+  achievements: string[];
+}
+
 function formatDateRange(startDate: string, endDate?: string, isCurrent?: boolean) {
   const start = new Date(startDate).toLocaleDateString("en-US", {
     month: "short",
@@ -23,44 +33,44 @@ function formatDateRange(startDate: string, endDate?: string, isCurrent?: boolea
 }
 
 export default async function ExperiencePage() {
-  const experiences = await getExperiences();
+  const experiences = (await getExperiences()) as Experience[];
 
   return (
-    <main>
-      <h1 className="text-2xl font-medium mb-8">Experience</h1>
+    <>
+      <h1 className="page-heading">Experience</h1>
 
-      <div className="space-y-8">
-        {experiences.map((exp: any, index: number) => (
-          <div key={index} className="group">
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-              <h2 className="font-medium">{exp.company}</h2>
-              <span className="text-sm text-muted-foreground mt-1 sm:mt-0">
+      <div className="space-y-9 sm:space-y-10">
+        {experiences.map((exp) => (
+          <article key={`${exp.company}-${exp.startDate}`} className="group border-b border-border/65 pb-7 sm:pb-8 last:border-b-0 last:pb-0">
+            <div className="flex flex-col md:grid md:grid-cols-[minmax(0,1fr)_auto] md:items-baseline mb-2 gap-2 md:gap-x-8">
+              <h2 className="font-medium tracking-[-0.015em] text-[1.01rem]">{exp.company}</h2>
+              <span className="meta-text mt-1 sm:mt-0 sm:whitespace-nowrap">
                 {formatDateRange(exp.startDate, exp.endDate, exp.isCurrent)}
               </span>
             </div>
-            <p className="text-sm text-muted-foreground mb-3">
+            <p className="text-sm text-muted-foreground/90 mb-3 tracking-[-0.005em] leading-relaxed">
               {exp.role} · {exp.location}
             </p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              {exp.achievements.map((achievement: string, i: number) => (
-                <li key={i} className="flex gap-2">
+            <ul className="space-y-2.5 text-sm text-muted-foreground/95 leading-6">
+              {exp.achievements.map((achievement: string) => (
+                <li key={achievement} className="flex gap-2">
                   <span className="text-muted-foreground/50">—</span>
                   <span>{achievement}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </article>
         ))}
       </div>
 
-      <div className="mt-12 pt-8 border-t border-border">
+      <div className="subtle-divider">
         <Link
           href="/"
-          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="editorial-link text-sm text-muted-foreground"
         >
           ← Back to about
         </Link>
       </div>
-    </main>
+    </>
   );
 }

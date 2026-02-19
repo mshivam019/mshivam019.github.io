@@ -5,15 +5,15 @@ export default async function Home() {
   const profile = await getProfile();
 
   return (
-    <main>
-      <h1 className="text-2xl font-medium mb-8">{profile.name}</h1>
+    <>
+      <h1 className="page-heading">{profile.name}</h1>
 
-      <div className="prose prose-neutral dark:prose-invert max-w-none mb-16 space-y-5">
-        <p className="text-muted-foreground leading-relaxed">
+      <div className="max-w-3xl mb-12 sm:mb-14 space-y-5 sm:space-y-6">
+        <p className="section-intro">
           I am a {profile.role} at{" "}
           <Link
             href="https://insideiim.com"
-            className="underline underline-offset-4 hover:text-foreground"
+            className="editorial-link"
           >
             InsideIIM | AltUni Labs
           </Link>
@@ -21,13 +21,13 @@ export default async function Home() {
           development, and building developer tools.
         </p>
 
-        <p className="text-muted-foreground leading-relaxed">
+        <p className="section-intro">
           I have spent years working across the stack—from architecting AI 
           pipelines and recruitment platforms to building high-scale mobile apps 
           and learning platforms. Previously, I was at{" "}
           <Link
             href="https://terriblytinytales.com"
-            className="underline underline-offset-4 hover:text-foreground"
+            className="editorial-link"
           >
             Terribly Tiny Tales
           </Link>{" "}
@@ -35,7 +35,7 @@ export default async function Home() {
           platform and mobile app.
         </p>
 
-        <p className="text-muted-foreground leading-relaxed">
+        <p className="section-intro">
           I work extensively with Next.js, React Native, Node.js, and AI
           technologies. I am particularly interested in creative coding,
           canvas-based graphics editors, and building tools that make
@@ -43,26 +43,26 @@ export default async function Home() {
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+      <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground pt-1">
         <Link
           href={`mailto:${profile.email}`}
-          className="text-muted-foreground hover:text-foreground transition-colors"
+          className="editorial-link"
         >
           Email
         </Link>
         <Link
           href="https://github.com/mshivam019"
-          className="text-muted-foreground hover:text-foreground transition-colors"
+          className="editorial-link"
         >
           GitHub
         </Link>
         <Link
           href="https://linkedin.com/in/mshivam019"
-          className="text-muted-foreground hover:text-foreground transition-colors"
+          className="editorial-link"
         >
           LinkedIn
         </Link>
       </div>
-    </main>
+    </>
   );
 }

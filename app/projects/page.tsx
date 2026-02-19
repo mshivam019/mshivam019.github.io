@@ -94,23 +94,23 @@ const miniProjects: Project[] = [
 
 export default function ProjectsPage() {
   return (
-    <main>
-      <h1 className="text-2xl font-medium mb-8">Projects</h1>
+    <>
+      <h1 className="page-heading">Projects</h1>
 
-      <div className="prose prose-neutral dark:prose-invert max-w-none mb-12">
-        <p className="text-muted-foreground leading-relaxed">
-          Over the years, I've worked on various projects ranging from mobile apps 
+      <div className="max-w-3xl mb-12">
+        <p className="section-intro">
+          Over the years, I&apos;ve worked on various projects ranging from mobile apps 
           and web applications to developer tools and games. Here are some of my 
           notable works and experiments.
         </p>
       </div>
 
-      <div className="space-y-10 mb-16">
+      <div className="grid gap-6 sm:gap-7 lg:grid-cols-2 mb-14 sm:mb-16">
         {featuredProjects.map((project) => (
-          <article key={project.name} className="group">
-            <div className="flex items-center justify-between mb-2 gap-3">
+          <article key={project.name} className="group border border-border/65 rounded-xl p-4 sm:p-5 h-full bg-card/35">
+            <div className="flex items-center justify-between mb-3 gap-3">
               <div className="flex items-center gap-3 min-w-0">
-                <h2 className="font-medium truncate">{project.name}</h2>
+                <h2 className="font-medium tracking-[-0.015em] truncate">{project.name}</h2>
                 {project.stars > 0 && (
                   <span className="inline-flex items-center gap-1 text-xs text-muted-foreground shrink-0">
                     <Star className="w-3 h-3" />
@@ -120,7 +120,7 @@ export default function ProjectsPage() {
               </div>
               <Link
                 href={project.url}
-                className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+                className="editorial-link no-underline text-muted-foreground shrink-0"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -128,27 +128,27 @@ export default function ProjectsPage() {
               </Link>
             </div>
 
-            <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+            <p className="text-sm text-muted-foreground/95 leading-6 mb-3">
               {project.description}
             </p>
 
-            <span className="text-xs text-muted-foreground/70">
+            <span className="meta-text">
               {project.language}
             </span>
           </article>
         ))}
       </div>
 
-      <div className="mb-8">
-        <h2 className="text-sm font-medium mb-4 text-muted-foreground">
+      <div className="mb-10">
+        <h2 className="text-sm font-medium mb-4 text-muted-foreground tracking-[0.02em] uppercase">
           Other Projects
         </h2>
-        <div className="flex flex-wrap gap-x-4 gap-y-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 text-muted-foreground">
           {miniProjects.map((project) => (
             <Link
               key={project.name}
               href={project.url}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="editorial-link text-sm"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -158,10 +158,10 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      <div className="mt-12 pt-8 border-t border-border space-y-4">
+      <div className="subtle-divider space-y-4">
         <Link
           href="https://github.com/mshivam019"
-          className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
+          className="editorial-link text-sm text-muted-foreground inline-flex items-center gap-2"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -172,12 +172,12 @@ export default function ProjectsPage() {
         <div>
           <Link
             href="/"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="editorial-link text-sm text-muted-foreground"
           >
             ← Back to about
           </Link>
         </div>
       </div>
-    </main>
+    </>
   );
 }

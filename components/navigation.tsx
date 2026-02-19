@@ -14,22 +14,19 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-b border-border pb-6 sm:pb-8 mb-8 sm:mb-16">
-      <ul className="flex flex-wrap gap-4 sm:gap-6 text-sm">
+    <nav className="site-nav" aria-label="Primary">
+      <ul className="site-nav-list">
         {navItems.map((item) => {
           const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
-          
+
           return (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`transition-colors duration-200 ${
-                  isActive
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+                aria-current={isActive ? "page" : undefined}
+                className={`site-nav-link ${isActive ? "is-active" : ""}`}
               >
-                {item.label}
+                <span className="site-nav-label">{item.label}</span>
               </Link>
             </li>
           );

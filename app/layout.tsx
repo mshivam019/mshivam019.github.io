@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, IBM_Plex_Sans } from "next/font/google";
 import { ViewTransition } from "react";
 import Navigation from "@/components/navigation";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 const geistMono = Geist_Mono({
@@ -66,18 +67,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransition default="page-transition">
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen transition-colors duration-300`}
-        >
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-20">
-      
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${ibmPlexSans.variable} ${geistMono.variable} antialiased min-h-screen transition-colors duration-300`}
+      >
+        <div className="page-shell max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-20">
+          <div className="site-grid">
+            <aside className="site-nav-column">
               <Navigation />
-            <main>{children}</main>
+            </aside>
+            <ViewTransition default="page-transition">
+              <main className="editorial-main">{children}</main>
+            </ViewTransition>
           </div>
-        </body>
-      </html>
-    </ViewTransition>
+        </div>
+      </body>
+    </html>
   );
 }
