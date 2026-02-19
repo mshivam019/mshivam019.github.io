@@ -1,8 +1,41 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *), @media (prefers-color-scheme: dark));
+
+html {
+  scrollbar-gutter: stable;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
 
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
@@ -152,9 +185,9 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+        @apply border-border outline-ring/50;
     }
   body {
-    @apply bg-background text-foreground;
+        @apply bg-background text-foreground;
     }
 }

@@ -66,17 +66,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen transition-colors duration-300`}
-      >
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-20">
-          <ViewTransition>
-            <Navigation />
-          </ViewTransition>
-          <main>{children}</main>
-        </div>
-      </body>
-    </html>
+    <ViewTransition>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen transition-colors duration-300`}
+        >
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-20">
+      
+              <Navigation />
+            <main>{children}</main>
+          </div>
+        </body>
+      </html>
+    </ViewTransition>
   );
 }

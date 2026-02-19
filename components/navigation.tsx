@@ -15,7 +15,7 @@ export default function Navigation() {
 
   return (
     <nav className="border-b border-border pb-6 sm:pb-8 mb-8 sm:mb-16">
-      <ul className="flex flex-wrap gap-x-4 gap-y-2 sm:gap-6 text-sm">
+      <ul className="flex gap-6 text-sm">
         {navItems.map((item) => {
           const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
           
@@ -23,9 +23,9 @@ export default function Navigation() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`transition-all duration-200 hover:translate-y-[-1px] ${
+                className={`transition-colors duration-200 ${
                   isActive
-                    ? "text-foreground font-medium"
+                    ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
