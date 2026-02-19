@@ -26,7 +26,7 @@ const featuredProjects: Project[] = [
   },
   {
     name: "agents-js",
-    description: "Open-source contributions to LiveKit agents-js, including Sarvam plugin packages for both STT and TTS with REST and WebSocket endpoint support (contributed via fork).",
+    description: "Open-source contributions to LiveKit agents-js, including Sarvam plugin packages for both STT and TTS with REST and WebSocket endpoint support.",
     url: "https://github.com/livekit/agents-js",
     stars: 0,
     language: "TypeScript",
