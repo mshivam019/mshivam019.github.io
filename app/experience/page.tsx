@@ -39,6 +39,11 @@ export default async function ExperiencePage() {
     <>
       <h1 className="page-heading">Experience</h1>
 
+      <p className="section-intro max-w-3xl">
+        Roles where I have shipped product features end-to-end, improved platform
+        reliability, and translated messy requirements into usable software.
+      </p>
+
       <div className="space-y-9 sm:space-y-10">
         {experiences.map((exp) => (
           <article key={`${exp.company}-${exp.startDate}`} className="group border-b border-border/65 pb-7 sm:pb-8 last:border-b-0 last:pb-0">

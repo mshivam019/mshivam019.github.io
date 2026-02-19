@@ -17,29 +17,27 @@ export default async function Home() {
           >
             InsideIIM | AltUni Labs
           </Link>
-          . My interests span full-stack development, AI/ML integration, mobile
-          development, and building developer tools.
+          , where I build product-focused engineering systems across web, mobile,
+          and AI workflows.
         </p>
 
         <p className="section-intro">
-          I have spent years working across the stack—from architecting AI 
-          pipelines and recruitment platforms to building high-scale mobile apps 
-          and learning platforms. Previously, I was at{" "}
+          My recent work spans AI pipelines, recruitment platforms, developer
+          tooling, and learning products. Previously, I was at{" "}
           <Link
             href="https://terriblytinytales.com"
             className="editorial-link"
           >
             Terribly Tiny Tales
           </Link>{" "}
-          where I led the frontend and backend overhaul of their learning
-          platform and mobile app.
+          where I led a full frontend/backend overhaul of their learning platform
+          and mobile app.
         </p>
 
         <p className="section-intro">
-          I work extensively with Next.js, React Native, Node.js, and AI
-          technologies. I am particularly interested in creative coding,
-          canvas-based graphics editors, and building tools that make
-          development more intuitive.
+          I work primarily with Next.js, React Native, Node.js, and modern AI
+          tooling. I care most about shipping clear product value, improving
+          developer velocity, and building interfaces that feel thoughtful.
         </p>
       </div>
 

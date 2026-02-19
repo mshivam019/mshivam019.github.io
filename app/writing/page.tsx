@@ -14,6 +14,11 @@ export default function WritingPage() {
     <>
       <h1 className="page-heading">Writing</h1>
 
+      <p className="section-intro max-w-3xl">
+        Notes on AI systems, product engineering, developer workflows, and the
+        practical trade-offs behind shipping software.
+      </p>
+
       {posts.length > 0 ? (
         <div className="space-y-0">
           {posts.map((post) => (

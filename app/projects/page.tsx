@@ -12,28 +12,28 @@ interface Project {
 const featuredProjects: Project[] = [
   {
     name: "StorySail",
-    description: "A reading writing app built with React Native, Expo, and Supabase. A full-featured social publishing platform for writers.",
+    description: "A social publishing app for writers, built with React Native, Expo, and Supabase to support writing, discovery, and reader engagement in one workflow.",
     url: "https://github.com/mshivam019/StorySail",
     stars: 162,
     language: "TypeScript",
   },
   {
     name: "Designered",
-    description: "A complex canvas-based graphics editor (Canva alternative) supporting multi-layer manipulation, vector drawing, and AI-driven image generation using konva.js.",
+    description: "A canvas-based graphics editor focused on layered composition, vector tools, and AI-assisted image generation for practical design workflows.",
     url: "https://github.com/mshivam019/designered",
     stars: 0,
     language: "TypeScript",
   },
   {
     name: "agents-js",
-    description: "Contributor to LiveKit's agents-js. Build realtime multimodal AI agents with Node.js - a framework for creating AI-powered applications.",
-    url: "https://github.com/mshivam019/agents-js",
+    description: "Open-source contributions to LiveKit agents-js, including Sarvam plugin packages for both STT and TTS with REST and WebSocket endpoint support (contributed via fork).",
+    url: "https://github.com/livekit/agents-js",
     stars: 0,
     language: "TypeScript",
   },
   {
     name: "nod-cli",
-    description: "Backend scaffolding CLI for Node.js. Quickly bootstrap Node.js projects with best practices.",
+    description: "A Node.js scaffolding CLI that standardizes backend setup so new services start with sensible structure and production-minded defaults.",
     url: "https://github.com/mshivam019/nod-cli",
     stars: 0,
     language: "TypeScript",
@@ -43,49 +43,49 @@ const featuredProjects: Project[] = [
 const miniProjects: Project[] = [
   {
     name: "CC-Instagram",
-    description: "Instagram clone using Jetpack Compose",
+    description: "A Jetpack Compose exploration of feed-style UI patterns and mobile interaction architecture.",
     url: "https://github.com/mshivam019/CC-Instagram",
     stars: 18,
     language: "Kotlin",
   },
   {
     name: "2048",
-    description: "Classic 2048 puzzle game",
+    description: "A browser implementation of the 2048 puzzle focused on game-state logic and smooth keyboard interaction.",
     url: "https://github.com/mshivam019/2048",
     stars: 11,
     language: "JavaScript",
   },
   {
     name: "star-wars-weather-app",
-    description: "Star wars themed Angular weather app",
+    description: "A themed Angular weather app built as a UI composition and API-integration exercise.",
     url: "https://github.com/mshivam019/star-wars-weather-app",
     stars: 1,
     language: "TypeScript",
   },
   {
     name: "Meow-Speech",
-    description: "iOS app for Text to Speech functionality",
+    description: "An iOS text-to-speech utility built to explore accessibility-focused interaction and voice output handling.",
     url: "https://github.com/mshivam019/Meow-Speech",
     stars: 3,
     language: "Swift",
   },
   {
     name: "Flappy-Bird",
-    description: "2D game based on Unity Engine",
+    description: "A Unity-based 2D game prototype used to practice gameplay loops and physics tuning.",
     url: "https://github.com/mshivam019/Flappy-Bird",
     stars: 4,
     language: "C#",
   },
   {
     name: "SpringKafka",
-    description: "A sample Kafka Spring Boot example",
+    description: "A Spring Boot + Kafka sample for event-driven backend communication patterns.",
     url: "https://github.com/mshivam019/SpringKafka",
     stars: 2,
     language: "Java",
   },
   {
     name: "Stark",
-    description: "Certificate Generator",
+    description: "A lightweight certificate generator for fast event or cohort credential creation.",
     url: "https://github.com/mshivam019/Stark",
     stars: 3,
     language: "HTML",
@@ -99,9 +99,8 @@ export default function ProjectsPage() {
 
       <div className="max-w-3xl mb-12">
         <p className="section-intro">
-          Over the years, I&apos;ve worked on various projects ranging from mobile apps 
-          and web applications to developer tools and games. Here are some of my 
-          notable works and experiments.
+          A mix of production-facing work and focused experiments across mobile,
+          web, developer tooling, and creative interfaces.
         </p>
       </div>
 
