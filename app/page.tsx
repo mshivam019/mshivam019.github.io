@@ -6,9 +6,9 @@ export default async function Home() {
 
   return (
     <main>
-      <h1 className="text-2xl font-medium mb-6">{profile.name}</h1>
+      <h1 className="text-2xl font-medium mb-8">{profile.name}</h1>
 
-      <div className="prose prose-neutral dark:prose-invert max-w-none mb-12">
+      <div className="prose prose-neutral dark:prose-invert max-w-none mb-16 space-y-5">
         <p className="text-muted-foreground leading-relaxed">
           I am a {profile.role} at{" "}
           <Link

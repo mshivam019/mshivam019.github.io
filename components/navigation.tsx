@@ -15,7 +15,7 @@ export default function Navigation() {
 
   return (
     <nav className="border-b border-border pb-6 sm:pb-8 mb-8 sm:mb-16">
-      <ul className="flex gap-6 text-sm">
+      <ul className="flex flex-wrap gap-4 sm:gap-6 text-sm">
         {navItems.map((item) => {
           const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
           
