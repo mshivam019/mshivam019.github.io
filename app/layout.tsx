@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: "Shivam Mishra | Senior Developer - AI Products",
     template: "%s | Shivam Mishra",
   },
-  description: "Senior Developer specializing in AI products. Building intelligent systems and sharing knowledge through technical writing on frontend, backend, and cloud architecture.",
+  description: "Senior developer building across web, mobile, and AI. Writes about engineering trade-offs and what it takes to ship.",
   keywords: ["developer", "AI", "software engineer", "full stack", "React", "Next.js", "machine learning"],
   authors: [{ name: "Shivam Mishra" }],
   creator: "Shivam Mishra",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: "https://mshivam019.github.io",
     siteName: "Shivam Mishra",
     title: "Shivam Mishra | Senior Developer - AI Products",
-    description: "Senior Developer specializing in AI products. Building intelligent systems and sharing knowledge through technical writing.",
+    description: "Senior developer building across web, mobile, and AI. Writes about engineering trade-offs and what it takes to ship.",
     images: [
       {
         url: "/og-image.png",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Shivam Mishra | Senior Developer - AI Products",
-    description: "Senior Developer specializing in AI products.",
+    description: "Senior developer building across web, mobile, and AI.",
     creator: "@mshivam019",
     images: ["/og-image.png"],
   },

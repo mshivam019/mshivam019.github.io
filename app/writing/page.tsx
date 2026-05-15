@@ -15,8 +15,8 @@ export default function WritingPage() {
       <h1 className="page-heading">Writing</h1>
 
       <p className="section-intro max-w-3xl">
-        Notes on AI systems, product engineering, developer workflows, and the
-        practical trade-offs behind shipping software.
+        Notes on AI systems, product engineering, and the decisions that go
+        into shipping software.
       </p>
 
       {posts.length > 0 ? (
@@ -39,11 +39,7 @@ export default function WritingPage() {
         </div>
       ) : (
         <div className="text-muted-foreground max-w-2xl">
-          <p className="mb-4">No writings yet.</p>
-          <p className="text-sm leading-relaxed">
-            Check back later for thoughts on AI, web development, and creative
-            coding.
-          </p>
+          <p>No posts yet.</p>
         </div>
       )}
 

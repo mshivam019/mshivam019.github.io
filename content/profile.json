@@ -6,6 +6,7 @@
   "skills": [
     "JavaScript",
     "TypeScript",
+    "Python",
     "Next.js",
     "React",
     "React Native",
@@ -15,6 +16,9 @@
     "PostgreSQL",
     "Drizzle ORM",
     "Supabase",
+    "AWS (Lambda, SAM, Aurora, VPC, CloudFront)",
+    "LiveKit",
+    "SIP / Telephony",
     "Tailwind CSS",
     "konva.js",
     "AI/LLM Integration",

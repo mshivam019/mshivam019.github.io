@@ -12,28 +12,28 @@ interface Project {
 const featuredProjects: Project[] = [
   {
     name: "StorySail",
-    description: "A social publishing app for writers, built with React Native, Expo, and Supabase to support writing, discovery, and reader engagement in one workflow.",
+    description: "A social publishing app for writers. Built with React Native, Expo, and Supabase — writing, discovery, and engagement in one place.",
     url: "https://github.com/mshivam019/StorySail",
     stars: 162,
     language: "TypeScript",
   },
   {
     name: "Designered",
-    description: "A canvas-based graphics editor focused on layered composition, vector tools, and AI-assisted image generation for practical design workflows.",
+    description: "A canvas graphics editor with layers, vector tools, and AI image generation for quick design work.",
     url: "https://github.com/mshivam019/designered",
     stars: 0,
     language: "TypeScript",
   },
   {
     name: "agents-js",
-    description: "Open-source contributions to LiveKit agents-js, including Sarvam plugin packages for both STT and TTS with REST and WebSocket endpoint support.",
+    description: "Open source contributions to LiveKit agents-js — Sarvam plugin packages for speech-to-text and text-to-speech over REST and WebSocket.",
     url: "https://github.com/livekit/agents-js",
     stars: 0,
     language: "TypeScript",
   },
   {
     name: "nod-cli",
-    description: "A Node.js scaffolding CLI that standardizes backend setup so new services start with sensible structure and production-minded defaults.",
+    description: "A Node.js CLI that scaffolds backend projects with sensible defaults and folder structure you'd actually use in production.",
     url: "https://github.com/mshivam019/nod-cli",
     stars: 0,
     language: "TypeScript",
@@ -43,49 +43,49 @@ const featuredProjects: Project[] = [
 const miniProjects: Project[] = [
   {
     name: "CC-Instagram",
-    description: "A Jetpack Compose exploration of feed-style UI patterns and mobile interaction architecture.",
+    description: "A Jetpack Compose project exploring feed-style UI and mobile interaction patterns.",
     url: "https://github.com/mshivam019/CC-Instagram",
     stars: 18,
     language: "Kotlin",
   },
   {
     name: "2048",
-    description: "A browser implementation of the 2048 puzzle focused on game-state logic and smooth keyboard interaction.",
+    description: "A browser version of 2048 — focused on game state logic and smooth keyboard controls.",
     url: "https://github.com/mshivam019/2048",
     stars: 11,
     language: "JavaScript",
   },
   {
     name: "star-wars-weather-app",
-    description: "A themed Angular weather app built as a UI composition and API-integration exercise.",
+    description: "A Star Wars themed weather app built in Angular to practice UI composition and API integration.",
     url: "https://github.com/mshivam019/star-wars-weather-app",
     stars: 1,
     language: "TypeScript",
   },
   {
     name: "Meow-Speech",
-    description: "An iOS text-to-speech utility built to explore accessibility-focused interaction and voice output handling.",
+    description: "An iOS text to speech utility for accessibility — experimenting with voice output and simple interactions.",
     url: "https://github.com/mshivam019/Meow-Speech",
     stars: 3,
     language: "Swift",
   },
   {
     name: "Flappy-Bird",
-    description: "A Unity-based 2D game prototype used to practice gameplay loops and physics tuning.",
+    description: "A Unity 2D game prototype for practicing gameplay loops and physics tuning.",
     url: "https://github.com/mshivam019/Flappy-Bird",
     stars: 4,
     language: "C#",
   },
   {
     name: "SpringKafka",
-    description: "A Spring Boot + Kafka sample for event-driven backend communication patterns.",
+    description: "A Spring Boot and Kafka sample for event driven backend communication.",
     url: "https://github.com/mshivam019/SpringKafka",
     stars: 2,
     language: "Java",
   },
   {
     name: "Stark",
-    description: "A lightweight certificate generator for fast event or cohort credential creation.",
+    description: "A lightweight certificate generator for events and cohort credentials.",
     url: "https://github.com/mshivam019/Stark",
     stars: 3,
     language: "HTML",
@@ -99,8 +99,8 @@ export default function ProjectsPage() {
 
       <div className="max-w-3xl mb-12">
         <p className="section-intro">
-          A mix of production-facing work and focused experiments across mobile,
-          web, developer tooling, and creative interfaces.
+          Production work and experiments across mobile, web, tooling, and
+          creative interfaces.
         </p>
       </div>
 

@@ -10,34 +10,32 @@ export default async function Home() {
 
       <div className="max-w-3xl mb-12 sm:mb-14 space-y-5 sm:space-y-6">
         <p className="section-intro">
-          I am a {profile.role} at{" "}
+          I&apos;m a {profile.role} at{" "}
           <Link
             href="https://insideiim.com"
             className="editorial-link"
           >
             InsideIIM | AltUni Labs
           </Link>
-          , where I build product-focused engineering systems across web, mobile,
-          and AI workflows.
+          , building across web, mobile, and AI — whatever the product needs.
         </p>
 
         <p className="section-intro">
-          My recent work spans AI pipelines, recruitment platforms, developer
-          tooling, and learning products. Previously, I was at{" "}
+          Right now I&apos;m working on AI recruitment pipelines and developer
+          tools. Before this, I spent two years at{" "}
           <Link
             href="https://terriblytinytales.com"
             className="editorial-link"
           >
             Terribly Tiny Tales
           </Link>{" "}
-          where I led a full frontend/backend overhaul of their learning platform
-          and mobile app.
+          rebuilding their learning platform and mobile app from the ground up.
         </p>
 
         <p className="section-intro">
-          I work primarily with Next.js, React Native, Node.js, and modern AI
-          tooling. I care most about shipping clear product value, improving
-          developer velocity, and building interfaces that feel thoughtful.
+          My stack is Next.js, React Native, and Node.js, with a growing focus
+          on LLMs and vector search. I care about shipping things that work and
+          interfaces that don&apos;t feel like they were built by committee.
         </p>
       </div>
 
