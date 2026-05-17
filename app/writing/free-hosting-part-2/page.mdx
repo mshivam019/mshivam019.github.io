@@ -1,217 +1,142 @@
 export const metadata = {
   title: "Free Hosting 101 (Part 2): Backend, Database & Storage Solutions",
-  description: "Exploring free tier options for backend deployment, database hosting, and cloud storage solutions for full-stack applications.",
+  description: "Free tier options for backend hosting, databases, and cloud storage for full-stack applications.",
   alternates: {
     canonical: "/writing/free-hosting-part-2",
   },
 };
 
-In **Part 1**, we covered **free hosting options for front-end applications**. But what about your back-end, database, and storage? A full-stack project often requires **authentication, APIs, data storage, and media hosting** — and yes, you can get all of this for **free** too!
+In Part 1, we covered free hosting for frontend apps. But what about your backend, database, and storage? A full-stack project needs auth, APIs, data storage, and media hosting — and you can get all of it for free too.
 
-In this guide, we'll explore some of the best **free-tier back-end hosting, database, and storage solutions** to help you deploy your applications without breaking the bank.
-
-Let's dive in!
+Here are the best free-tier backend, database, and storage options I've used.
 
 ## Backend
 
-Hosting a back-end service is a complicated task and can get messy, however if you know how to do it well, it definitely makes you stand out. I was famous for hosting back-end services at my university especially because I could do it for free and I knew about common errors, one might face like CORS policy.
+Hosting a backend is tricky and can get messy. But if you know what you're doing, it makes you stand out. I was the guy at university who could host backends for free and knew how to fix things like CORS errors.
 
-[**Render**](http://render.com)**:**
-This was my go to tool for hosting most of my college projects, It could handle node.js, spring boot projects, pretty much anything with the power of docker, It has **512MB RAM** and **0.1 CPU**. It has Free 750 Instance hour, Bandwidth of 100 GB, 500 Pipeline Minutes, _It does have Free postgres DB but do not use it as has 30 Day limit period_.
+[**Render**](http://render.com)
 
-Render also has some downsides but in my opinion pros outweighed the cons. so let's talk about them.
+This was my go-to for college projects. Handles Node.js, Spring Boot, pretty much anything via Docker. 512MB RAM, 0.1 CPU, 750 instance hours free, 100GB bandwidth. It does offer a free Postgres DB but don't use it — it deletes after 30 days.
 
-_Pros:_
+- Deploys directly from GitHub with CI/CD and Dockerfiles.
+- Supports web services, static sites, and background workers.
+- App count limited by hours, not number of projects.
+- Free-tier apps sleep after 15 minutes of inactivity, causing cold start delays.
+- Free DB gets deleted after 30 days. CPU isn't enough for heavy apps.
 
-- Seamless deployment directly from **GitHub repositories** with **CI/CD** integration and **Docker Files**.
-- Supports **web services, static sites, and background workers**.
-- Number of apps are limited by hours and not projects.
+[**Koyeb**](https://www.koyeb.com/)
 
-_Cons:_
+Acquired by Mistral AI, now more focused on AI inference. Free instance still exists but is constrained: 512MB RAM, 0.1 vCPU, 2GB disk. One free instance per organization. Apps scale to zero after an hour of inactivity (the "never sleeps" era is over).
 
-- **Free-tier apps sleep** after 15 minutes of inactivity, causing **cold start delays**.
-- Free DB gets deleted after 30 days and CPU is not enough for heavy applications.
-
-[**Koyeb**](https://www.koyeb.com/)Another really good service while trying to host via docker files. They have a good Hobby plan which comes with **512MB memory, 0.1 vCPU, 2000MB Disk** and can be deployed in Europe or US. The free database Service includes **50 hours** of usage every month and can be deployed in Europe, US, or Asia but here's the catch it only allows **one** Web Service and Database for free.
-_Pros:_
-
-- Supports **multiple languages, Docker deployments** and background workers.
-- Free-tier **apps never sleep**.
-- 1 Free database
-
-_Cons:_
-
-- Only allows 1 service and 1 Database.
-- **Resource limits** in free tier might not suit heavy workloads.
+- Supports Docker and multiple languages.
+- One free database with 50 hours per month.
+- Only one service and one database.
+- Resource limits won't handle heavy workloads.
 
 [**Back4App**](https://containers.back4app.com/)
 
-Back4App is a docker container based hosting platform. It is relatively unstable however it does get the job done. For the free tier it has 0.25 vCPU, 256 MB RAM, 100 GB Bandwidth and 600 hours of Uptime.
+Docker container hosting. A bit unstable but gets the job done. Free tier: 0.25 vCPU, 256MB RAM, 100GB bandwidth, 600 hours uptime.
 
-_Pros:_
-
-- **Community Support:** Access to a community of developers for support and collaboration.
-- Upto 5 apps are allowed.
-
-_Cons:_
-
-- **Resource Constraints:** The free tier's limited compute and memory resources may not suffice for high-demand applications.
-- **Usage Limits:** Monthly caps on requests and data transfer could be restrictive for larger projects.
-- Apps **Sleep** after **30** minutes of inactivity, causing **cold start delays**.
-
-[**KintoHub**](https://www.kintohub.com/)
-
-KintoHub offers a platform to deploy applications with a free tier that includes 3 vCPUs and 250MB of memory per application, up to a total of 1GB storage, allowing for the deployment of up to three applications.
-
-_Pros:_
-
-- **Generous Resource Allocation:** Provides ample resources for small to medium applications.
-- **Multiple Application Support:** Allows hosting of up to three applications simultaneously.
-
-_Cons:_
-
-- **Limited Storage:** Total storage is capped at 1GB across all applications.
-- **Inactive Development:** As of recent updates, KintoHub's development and support may have slowed down.
+- Community support is decent.
+- Up to 5 apps allowed.
+- Limited compute and memory won't handle high-demand apps.
+- Monthly caps on requests and data transfer can be restrictive.
+- Apps sleep after 30 minutes of inactivity.
 
 [**AlwaysData**](http://alwaysdata.com)
 
-AlwaysData offers free hosting with access via SSH, providing full control over your applications.
+Free hosting with SSH access, giving you full control.
 
-_Pros:_
-
-- **Full Control:** SSH access allows for extensive customization and management.
-- **Supports Multiple Languages and Databases:** Flexibility in choosing your tech stack.
-
-_Cons:_
-
-- **Steeper Learning Curve:** Requires familiarity with server management and command-line operations.
-- **Resource Limitations:** Free tier may have constraints on resources like RAM and storage.
-- **Relatively New Platform:** May lack extensive community support and documentation and knowledge about quality of service.
+- SSH access allows deep customization.
+- Supports multiple languages and databases.
+- Steeper learning curve — you need to know server management.
+- Free tier has resource limits on RAM and storage.
+- Relatively new, so community support and docs are thinner.
 
 ## Database
 
-if you want to persist user data and you will need a database. Even for persisting a simple to-do app's data across multiple sessions and devices you would need a database, so let's see what we have for free.
+If you need to persist user data — even a simple to-do app across sessions and devices — you'll need a database.
 
 [**Neon**](http://Neon.tech)
 
-Neon.tech offers a multi-cloud, fully managed PostgreSQL service with a generous free tier.
+Multi-cloud, managed PostgreSQL with a solid free tier.
 
-_Pros:_
-
-- **Scalable PostgreSQL:** Easily scale your database as your application grows.
-- **Multi-Cloud Support:** Deploy across various cloud providers for redundancy and performance.
-
-_Cons:_
-
-- **Limited to PostgreSQL:** Not suitable if your application requires a different database system.
-- **Potential Latency:** Depending on your location, there might be latency issues.
+- Scalable PostgreSQL that grows with your app.
+- Deploy across cloud providers for redundancy.
+- PostgreSQL only — no other database types.
+- Latency can be an issue depending on your location.
 
 [**Xata**](https://xata.io/)
 
-Xata provides a serverless PostgreSQL database with a free tier offering up to 15GB of storage.
+Serverless PostgreSQL with up to 15GB storage on the free tier.
 
-_Pros:_
-
-- **Generous Storage:** 15GB is ample for many small to medium applications.
-- **Serverless Architecture:** Automatic scaling without the need for manual intervention.
-
-_Cons:_
-
-- **Relatively New Platform:** May lack extensive community support and documentation.
-- **Limited to PostgreSQL:** Not ideal for applications requiring other database types.
-- Uses a [SQL over HTTP](https://xata.io/docs/sdk/sql/overview) protocol which means it may not support all operations.
+- 15GB is plenty for small to medium apps.
+- Serverless means automatic scaling.
+- Newer platform, fewer docs and community resources.
+- PostgreSQL only.
+- Uses SQL-over-HTTP protocol, so not all operations are supported.
 
 [**MongoDB**](https://www.mongodb.com/)
 
-MongoDB offers a free shared cluster with access to the Search Index and a NoSQL database.
+Free shared cluster with NoSQL and Search Index.
 
-_Pros:_
-
-- **Huge Community**: Pretty much everyone knows about MongoDB and it has various libraries and SDK support.
-- **Global Distribution:** Deploy your database in various regions worldwide.
-
-_Cons:_
-
-- **Shared Resources:** Free tier runs on shared infrastructure, which may affect performance.
-- **Limited Storage and Connections:** Suitable for development and small applications but may not suffice for production workloads.
-- Cluster does **sleep** after a long period of inactivity.
+- Huge community — everyone knows MongoDB, lots of SDK support.
+- Deploy across regions worldwide.
+- Free tier runs on shared infrastructure — performance varies.
+- Limited storage and connections, so dev/small apps only.
+- Cluster sleeps after long inactivity.
 
 [**CockroachDB**](https://www.cockroachlabs.com/)
 
-CockroachDB offers a free cloud-hosted, distributed SQL serverless database.
+Free cloud-hosted, distributed SQL serverless database.
 
-_Pros:_
-
-- **Distributed Architecture:** Ensures high availability and resilience.
-- **Scalable:** Automatically scales with your application's needs.
-
-_Cons:_
-
-- **Complexity:** Distributed systems can be more complex to manage and understand.
-- **Limited Ecosystem:** Smaller community compared to more established databases.
+- Distributed architecture for high availability.
+- Scales automatically.
+- Distributed systems add complexity.
+- Smaller community than established databases.
 
 [**Airtable**](https://www.airtable.com/)
 
-Airtable is a cloud-based relational database that combines the features of a database with a user-friendly interface, making it easy for visualization and collaboration.
+Cloud-based relational database with a spreadsheet-like interface.
 
-_Pros:_
-
-- **User-Friendly Interface:** Intuitive design makes database management accessible.
-- **Collaboration Features:** Real-time collaboration and sharing capabilities.
-
-_Cons:_
-
-- **Limited Customization:** May not offer the same level of control as traditional databases.
-- **Pricing Tiers:** Advanced features require a paid subscription.
+- Intuitive UI makes it easy to get started.
+- Real-time collaboration built in.
+- Less control than a traditional database.
+- Advanced features require a paid subscription.
 
 ## Storage
 
-If you want to store user's data be it their profile picture or audio files or PDFs or any other images, or even if you want to store your own websites assets and use a CDN then you will a file storage.
+For profile pictures, audio files, PDFs, images, or even your own site assets behind a CDN — you'll need file storage.
 
 [**Cloudinary**](https://cloudinary.com/)
 
-Cloudinary is a comprehensive media management platform that offers a free plan suitable for developers and small projects.
+Media management platform with a solid free plan.
 
-_Pros:_
-
-- **Generous Free Tier:** The free plan includes 25 monthly credits, which encompass various features such as image and video transformations, storage, and bandwidth.
-- **Robust Media Processing:** Supports a wide range of media manipulations, including resizing, cropping, and format conversion.
-- **Global CDN Delivery:** Ensures fast and reliable media delivery through a content delivery network.
-
-_Cons:_
-
-- **Usage Limits:** The free plan has a limit of [25 credits](https://cloudinary.com/pricing) per month, which may be insufficient for high-traffic applications.
-- **File Size Restrictions:** On the free plan, the maximum upload size is 10 MB for images and 100 MB for videos.
+- Free plan: 25 monthly credits covering image/video transformations, storage, and bandwidth.
+- Good media processing: resize, crop, format conversion.
+- Global CDN for fast delivery.
+- 25 credits per month may be tight for high-traffic apps.
+- Max upload size: 10MB for images, 100MB for videos.
 
 [**UploadThing**](https://uploadthing.com/)
 
-UploadThing is a modern file storage solution designed to meet the diverse needs of developers and businesses. It offers a straightforward and cost-effective option for handling file uploads. It has a 2**GB** storage and **unlimited** bandwidth.
+Modern file storage built for developers. 2GB storage, unlimited bandwidth.
 
-_Pros:_
-
-- **Unlimited Transfers:** No restrictions on the number of uploads or downloads, facilitating seamless data handling.
-- **Developer-Friendly Integration:** Designed with developers in mind, ensuring easy and efficient integration into applications with support of multiple languages and frameworks.
-
-_Cons:_
-
-- **Storage Limitations:** It may be insufficient for larger projects requiring extensive storage.
-- **Relatively New Service:** As a newer platform, it may lack the extensive features and stability of more established services.
+- Unlimited uploads and downloads.
+- Easy integration across multiple languages and frameworks.
+- 2GB storage may not be enough for larger projects.
+- Newer service, fewer features than established alternatives.
 
 [**EdgeStore**](https://edgestore.dev/)
 
-EdgeStore is a Fast CDN storage solution designed for seamless integration and efficient file handling for Next.js. It has 1 GB storage, 1 project, Up to 1 GB of bandwidth per month and Up to 1 GB of uploads per month.
+CDN storage built for Next.js. 1GB storage, 1GB bandwidth per month, 1 project.
 
-_Pros:_
+- Files served from the edge for fast delivery worldwide.
+- Only 1GB storage and 1GB bandwidth.
+- Next.js only.
 
-- All your files are served from the _edge_ for a great performance anywhere in the world.
+When picking a solution, consider your project's needs: media types, expected traffic, required integrations. Check each platform's website for the latest limits — free tiers change.
 
-_Cons:_
+By using these free services for backend, database, and storage, you can build and run full-stack apps without burning cash. Just monitor your usage to stay within limits and upgrade when your project outgrows them. Nothing is truly free, and anything can shut down at any time.
 
-- Only 1 GB storage and 1 GB of bandwidth.
-- Only Supports Next.js for now.
-
-When selecting a solution, consider the specific needs of your project, such as the types of media you'll handle, expected traffic and required integrations. It's essential to review the latest information on each platform's website, as offerings and limitations can change over time.
-
-By leveraging these free-tier services for back-end hosting, databases and storage, you can effectively deploy and manage full-stack applications without incurring significant costs. Always monitor your usage to ensure it stays within the free tier limits and upgrade plans as your project's requirements grow. Do remember nothing is truly free and anything can shut down at any given moment.
-
-Happy Hosting!🚀
+Happy hosting.

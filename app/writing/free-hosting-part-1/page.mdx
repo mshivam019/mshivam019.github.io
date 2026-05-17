@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Free Hosting 101 (Part 1): Frontend and Authentication",
-  description: "A comprehensive guide to deploying frontend applications and authentication for free using various platforms like Vercel, Netlify, and GitHub Pages.",
+  description: "A guide to deploying frontends and setting up authentication for free using Vercel, Netlify, GitHub Pages, and more.",
   alternates: {
     canonical: "/writing/free-hosting-part-1",
   },
@@ -10,19 +10,16 @@ Back when I was still in college, I started working on a lot of projects. Other 
 
 I have been approached by many of my colleagues, classmates and even random strangers on reddit to help them host their college project, freelance gig or their brand-new SaaS products.
 
-So here it is: a one stop guide to Free hosting, yes you heard it correctly, everything here either provides a free tier or has freemium pricing model.
-
-Let’s get started!
+So here it is: a one stop guide to free hosting — everything here either provides a free tier or has a freemium pricing model.
 
 ## Frontend
 
-At this point, I think everyone knows how to host a website. However if you're still looking for alternatives here's everything I have used so far.
+At this point, most people know how to host a website. But if you're looking for alternatives, here's what I've used:
 
-1. [Vercel](http://vercel.com) — Allows server less functions, server config, image optimizations with Next.js and free PostgreSQL.
-2. [Github Pages](https://pages.github.com/) — Easy Static Deployment.
-3. [CloudFlare](https://developers.cloudflare.com/pages/) — Requires a bit more setup but it's a great option for both websites and server less functions.
-4. [Netlify](https://www.netlify.com/) — Allows server less function and server config.
-5. [Cyclic.sh](http://Cyclic.sh) — Offers AWS S3 and dynamo DB, with a limit of 3 apps.
+      1. [Vercel](http://vercel.com) — Serverless functions, free PostgreSQL (via Neon), image optimization with Next.js.
+2. [Github Pages](https://pages.github.com/) — Easy static deployment.
+3. [CloudFlare](https://developers.cloudflare.com/pages/) — Great for websites and serverless functions, needs a bit more setup.
+4. [Netlify](https://www.netlify.com/) — Serverless functions and server config.
 
 While hosting a website is relatively simple, there are many things that can go wrong, which creates plenty of opportunities to learn.
 
@@ -67,38 +64,42 @@ If you're here, chances are your web application is about to be **flooded with m
 
 So here are my top picks:
 
+**Better Auth**
+
+- Open-source auth that lives in your code and database. No vendor lock-in, no per-MAU pricing. Free, forever.
+- Works with any framework. Email/password, social login, passkeys, 2FA, anonymous auth — all included.
+- Self-hosted, so you own your user data. The dashboard is optional and paid, but the library itself is completely free.
+
 **Auth0**
 
-- **Benefits**: A flexible, drop-in solution to add authentication and authorization services to applications. Supports multiple identity providers and offers extensive documentation.
-- **Pain Points**: The free tier has limitations on the number of active users and may not include advanced features.
-
-_Fun fact: Even ChatGPT uses Auth0!_ I once integrated it into a **Spring Boot** application.
+- Drop-in auth and authorization. Multiple identity providers, solid docs.
+- Free tier: 25,000 MAU. Advanced features are paid.
 
 **Auth.js (NextAuth)**
 
-- **Benefits**: A complete open-source authentication solution for Next.js applications. Supports various sign-in methods, including OAuth, magic email and credentials.
-- **Pain Points**: The new version is a bit stable and you might not get everything that you need here as its is a bit tricky to setup.
+- Open-source auth for Next.js. Supports OAuth, magic links, email, and credentials.
+- The newer versions can be tricky to set up and you might not get everything you need out of the box.
 
 **Clerk**
 
-- **Benefits**: Provides a suite of authentication and user management solutions with pre-built components. Supports multi-factor authentication and social logins.
-- **Pain Points**: The free tier has limitations on the number of active users and may not include advanced features.
+- Pre-built auth components with multi-factor auth and social logins.
+- Free tier: 50,000 monthly retained users. Advanced features are paid.
 
-**Build Your OWN**
+**Build Your Own**
 
-If you are here then, few advises:
+If you go this route, a few things I learned:
 
-- Use **OTP-based sign-in** — never store passwords, No passwords = no data leaks.
-- OTP sign-in also removes the need for a `"Forgot Password"` flow.
-- When using **JWT authentication**, always **extract the user from the JWT payload** instead of sending it separately in the **body, URL, or query parameters** — this avoids **data leaks.**
-- Do remember about **authorization** as well, setting roles and types of users and even making organizations
-- Another important decision is about merging user accounts, what to do if a user initially signed up using an email address but next time prefers an OAuth service like Google sign-in.
+- Use OTP-based sign-in — never store passwords. No passwords means no password leaks.
+- OTP sign-in also removes the need for a "Forgot Password" flow entirely.
+- When using JWT auth, always extract the user from the JWT payload instead of sending it separately in the body, URL, or query params — this avoids data leaks.
+- Don't forget about authorization: roles, user types, organizations.
+- Think about account merging — what happens when a user signs up with email but later uses Google OAuth?
 
-Here's my GitHub project with [Auth.js](https://github.com/mshivam019/designered).
+Here's my GitHub project using [Auth.js](https://github.com/mshivam019/designered).
 
-P.S: Before copy-pasting anything, **check the version** and follow the documentation.
+P.S: Before copy-pasting anything, check the version and follow the docs.
 
-All the best! And don't forget to read Part 2, where I cover **Back-end, Database, and Storage solutions.**
+All the best. And read Part 2, where I cover backend, database, and storage.
 
 ---
 

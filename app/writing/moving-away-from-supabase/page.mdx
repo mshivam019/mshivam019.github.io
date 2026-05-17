@@ -14,19 +14,15 @@ Then someone says "SOC2."
 
 Supabase's free tier is generous. The $25 plan is fine. But the moment compliance enters the chat, you need the Team plan at minimum — SOC2 requires the Team plan at $599 a month. Enterprise is even more. Not per team. Per project, effectively.
 
-Vercel has a similar arc. The $20 Pro plan gives you everything you'd want: preview deployments, analytics, edge functions. Then you need a static IP to connect securely to your database. That's $100 per month. Per project. Want Secure Compute so your backend can talk to a database inside a VPC? That's enterprise.
+Vercel has the same pattern. The $20 Pro plan gives you everything you'd want: preview deployments, analytics, edge functions. Then you need a static IP to connect securely to your database. That's $100 per month. Per project. Want Secure Compute so your backend can talk to a database inside a VPC? That's enterprise.
 
 There's also the observability trap. Vercel shows you logs in the dashboard — feels like it's included. But logs older than 24 hours? Paywalled. You don't notice until something breaks on a Friday, you come back Monday to debug, and the logs are gone. Now you're paying for an observability add-on you didn't know you needed.
 
 And the per-seat pricing. Want to add another developer to your team? That's $20/month per seat. Viewers are free, but viewers can't do anything useful. So your teammate who just needs to check a deployment log or restart a failed build? Either pay for their seat or make them a viewer who can only stare at the dashboard.
 
-And then there's the recent Vercel security breach. April 2026. A Context.ai employee downloaded some Roblox cheat scripts that came bundled with Lumma infostealer malware. That malware scraped their corporate credentials. Those credentials included OAuth tokens that let the attacker pivot straight into Vercel's Google Workspace. From there, they enumerated environment variables not marked as "sensitive" — which Vercel stores unencrypted. API keys, deployment tokens, GitHub and npm credentials, internal employee records. The hackers put it up on BreachForums for $2 million.
+And then there's the recent Vercel security breach. April 2026 — a compromised AI tool let attackers pivot through OAuth into Vercel's internal systems, exposing customer environment variables. The irony of an AI tool being the entry point at a platform that hosts AI products is hard to miss.
 
-The irony: an AI tool was the entry point for a breach at a platform that hosts AI products. And the attack vector wasn't some zero-day — it was an employee downloading game cheats. The most sophisticated security infrastructure in the world can't protect against that.
-
-Vercel's CEO said the attackers moved with "surprising velocity" and deep knowledge of the platform. Rotate everything. Every key, every secret, every token that ever touched a Vercel project. The pricing traps are annoying. A breach on the platform serving your production traffic is something else entirely.
-
-This is the business model. Give away the easy stuff. Charge for the hard stuff you'll inevitably need.
+This is the business model. Give away the easy stuff. Charge for the hard stuff you'll actually need.
 
 And when it's not about pricing, it's about reliability. Supabase has had multiple outages in India — the platform gets blocked or throttled at the DNS level. Your app is fine. Your database is fine. But nobody can reach it because Supabase's edge in ap-south-1 decided to take the day off. You're not down. Supabase is down. And there's nothing you can do except wait and explain to users that "the cloud" isn't your cloud.
 
@@ -36,11 +32,21 @@ Supabase sells Row Level Security hard. "Database-level authorization." Sounds g
 
 RLS is a pattern for access control, not a security boundary. If you mess up a policy — and you will, because they're SQL expressions living in migration files that nobody reviews — you leak data. No warning. No alert. Just rows showing up where they shouldn't.
 
-Worse: tokens on the client. Supabase wants you to put your anon key and access token in the browser. This is inherently bad. If your frontend has XSS — and frontends get XSS — the attacker has your user's JWT. Yes, if you set up RLS correctly, other users' data stays protected. The policies will block cross-user access. But that one user? Their data is gone. The token is their identity, and it's sitting in the browser waiting to be picked up.
+Worse: tokens on the client. Supabase wants you to put your anon key and access token in the browser. This is asking for trouble. If your frontend has XSS — and frontends get XSS — the attacker has your user's JWT. Yes, if you set up RLS correctly, other users' data stays protected. The policies will block cross-user access. But that one user? Their data is gone. The token is their identity, and it's sitting in the browser waiting to be picked up.
 
 RLS limits the blast radius. It doesn't prevent the blast.
 
 RLS will cause an XSS incident one day. Count on it.
+
+## Auth: the real lock-in
+
+Nobody mentions Supabase Auth when they pitch the platform. It's always "Postgres with an API" and "real-time subscriptions." But Auth is the stickiest part. Harder to migrate than your database.
+
+Supabase's anon sign-ups are trivial to abuse. Bots hammer your signup endpoint and you're paying per MAU. No built-in rate limiting on auth endpoints. No CAPTCHA. No email verification enforcement unless you wire it up yourself. The anon key is right there in your client bundle — anyone can grab it, call `signUp()`, and start costing you money. `signInAnonymously` is even worse. One script, infinite fake users, and your MAU counter climbs while you sleep.
+
+And when you migrate off Supabase, Auth is the thing that breaks everything. Your users have Supabase-issued JWTs. Your RLS policies reference `auth.uid()`. Your frontend has `supabase.auth.onAuthStateChange()` wired into every page. Ripping that out means rewriting your entire auth layer — session management, token refresh, user identity, middleware. The database migration is a pg_dump. The auth migration is a full rewrite of how your app understands who a user is.
+
+This is also why swapping Supabase Auth for another service like Clerk or Auth0 is a trap. You're trading one vendor lock-in for another. Now your user data lives in someone else's database instead of yours. You can't join it with your app tables. You pay per MAU. And if you ever want to leave, you do this entire migration over again. Auth should be a library that lives in your code and your database, not a service that owns your users.
 
 ## The self-hosting trap
 
@@ -53,6 +59,12 @@ Here's what actually happens when you try to migrate:
 **Step 1**: Move your database from Supabase to Aurora. Fine. pg_dump, restore, done.
 
 But wait — Supabase had PgBouncer built in. Connection pooling, included. On Aurora, every Lambda invocation opens a new connection. Your database gets hammered. You need RDS Proxy. Another service, another config, another line on the bill.
+
+**Step 1b**: Migrate auth. The database was easy. Auth is where it gets ugly. Your users have Supabase JWTs. Your middleware checks `auth.uid()`. Your frontend listens to `onAuthStateChange`. You're not moving auth data — you're rewriting how your entire app understands identity. New token format, new session management, new signup flow. And if you were letting users sign in anonymously to poke around before signing up, you now need to build that from scratch in a way that doesn't get botted into bankruptcy.
+
+I used [Better Auth](https://better-auth.com/docs/guides/supabase-migration-guide) for this. They have a dedicated Supabase migration guide with a full migration script that handles users, identities, passwords, anonymous sessions, and social providers. The API maps cleanly — `signIn.email` replaces `signInWithPassword`, sessions work without wiring middleware from scratch, and the anonymous plugin is a drop-in for `signInAnonymously`. Since Supabase and Better Auth both use bcrypt, your users' passwords work without forcing a reset. It's not zero effort, but it's the closest thing to a clean path I found.
+
+This is also why I'd avoid replacing Supabase Auth with another auth service like Clerk or Auth0. Swapping one vendor for another just moves the lock-in around — now your user data lives in Clerk's database instead of Supabase's. You can't query it alongside your app data. You pay per MAU. And if you ever want to leave, you're doing this migration all over again. Auth should live in your code and your database. Better Auth gets this right — it's a library, not a service. You own your user table.
 
 **Step 2**: Now your Aurora instance is in a VPC. Your backend on Vercel can't reach it — no static IP, no VPC peering unless you're on Enterprise. So you need to move the backend too.
 
@@ -72,6 +84,6 @@ If I could go back, I'd start with AWS from day one. Not because Supabase and Ve
 
 If starting on AWS isn't an option — maybe the team is small, maybe you need to validate first — then the compromise is: move just the database to Aurora as early as possible, keep everything else on Vercel, and pay for that static IP. $100/month hurts but weeks of migration hurt more. Once the DB is isolated and the immediate compliance boxes are checked, then evaluate whether the backend really needs to move.
 
-But here's the uncomfortable truth: managed platforms optimize for the 0→1 journey. They make starting easy and growing expensive. The pricing isn't accidental — it's designed so that by the time you hit the limits, you're too deep to leave easily.
+The truth is: managed platforms optimize for the 0→1 journey. They make starting easy and growing expensive. The pricing isn't accidental — it's designed so that by the time you hit the limits, you're too deep to leave easily.
 
 Know this going in. Ship fast on Supabase and Vercel. But the moment someone mentions SOC2 or HIPAA, start your migration plan. Don't wait until it's an emergency.

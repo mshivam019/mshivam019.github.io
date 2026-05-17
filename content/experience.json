@@ -8,6 +8,7 @@
     "achievements": [
       "Designed the database schema and service architecture for an automated recruitment platform",
       "Built AI interview agents with LiveKit web APIs and a state machine backend that maintains context across conversation turns",
+      "Built a test and assessment platform with an in-house proctoring solution for secure exam delivery",
       "Built voice agents and SIP trunking infrastructure with LiveKit (JS and Python) and Sarvam",
       "Built a custom call recording system for LiveKit, replacing the expensive built-in option",
       "Designed the LLM integration layer, balancing token costs against response accuracy",
