@@ -12,8 +12,8 @@
       "Built voice agents and SIP trunking infrastructure with LiveKit (JS and Python) and Sarvam",
       "Built a custom call recording system for LiveKit, replacing the expensive built-in option",
       "Designed the LLM integration layer, balancing token costs against response accuracy",
-      "Led migration from Supabase to AWS: Aurora PostgreSQL, SAM, and serverless Node.js on Lambda",
-      "Set up VPC networking with NAT gateways and CloudFront; hardened against CSRF, XSS, and OWASP threats"
+      "Led migration from Supabase to AWS: Aurora PostgreSQL, SAM and serverless Node.js on Lambda",
+      "Set up VPC networking with NAT gateways and CloudFront; hardened against CSRF, XSS and OWASP threats"
     ]
   },
   {
@@ -24,7 +24,7 @@
     "endDate": "2025-06-01",
     "isCurrent": false,
     "achievements": [
-      "Led a full rebuild of the student dashboard, adding points, streaks, and leaderboard mechanics",
+      "Led a full rebuild of the student dashboard, adding points, streaks and leaderboard mechanics",
       "Integrated Razorpay UPI Mandates with Node.js for recurring subscription payments",
       "Migrated the TTT Tribe App to Expo SDK 51 and reworked media uploads for AWS S3",
       "Rebuilt landing pages with Next.js ISR and ISG, cutting First Contentful Paint by 40%"

@@ -17,7 +17,7 @@ export default async function Home() {
           >
             InsideIIM | AltUni Labs
           </Link>
-          , building across web, mobile, and AI — whatever the product needs.
+          , building across web, mobile and AI. Whatever the product needs.
         </p>
 
         <p className="section-intro">
@@ -33,7 +33,7 @@ export default async function Home() {
         </p>
 
         <p className="section-intro">
-          My stack is Next.js, React Native, and Node.js, with a growing focus
+          My stack is Next.js, React Native and Node.js, with a growing focus
           on LLMs and vector search. I care about shipping things that work and
           interfaces that don&apos;t feel like they were built by committee.
         </p>

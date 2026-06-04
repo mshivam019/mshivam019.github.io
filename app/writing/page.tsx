@@ -15,7 +15,7 @@ export default function WritingPage() {
       <h1 className="page-heading">Writing</h1>
 
       <p className="section-intro max-w-3xl">
-        Notes on AI systems, product engineering, and the decisions that go
+        Notes on AI systems, product engineering and the decisions that go
         into shipping software.
       </p>
 

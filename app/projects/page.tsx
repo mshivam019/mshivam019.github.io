@@ -12,21 +12,21 @@ interface Project {
 const featuredProjects: Project[] = [
   {
     name: "StorySail",
-    description: "A social publishing app for writers. Built with React Native, Expo, and Supabase — writing, discovery, and engagement in one place.",
+    description: "A social publishing app for writers. Built with React Native, Expo and Supabase. Writing, discovery and engagement in one place.",
     url: "https://github.com/mshivam019/StorySail",
     stars: 162,
     language: "TypeScript",
   },
   {
     name: "Designered",
-    description: "A canvas graphics editor with layers, vector tools, and AI image generation for quick design work.",
+    description: "A canvas graphics editor with layers, vector tools and AI image generation for quick design work.",
     url: "https://github.com/mshivam019/designered",
     stars: 0,
     language: "TypeScript",
   },
   {
     name: "agents-js",
-    description: "Open source contributions to LiveKit agents-js — Sarvam plugin packages for speech-to-text and text-to-speech over REST and WebSocket.",
+    description: "Open source contributions to LiveKit agents-js. Sarvam plugin packages for speech-to-text and text-to-speech over REST and WebSocket.",
     url: "https://github.com/livekit/agents-js",
     stars: 0,
     language: "TypeScript",
@@ -50,7 +50,7 @@ const miniProjects: Project[] = [
   },
   {
     name: "2048",
-    description: "A browser version of 2048 — focused on game state logic and smooth keyboard controls.",
+    description: "A browser version of 2048. Focused on game state logic and smooth keyboard controls.",
     url: "https://github.com/mshivam019/2048",
     stars: 11,
     language: "JavaScript",
@@ -64,7 +64,7 @@ const miniProjects: Project[] = [
   },
   {
     name: "Meow-Speech",
-    description: "An iOS text to speech utility for accessibility — experimenting with voice output and simple interactions.",
+    description: "An iOS text to speech utility for accessibility. Experimenting with voice output and simple interactions.",
     url: "https://github.com/mshivam019/Meow-Speech",
     stars: 3,
     language: "Swift",
@@ -99,7 +99,7 @@ export default function ProjectsPage() {
 
       <div className="max-w-3xl mb-12">
         <p className="section-intro">
-          Production work and experiments across mobile, web, tooling, and
+          Production work and experiments across mobile, web, tooling and
           creative interfaces.
         </p>
       </div>

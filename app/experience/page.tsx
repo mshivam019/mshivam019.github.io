@@ -41,7 +41,7 @@ export default async function ExperiencePage() {
 
       <p className="section-intro max-w-3xl">
         Roles where I&apos;ve taken features from spec to production, fixed
-        things that broke, and turned messy requirements into working software.
+        things that broke and turned messy requirements into working software.
       </p>
 
       <div className="space-y-9 sm:space-y-10">
@@ -59,7 +59,7 @@ export default async function ExperiencePage() {
             <ul className="space-y-2.5 text-sm text-muted-foreground/95 leading-6">
               {exp.achievements.map((achievement: string) => (
                 <li key={achievement} className="flex gap-2">
-                  <span className="text-muted-foreground/50">—</span>
+                  <span className="text-muted-foreground/50">·</span>
                   <span>{achievement}</span>
                 </li>
               ))}

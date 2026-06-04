@@ -1,14 +1,14 @@
 export const metadata = {
   title: "Free Hosting 101 (Part 2): Backend, Database & Storage Solutions",
-  description: "Free tier options for backend hosting, databases, and cloud storage for full-stack applications.",
+  description: "Free tier options for backend hosting, databases and cloud storage for full-stack applications.",
   alternates: {
     canonical: "/writing/free-hosting-part-2",
   },
 };
 
-In Part 1, we covered free hosting for frontend apps. But what about your backend, database, and storage? A full-stack project needs auth, APIs, data storage, and media hosting — and you can get all of it for free too.
+In Part 1, we covered free hosting for frontend apps. But what about your backend, database and storage? A full-stack project needs auth, APIs, data storage and media hosting. And you can get all of it for free too.
 
-Here are the best free-tier backend, database, and storage options I've used.
+Here's what I've used:
 
 ## Backend
 
@@ -16,10 +16,10 @@ Hosting a backend is tricky and can get messy. But if you know what you're doing
 
 [**Render**](http://render.com)
 
-This was my go-to for college projects. Handles Node.js, Spring Boot, pretty much anything via Docker. 512MB RAM, 0.1 CPU, 750 instance hours free, 100GB bandwidth. It does offer a free Postgres DB but don't use it — it deletes after 30 days.
+This was my go-to for college projects. Handles Node.js, Spring Boot, pretty much anything via Docker. 512MB RAM, 0.1 CPU, 750 instance hours free, 100GB bandwidth. It does offer a free Postgres DB but don't use it. It deletes after 30 days.
 
 - Deploys directly from GitHub with CI/CD and Dockerfiles.
-- Supports web services, static sites, and background workers.
+- Supports web services, static sites and background workers.
 - App count limited by hours, not number of projects.
 - Free-tier apps sleep after 15 minutes of inactivity, causing cold start delays.
 - Free DB gets deleted after 30 days. CPU isn't enough for heavy apps.
@@ -49,13 +49,13 @@ Free hosting with SSH access, giving you full control.
 
 - SSH access allows deep customization.
 - Supports multiple languages and databases.
-- Steeper learning curve — you need to know server management.
+- Steeper learning curve. You need to know server management.
 - Free tier has resource limits on RAM and storage.
 - Relatively new, so community support and docs are thinner.
 
 ## Database
 
-If you need to persist user data — even a simple to-do app across sessions and devices — you'll need a database.
+If you need to persist user data, even a simple to-do app across sessions and devices, you'll need a database.
 
 [**Neon**](http://Neon.tech)
 
@@ -63,7 +63,7 @@ Multi-cloud, managed PostgreSQL with a solid free tier.
 
 - Scalable PostgreSQL that grows with your app.
 - Deploy across cloud providers for redundancy.
-- PostgreSQL only — no other database types.
+- PostgreSQL only. No other database types.
 - Latency can be an issue depending on your location.
 
 [**Xata**](https://xata.io/)
@@ -80,9 +80,9 @@ Serverless PostgreSQL with up to 15GB storage on the free tier.
 
 Free shared cluster with NoSQL and Search Index.
 
-- Huge community — everyone knows MongoDB, lots of SDK support.
+- Huge community. Everyone knows MongoDB, lots of SDK support.
 - Deploy across regions worldwide.
-- Free tier runs on shared infrastructure — performance varies.
+- Free tier runs on shared infrastructure. Performance varies.
 - Limited storage and connections, so dev/small apps only.
 - Cluster sleeps after long inactivity.
 
@@ -106,13 +106,13 @@ Cloud-based relational database with a spreadsheet-like interface.
 
 ## Storage
 
-For profile pictures, audio files, PDFs, images, or even your own site assets behind a CDN — you'll need file storage.
+For profile pictures, audio files, PDFs, images, or even your own site assets behind a CDN, you'll need file storage.
 
 [**Cloudinary**](https://cloudinary.com/)
 
 Media management platform with a solid free plan.
 
-- Free plan: 25 monthly credits covering image/video transformations, storage, and bandwidth.
+- Free plan: 25 monthly credits covering image/video transformations, storage and bandwidth.
 - Good media processing: resize, crop, format conversion.
 - Global CDN for fast delivery.
 - 25 credits per month may be tight for high-traffic apps.
@@ -135,8 +135,6 @@ CDN storage built for Next.js. 1GB storage, 1GB bandwidth per month, 1 project.
 - Only 1GB storage and 1GB bandwidth.
 - Next.js only.
 
-When picking a solution, consider your project's needs: media types, expected traffic, required integrations. Check each platform's website for the latest limits — free tiers change.
+When picking a solution, check each platform's website for the latest limits. Free tiers change.
 
-By using these free services for backend, database, and storage, you can build and run full-stack apps without burning cash. Just monitor your usage to stay within limits and upgrade when your project outgrows them. Nothing is truly free, and anything can shut down at any time.
-
-Happy hosting.
+Managed platforms optimize for getting you started. They make starting easy and growing expensive. Nothing is truly free and anything can shut down at any time.

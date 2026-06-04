@@ -1,12 +1,12 @@
 export const metadata = {
   title: "Dropping JavaScript support is a mistake",
-  description: "New libraries are shipping TypeScript-only. Here's why that hurts beginners, fragments the ecosystem, and misses the point of what TS was supposed to be.",
+  description: "New libraries are shipping TypeScript-only. Here's why that hurts beginners, fragments the ecosystem and misses the point of what TS was supposed to be.",
   alternates: {
     canonical: "/writing/dropping-js-support",
   },
 };
 
-A growing number of libraries and frameworks are dropping JavaScript support. You download the package, try to use it in a `.js` file, and nothing works. The docs only show TypeScript examples. Types are baked into the source instead of shipped as separate `.d.ts` files.
+A growing number of libraries and frameworks are dropping JavaScript support. You download the package, try to use it in a `.js` file and nothing works. The docs only show TypeScript examples. Types are baked into the source instead of shipped as separate `.d.ts` files.
 
 I understand why maintainers do this. TypeScript catches bugs. It makes large codebases manageable. Writing types alongside implementation is faster than maintaining declaration files. I use TypeScript every day.
 
@@ -16,7 +16,7 @@ But dropping JS support altogether is a different decision from preferring TS. I
 
 Not me. Not the senior dev with five years of TS under their belt. This hurts people trying to break into the industry.
 
-A beginner in 2026 picks a tutorial, opens a blank file, and the first thing they hit is a wall of red squiggles. They didn't write a type wrong — they just used a library that refuses to work without a `tsconfig.json`. They don't know what a union type is yet. They're trying to understand why `map` returns a new array, and instead they're fighting `Property 'map' does not exist on type 'unknown'`.
+A beginner in 2026 picks a tutorial, opens a blank file and the first thing they hit is a wall of red squiggles. They didn't write a type wrong — they just used a library that refuses to work without a `tsconfig.json`. They don't know what a union type is yet. They're trying to understand why `map` returns a new array and instead they're fighting `Property 'map' does not exist on type 'unknown'`.
 
 TypeScript was supposed to be a superset of JavaScript. Opt-in. You add types when you're ready. That was the pitch. Now libraries are making it mandatory before you've written a single line of logic.
 
@@ -28,7 +28,7 @@ And the types they end up writing aren't even useful. `any` everywhere. `as unkn
 
 This isn't just about beginners. More libraries are shipping ESM-only, TS-only, with no CommonJS fallback and no plain JS entry point. If your project uses a different module system, too bad. If you're writing a quick script that doesn't need a build step, too bad.
 
-The Node.js ecosystem built its dominance on being accessible. A single `.js` file, `node index.js`, and you're running. That low barrier to entry is what made the ecosystem massive. We're losing that.
+The Node.js ecosystem built its dominance on being accessible. A single `.js` file, `node index.js` and you're running. That low barrier to entry is what made the ecosystem massive. We're losing that.
 
 Some recent examples:
 
@@ -36,11 +36,11 @@ Tamagui is one of the worst offenders. You literally cannot use it without TypeS
 
 T3 stack packages are TS-only. Hono's helper packages, several CLI tools, newer state management libraries — the list grows every month.
 
-I'm not saying these are bad libraries. Tamagui is genuinely impressive engineering. But the trend is real, and it's accelerating.
+I'm not saying these are bad libraries. Tamagui is genuinely impressive engineering. But the trend is real and it's accelerating.
 
 ## DHH was right about this
 
-Say what you want about DHH, but he called this years ago. Rails 7 dropped TypeScript from the default stack. Not because TS is bad — because forcing it on everyone is bad. His argument was simple: JavaScript is a perfectly fine language, and adding a mandatory type system on top of it raises the barrier to entry without enough benefit for most use cases.
+Say what you want about DHH, but he called this years ago. Rails 7 dropped TypeScript from the default stack. Not because TS is bad — because forcing it on everyone is bad. His argument was simple: JavaScript is a perfectly fine language and adding a mandatory type system on top of it raises the barrier to entry without enough benefit for most use cases.
 
 The Ruby community had this exact debate a decade ago. People pushed for mandatory type annotations everywhere. Ruby resisted. The language survived. The ecosystem thrived. Turns out you can write good software without a compiler checking your work.
 
