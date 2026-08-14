@@ -34,7 +34,7 @@
     },
     {
       "name": "CC-Instagram",
-      "blurb": "Instagram rebuilt in Jetpack Compose, written as my own Compose Camp submission and then used to teach it.",
+      "blurb": "Instagram rebuilt in Jetpack Compose: feed, stories, profile and the state handling underneath them. I wrote it as my own Compose Camp submission, then used it as the worked example when teaching the camp.",
       "language": "Kotlin",
       "stars": 19,
       "forks": 5,
@@ -45,7 +45,7 @@
     },
     {
       "name": "2048",
-      "blurb": "The tile game, in React Native, playable in the browser.",
+      "blurb": "The tile game rebuilt in React Native, mostly to get the feel right. Swipe gestures that respond immediately, merge logic that never double-merges a tile in one move, and animations that keep up when you flick faster than you think.",
       "language": "JavaScript",
       "stars": 13,
       "forks": 7,
@@ -56,7 +56,7 @@
     },
     {
       "name": "nod-cli",
-      "blurb": "Backend scaffolding for Node.js, so the boring first hour of a project is one command.",
+      "blurb": "One command instead of the first boring hour of a backend: routes, config, database wiring and the folder layout I keep re-typing, scaffolded the way I would have set it up anyway.",
       "language": "TypeScript",
       "stars": 1,
       "forks": 0,
@@ -67,7 +67,7 @@
     },
     {
       "name": "Flappy-Bird",
-      "blurb": "A 2D game built to learn the Unity engine.",
+      "blurb": "My first thing in Unity. A 2D loop is small enough to finish, which makes it a good place to learn what an engine actually gives you: physics, collision, and a game loop you do not write yourself.",
       "language": "C#",
       "stars": 4,
       "forks": 0,
@@ -78,7 +78,7 @@
     },
     {
       "name": "Meow-Speech",
-      "blurb": "A text-to-speech app for iOS, written in Swift to see how the other platform felt.",
+      "blurb": "Text to speech on iOS, written in Swift because I wanted to know how the other platform felt from the inside rather than through React Native's abstractions.",
       "language": "Swift",
       "stars": 3,
       "forks": 0,
@@ -87,7 +87,7 @@
     },
     {
       "name": "Stark",
-      "blurb": "A certificate generator, named the way a 2021 project would be.",
+      "blurb": "Generates certificates from a template in the browser, so a batch can be produced without a designer, a backend, or opening Photoshop a hundred times.",
       "language": "HTML",
       "stars": 3,
       "forks": 0,
@@ -98,7 +98,7 @@
     },
     {
       "name": "SpringKafka",
-      "blurb": "A working Kafka and Spring Boot example, kept small on purpose.",
+      "blurb": "A Kafka producer and consumer on Spring Boot, deliberately small: the version I wanted to find when I was working out how the pieces fit, instead of a framework demo with everything switched on.",
       "language": "Java",
       "stars": 2,
       "forks": 0,
@@ -107,7 +107,7 @@
     },
     {
       "name": "star-wars-weather-app",
-      "blurb": "An Angular weather app on OpenWeatherMap, themed the only way it could be.",
+      "blurb": "The only Angular thing I have written. Real forecasts from OpenWeatherMap behind a deliberately silly interface, built to find out how Angular structures an app compared to everything else I use.",
       "language": "TypeScript",
       "stars": 1,
       "forks": 0,

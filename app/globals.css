@@ -734,17 +734,6 @@ html {
   }
 }
 
-.act-nav {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 3px;
-  border: 1px solid color-mix(in oklch, var(--border) 90%, transparent);
-  border-radius: 999px;
-  background: color-mix(in oklch, var(--card) 82%, transparent);
-  backdrop-filter: blur(8px);
-}
-
 .act-nav-arrow,
 .act-nav-current {
   display: inline-flex;
@@ -1979,44 +1968,6 @@ html {
   line-height: 1;
 }
 
-/* top-left corner, mirroring the act nav on the right */
-.corner-monogram {
-  position: fixed;
-  top: 13px;
-  left: 13px;
-  z-index: 50;
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 11px 5px 7px;
-  border: 1px solid color-mix(in oklch, var(--border) 90%, transparent);
-  border-radius: 999px;
-  background: color-mix(in oklch, var(--card) 82%, transparent);
-  backdrop-filter: blur(8px);
-  /* ink at rest, gold on hover so it rhymes with the favicon */
-  color: var(--foreground);
-  text-decoration: none;
-  transition:
-    border-color var(--motion-fast) var(--ease-standard),
-    color var(--motion-fast) var(--ease-standard);
-}
-
-.corner-monogram:hover,
-.corner-monogram:focus-visible {
-  border-color: color-mix(in oklch, var(--lotus) 55%, var(--border));
-  color: #a47921;
-}
-
-.corner-monogram .monogram-word {
-  font-size: 0.95rem;
-}
-
-@media (min-width: 640px) {
-  .corner-monogram {
-    top: 21px;
-    left: 21px;
-  }
-}
-
 /* in the footer the mark sits on paper and needs no chrome */
 .footer-mark .monogram {
   color: color-mix(in oklch, var(--foreground) 78%, transparent);
@@ -2129,6 +2080,7 @@ body::after {
 
   .enso {
     animation: enso-draw linear both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 0% contain 61.8%;
   }
@@ -2145,6 +2097,7 @@ body::after {
   /* each petal gets its own slice of the range, set inline per element */
   .lotus-petal-unit {
     animation: petal-open linear both;
+    animation-duration: auto;
     animation-timeline: --turtle;
   }
 
@@ -2161,6 +2114,7 @@ body::after {
 
   .lotus-pod {
     animation: pod-land linear both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 57.9% contain 61.8%;
   }
@@ -2177,6 +2131,7 @@ body::after {
   /* the turtle rides the enso path */
   .turtle-walker {
     animation: turtle-walk linear both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 0% contain 61.8%;
   }
@@ -2198,6 +2153,7 @@ body::after {
   /* the REPEAT line stays lit while the program runs */
   .terminal-token.is-repeat {
     animation: repeat-lit steps(1) both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 61.5% contain 61.9%;
   }
@@ -2218,6 +2174,7 @@ body::after {
   .terminal-prompt {
     display: inline-block;
     animation: prompt-in steps(1) both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 61.5% contain 61.9%;
   }
@@ -2238,6 +2195,7 @@ body::after {
   .status-done {
     display: block;
     animation: status-swap steps(1) both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 61.5% contain 61.9%;
   }
@@ -2282,6 +2240,7 @@ body::after {
     transform-origin: left center;
     background: color-mix(in oklch, var(--lime) 70%, transparent);
     animation: status-fill linear both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 0% contain 61.8%;
   }
@@ -2302,6 +2261,7 @@ body::after {
   /* the scroll cue fades as soon as the pen goes down */
   .hero-scroll {
     animation: cue-out linear both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 0% contain 6%;
   }
@@ -2369,9 +2329,18 @@ body::after {
 }
 
 .act-index-details .act-index {
-  position: absolute;
-  top: calc(100% + 11px);
-  right: -3px;
+  /* fixed, not absolute: the collapsing panel clips its overflow, and a fixed
+     child is positioned against the viewport, so it escapes that clip */
+  position: fixed;
+  top: 70px;
+  right: 21px;
+}
+
+@media (max-width: 640px) {
+  .act-index-details .act-index {
+    top: 104px;
+    right: 13px;
+  }
 }
 
 .act-index-details[open] .act-index {
@@ -2395,6 +2364,7 @@ body::after {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
       animation: reveal-in linear both;
+      animation-duration: auto;
       animation-timeline: view();
       animation-range: entry 8% entry 58%;
     }
@@ -2415,6 +2385,7 @@ body::after {
      printed with a CSS counter, so the readout is live without script */
   .turtle-scene {
     animation: iter-count linear both;
+    animation-duration: auto;
     animation-timeline: --turtle;
     animation-range: contain 0% contain 61.8%;
   }
@@ -2440,6 +2411,7 @@ body::after {
   /* reading progress: the rail, the petals and the number */
   .reading-rail-ink {
     animation: rail-ink linear both;
+    animation-duration: auto;
     animation-timeline: scroll(root block);
   }
 
@@ -2455,6 +2427,7 @@ body::after {
   .reading-petal-unit,
   .reading-pod {
     animation: petal-open linear both;
+    animation-duration: auto;
     animation-timeline: scroll(root block);
   }
 
@@ -2464,6 +2437,7 @@ body::after {
 
   .reading-mark {
     animation: read-count linear both;
+    animation-duration: auto;
     animation-timeline: scroll(root block);
     counter-reset: read var(--read);
   }
@@ -2682,6 +2656,332 @@ html {
   html {
     animation: none;
     scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
+  }
+}
+
+
+/* ------------------------------------------------------------------ */
+/* Act controls: the mark opens them, with no script                   */
+/* ------------------------------------------------------------------ */
+
+.act-nav-shell {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 3px;
+  border: 1px solid color-mix(in oklch, var(--border) 90%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--card) 84%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+/* the mark: full ink, never dimmed */
+.act-nav-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  list-style: none;
+  cursor: pointer;
+  color: var(--foreground);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.act-nav-mark::-webkit-details-marker {
+  display: none;
+}
+
+.act-nav-mark:hover,
+.act-nav-toggle:checked ~ .act-nav-shell .act-nav-mark {
+  color: #a47921;
+}
+
+/* the controls themselves, folded away until asked for */
+.act-nav-shell .act-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-width 0.42s var(--ease-standard),
+    opacity 0.28s var(--ease-standard);
+}
+
+.act-nav-shell:hover .act-nav,
+.act-nav-shell:focus-within .act-nav,
+.act-nav-toggle:checked ~ .act-nav-shell .act-nav {
+  max-width: 260px;
+  opacity: 1;
+}
+
+/*
+ * A single peek on load so the controls are discoverable. No fill mode, so once
+ * it finishes the rules above take over and hover still works.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .act-nav-shell .act-nav {
+    animation: nav-peek 3.4s var(--ease-standard) 2.3s;
+  }
+
+  @keyframes nav-peek {
+    0%,
+    12% {
+      max-width: 0;
+      opacity: 0;
+    }
+    22%,
+    72% {
+      max-width: 260px;
+      opacity: 1;
+    }
+    100% {
+      max-width: 0;
+      opacity: 0;
+    }
+  }
+}
+
+/* on a phone the controls drop underneath the mark instead of running off it */
+@media (max-width: 640px) {
+  .act-nav-shell {
+    flex-direction: column;
+    /* centred, or the mark strands itself against the right edge of the
+       wider controls row once the panel opens */
+    align-items: center;
+    gap: 0;
+    padding: 3px;
+    border-radius: 21px;
+  }
+
+  .act-nav-shell .act-nav {
+    max-height: 0;
+    max-width: 200px;
+    transition:
+      max-height 0.42s var(--ease-standard),
+      opacity 0.28s var(--ease-standard);
+  }
+
+  .act-nav-shell:hover .act-nav,
+.act-nav-shell:focus-within .act-nav,
+.act-nav-toggle:checked ~ .act-nav-shell .act-nav {
+    max-height: 44px;
+    padding-top: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .act-nav-shell .act-nav {
+      animation: nav-peek-tall 3.4s var(--ease-standard) 2.3s;
+    }
+
+    @keyframes nav-peek-tall {
+      0%,
+      12% {
+        max-height: 0;
+        opacity: 0;
+      }
+      22%,
+      72% {
+        max-height: 44px;
+        opacity: 1;
+      }
+      100% {
+        max-height: 0;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+
+/* the toggle itself is never seen: the label is the control */
+.act-nav-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.act-nav-mark {
+  cursor: pointer;
+}
+
+.act-nav-toggle:focus-visible ~ .act-nav-shell .act-nav-mark {
+  outline: 2px solid color-mix(in oklch, var(--lotus) 78%, var(--foreground));
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------ */
+/* The nudge: slides up when you reach the end of an act               */
+/* ------------------------------------------------------------------ */
+
+.act-nudge {
+  position: fixed;
+  left: 50%;
+  bottom: 21px;
+  z-index: 48;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 17px 9px 19px;
+  border: 1px solid color-mix(in oklch, var(--border) 85%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--card) 92%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 28px color-mix(in oklch, var(--ink) 12%, transparent);
+  color: var(--foreground);
+  text-decoration: none;
+  white-space: nowrap;
+  /* hidden and inert until the scroll animation brings it in */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(16px);
+}
+
+.act-nudge-kicker {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.act-nudge-title {
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.act-nudge-arrow {
+  color: color-mix(in oklch, var(--lotus) 75%, var(--foreground));
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.act-nudge:hover .act-nudge-arrow {
+  transform: translateX(3px);
+}
+
+@supports (animation-timeline: scroll()) {
+  .act-nudge {
+    animation: nudge-up linear both;
+    animation-duration: auto;
+    animation-timeline: scroll(root block);
+    /* the last stretch of the page, so it arrives as the act runs out */
+    animation-range: 88% 99%;
+  }
+
+  @keyframes nudge-up {
+    from {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(16px);
+    }
+    to {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .act-nudge {
+    bottom: 13px;
+    padding: 8px 14px 8px 16px;
+    gap: 9px;
+  }
+
+  .act-nudge-title {
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .act-nudge {
+    animation: none;
+    display: none;
+  }
+}
+
+/* one mark at a time: a link where hover exists, a toggle where it does not */
+@media (hover: hover) and (pointer: fine) {
+  .act-nav-mark-toggle {
+    display: none;
+  }
+}
+
+@media not all and (hover: hover) {
+  .act-nav-mark-link {
+    display: none;
+  }
+}
+
+.act-nav-mark-link {
+  text-decoration: none;
+}
+
+/* the index sits over body copy on a phone, so it cannot be see-through */
+@media (max-width: 640px) {
+  .act-index {
+    background: var(--card);
+    box-shadow: 0 16px 40px color-mix(in oklch, var(--ink) 26%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Ink that dries: headings fill in as they arrive                     */
+/*                                                                     */
+/* Two colours in one gradient, sized to a single line and repeated    */
+/* down the block, then the background slides across on a view         */
+/* timeline. The text is a window onto that gradient, so the letters   */
+/* fill with ink the way a brush stroke lands. No script.              */
+/* ------------------------------------------------------------------ */
+
+@supports (background-clip: text) and (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .act-section-heading,
+    .act-header-title,
+    .footer-heading {
+      background-image: linear-gradient(
+        90deg,
+        var(--foreground) 0 50%,
+        color-mix(in oklch, var(--foreground) 16%, transparent) 50% 100%
+      );
+      background-size: 200% 1lh;
+      background-position-x: 100%;
+      background-repeat: repeat-y;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: ink-dry linear both;
+      animation-duration: auto;
+      animation-timeline: view();
+      animation-range: entry 18% cover 42%;
+    }
+
+    /* the act titles dry in the plum the site signs things with */
+    .act-header-title {
+      background-image: linear-gradient(
+        90deg,
+        var(--foreground) 0 50%,
+        color-mix(in oklch, var(--lotus) 22%, transparent) 50% 100%
+      );
+    }
+
+    .footer-heading a {
+      color: color-mix(in oklch, var(--lotus) 72%, var(--foreground));
+      -webkit-text-fill-color: color-mix(in oklch, var(--lotus) 72%, var(--foreground));
+    }
+
+    @keyframes ink-dry {
+      to {
+        background-position-x: 0%;
+      }
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { ACTS } from "@/components/acts";
 import ActNav from "@/components/act-nav";
+import ActNudge from "@/components/act-nudge";
 import ActOutro from "@/components/act-outro";
 import BootCard from "@/components/boot-card";
 
@@ -20,6 +21,7 @@ export default function ActChrome({ index, children }: { index: number; children
       <ActNav current={act} next={next} prev={prev} />
       {children}
       <ActOutro next={next} prev={prev} />
+      <ActNudge next={next} />
     </>
   );
 }

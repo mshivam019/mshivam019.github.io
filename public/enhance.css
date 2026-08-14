@@ -1,0 +1,170 @@
+/*
+ * Progressive enhancement, served as a plain file.
+ *
+ * These two rules use CSS that is newer than the build tool's parser, so they
+ * live outside the bundle rather than being mangled by it. Everything here is
+ * optional: where it is unsupported the site simply behaves as it did before.
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. The control gets out of the way once you start reading           */
+/*                                                                     */
+/* A scroll-state container query lets an element restyle itself based  */
+/* on its scroll port. At the top of a page the mark reads SKM. in      */
+/* full; the moment there is anything above you, the wordmark folds     */
+/* away and leaves just the dragon.                                    */
+/* ------------------------------------------------------------------ */
+
+/* the query has to be asked of a real scroll container, and the page itself is
+   the thing doing the scrolling */
+html {
+  container-type: scroll-state;
+}
+
+.act-nav-mark .monogram-word {
+  overflow: hidden;
+  max-width: 3.4em;
+  transition:
+    max-width 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-left 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@container scroll-state(scrollable: top) {
+  .act-nav-mark .monogram-word {
+    max-width: 0;
+    opacity: 0;
+    margin-left: -4px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. One highlight that slides between the acts                       */
+/*                                                                     */
+/* The hovered item lends its name and its size to a single pill via    */
+/* anchor positioning, so instead of four separate hover states there   */
+/* is one object following where you point.                            */
+/* ------------------------------------------------------------------ */
+
+@supports (anchor-name: --a) {
+  .act-index-list {
+    position: relative;
+  }
+
+  .act-index-list li:has(.act-index-link:is(:hover, :focus-visible)) {
+    anchor-name: --act-hovered;
+  }
+
+  .act-index-list::before {
+    content: "";
+    position: absolute;
+    position-anchor: --act-hovered;
+    top: anchor(top);
+    left: anchor(left);
+    width: anchor-size(width);
+    height: anchor-size(height);
+    border-radius: 8px;
+    background: color-mix(in oklch, var(--foreground) 7%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      top 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      left 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      height 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .act-index-list:has(.act-index-link:is(:hover, :focus-visible))::before {
+    opacity: 1;
+  }
+
+  /* the pill is the highlight now, so the links stop drawing their own */
+  .act-index-link:hover {
+    background: transparent;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Sizing to content instead of to a number I guessed               */
+/*                                                                     */
+/* The panel used to animate max-width to 260px, a figure picked by eye */
+/* that would be wrong the moment an act title got longer.              */
+/* interpolate-size lets width: auto actually interpolate, so the panel */
+/* opens to exactly the size of its contents at any breakpoint.        */
+/* ------------------------------------------------------------------ */
+
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  .act-nav-shell .act-nav {
+    max-width: none;
+    width: 0;
+    animation-name: nav-peek-auto;
+    transition:
+      width 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .act-nav-shell:hover .act-nav,
+  .act-nav-shell:focus-within .act-nav,
+  .act-nav-toggle:checked ~ .act-nav-shell .act-nav {
+    max-width: none;
+    width: auto;
+  }
+
+  @keyframes nav-peek-auto {
+    0%,
+    12% {
+      width: 0;
+      opacity: 0;
+    }
+    22%,
+    72% {
+      width: auto;
+      opacity: 1;
+    }
+    100% {
+      width: 0;
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .act-nav-shell .act-nav {
+      width: auto;
+      max-height: none;
+      height: 0;
+      animation-name: nav-peek-auto-tall;
+      transition:
+        height 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .act-nav-shell:hover .act-nav,
+    .act-nav-shell:focus-within .act-nav,
+    .act-nav-toggle:checked ~ .act-nav-shell .act-nav {
+      max-height: none;
+      height: auto;
+    }
+
+    @keyframes nav-peek-auto-tall {
+      0%,
+      12% {
+        height: 0;
+        opacity: 0;
+      }
+      22%,
+      72% {
+        height: auto;
+        opacity: 1;
+      }
+      100% {
+        height: 0;
+        opacity: 0;
+      }
+    }
+  }
+}
