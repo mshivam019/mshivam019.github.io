@@ -1,181 +1,131 @@
-import Link from "next/link";
-import { Github, Star } from "lucide-react";
+import { getProjects } from "@/lib/content";
 
-interface Project {
-  name: string;
-  description: string;
-  url: string;
-  stars: number;
-  language: string;
-}
+export const metadata = {
+  title: "Projects",
+  description:
+    "Things I built on my own time: a writing app, a canvas editor, a scaffolding CLI, and a long trail of learning projects.",
+};
 
-const featuredProjects: Project[] = [
-  {
-    name: "StorySail",
-    description: "A social publishing app for writers. Built with React Native, Expo and Supabase. Writing, discovery and engagement in one place.",
-    url: "https://github.com/mshivam019/StorySail",
-    stars: 162,
-    language: "TypeScript",
-  },
-  {
-    name: "Designered",
-    description: "A canvas graphics editor with layers, vector tools and AI image generation for quick design work.",
-    url: "https://github.com/mshivam019/designered",
-    stars: 0,
-    language: "TypeScript",
-  },
-  {
-    name: "agents-js",
-    description: "Open source contributions to LiveKit agents-js. Sarvam plugin packages for speech-to-text and text-to-speech over REST and WebSocket.",
-    url: "https://github.com/livekit/agents-js",
-    stars: 0,
-    language: "TypeScript",
-  },
-  {
-    name: "nod-cli",
-    description: "A Node.js CLI that scaffolds backend projects with sensible defaults and folder structure you'd actually use in production.",
-    url: "https://github.com/mshivam019/nod-cli",
-    stars: 0,
-    language: "TypeScript",
-  },
-];
+export default async function ProjectsPage() {
+  const projects = await getProjects();
+  const totalStars = projects.public.reduce((sum, p) => sum + p.stars, 0);
+  const totalForks = projects.public.reduce((sum, p) => sum + p.forks, 0);
+  const languages = new Set(projects.public.map((p) => p.language)).size;
 
-const miniProjects: Project[] = [
-  {
-    name: "CC-Instagram",
-    description: "A Jetpack Compose project exploring feed-style UI and mobile interaction patterns.",
-    url: "https://github.com/mshivam019/CC-Instagram",
-    stars: 18,
-    language: "Kotlin",
-  },
-  {
-    name: "2048",
-    description: "A browser version of 2048. Focused on game state logic and smooth keyboard controls.",
-    url: "https://github.com/mshivam019/2048",
-    stars: 11,
-    language: "JavaScript",
-  },
-  {
-    name: "star-wars-weather-app",
-    description: "A Star Wars themed weather app built in Angular to practice UI composition and API integration.",
-    url: "https://github.com/mshivam019/star-wars-weather-app",
-    stars: 1,
-    language: "TypeScript",
-  },
-  {
-    name: "Meow-Speech",
-    description: "An iOS text to speech utility for accessibility. Experimenting with voice output and simple interactions.",
-    url: "https://github.com/mshivam019/Meow-Speech",
-    stars: 3,
-    language: "Swift",
-  },
-  {
-    name: "Flappy-Bird",
-    description: "A Unity 2D game prototype for practicing gameplay loops and physics tuning.",
-    url: "https://github.com/mshivam019/Flappy-Bird",
-    stars: 4,
-    language: "C#",
-  },
-  {
-    name: "SpringKafka",
-    description: "A Spring Boot and Kafka sample for event driven backend communication.",
-    url: "https://github.com/mshivam019/SpringKafka",
-    stars: 2,
-    language: "Java",
-  },
-  {
-    name: "Stark",
-    description: "A lightweight certificate generator for events and cohort credentials.",
-    url: "https://github.com/mshivam019/Stark",
-    stars: 3,
-    language: "HTML",
-  },
-];
-
-export default function ProjectsPage() {
   return (
     <>
-      <h1 className="page-heading">Projects</h1>
+      <header className="act-header">
+        <p className="act-header-kicker">Act III</p>
+        <h1 className="act-header-title">The Work</h1>
+        <div className="prose-column">
+          <p>
+            Everything here I built because I wanted to know how something worked, and the fastest
+            way I know to find out is to build one. A few of them turned out to be useful to other
+            people, which is still the part that surprises me.
+          </p>
+        </div>
 
-      <div className="max-w-3xl mb-12">
-        <p className="section-intro">
-          Production work and experiments across mobile, web, tooling and
-          creative interfaces.
-        </p>
-      </div>
+        <dl className="stat-row">
+          <div>
+            <dt>Public projects</dt>
+            <dd>{projects.public.length}</dd>
+          </div>
+          <div>
+            <dt>Stars</dt>
+            <dd>{totalStars}</dd>
+          </div>
+          <div>
+            <dt>Forks</dt>
+            <dd>{totalForks}</dd>
+          </div>
+          <div>
+            <dt>Languages</dt>
+            <dd>{languages}</dd>
+          </div>
+        </dl>
+      </header>
 
-      <div className="grid gap-6 sm:gap-7 lg:grid-cols-2 mb-14 sm:mb-16">
-        {featuredProjects.map((project) => (
-          <article key={project.name} className="group border border-border/65 rounded-xl p-4 sm:p-5 h-full bg-card/35">
-            <div className="flex items-center justify-between mb-3 gap-3">
-              <div className="flex items-center gap-3 min-w-0">
-                <h2 className="font-medium tracking-[-0.015em] truncate">{project.name}</h2>
-                {project.stars > 0 && (
-                  <span className="inline-flex items-center gap-1 text-xs text-muted-foreground shrink-0">
-                    <Star className="w-3 h-3" />
-                    {project.stars}
+      <div className="reveal">
+        <section className="act-section">
+          <p className="act-section-kicker">In the open</p>
+          <ul className="project-list">
+            {projects.public.map((p) => (
+              <li key={p.name} className="project">
+                <div className="project-head">
+                  <h2 className="project-name">
+                    <a href={p.repo}>{p.name}</a>
+                  </h2>
+                  <span className="project-meta">
+                    {p.language} · {p.year}
+                    {p.stars > 0 ? ` · ★ ${p.stars}` : ""}
+                    {p.forks > 0 ? ` · ⑂ ${p.forks}` : ""}
                   </span>
-                )}
-              </div>
-              <Link
-                href={project.url}
-                className="editorial-link no-underline text-muted-foreground shrink-0"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="w-4 h-4" />
-              </Link>
-            </div>
+                </div>
 
-            <p className="text-sm text-muted-foreground/95 leading-6 mb-3">
-              {project.description}
+                <p className="project-blurb">{p.blurb}</p>
+
+                {p.bullets ? (
+                  <ul className="project-bullets">
+                    {p.bullets.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                ) : null}
+
+                <p className="project-links">
+                  <a href={p.repo} className="editorial-link">
+                    Source
+                  </a>
+                  {p.demo ? (
+                    <a href={p.demo} className="editorial-link">
+                      {p.demoLabel ?? "Live"}
+                    </a>
+                  ) : null}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      <div className="reveal">
+        <section className="act-section">
+          <p className="act-section-kicker">Not in the open</p>
+          <h2 className="act-section-heading">The practice repos, private</h2>
+          <div className="prose-column">
+            <p>
+              These were never meant for anyone else. They are the trail of learning a platform by
+              building on it, roughly in the order I got from Java to whatever I am doing this week.
             </p>
+          </div>
 
-            <span className="meta-text">
-              {project.language}
-            </span>
-          </article>
-        ))}
+          <div className="prose-column">
+            <p className="private-line">
+              JustJava, the Udacity coffee app that started Android for me. Compose practice in
+              Grocery-List and RPS. A Unity endless runner. An AIML chatbot. A Go backend with JWT,
+              Spring Boot CRUD, two things in C++, IMDB scraping in Python. Then the useful ones I
+              still run: a media tracker, an outing planner, a Wails desktop template.
+            </p>
+          </div>
+        </section>
       </div>
 
-      <div className="mb-10">
-        <h2 className="text-sm font-medium mb-4 text-muted-foreground tracking-[0.02em] uppercase">
-          Other Projects
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 text-muted-foreground">
-          {miniProjects.map((project) => (
-            <Link
-              key={project.name}
-              href={project.url}
-              className="editorial-link text-sm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {project.name}
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <div className="subtle-divider space-y-4">
-        <Link
-          href="https://github.com/mshivam019"
-          className="editorial-link text-sm text-muted-foreground inline-flex items-center gap-2"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Github className="w-4 h-4" />
-          View all projects on GitHub
-        </Link>
-
-        <div>
-          <Link
-            href="/"
-            className="editorial-link text-sm text-muted-foreground"
-          >
-            ← Back to about
-          </Link>
-        </div>
+      <div className="reveal">
+        <section className="act-section">
+          <p className="act-section-kicker">Offcuts</p>
+          <h2 className="act-section-heading">Small tools that fell out of the work</h2>
+          <div className="prose-column">
+            <p>
+              A Bitbucket to GitHub org migration, OCR on a Node server, a submission similarity
+              checker, a mojibake cleaner, React Native deep linking and a Zustand store wired to
+              MMKV. Too small to be repositories, so they live as{" "}
+              <a href="https://gist.github.com/mshivam019" className="editorial-link">
+                gists
+              </a>
+              .
+            </p>
+          </div>
+        </section>
       </div>
     </>
   );

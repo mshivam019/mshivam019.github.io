@@ -1,0 +1,120 @@
+{
+  "public": [
+    {
+      "name": "StorySail",
+      "blurb": "A reading and writing app for people who write short things.",
+      "bullets": [
+        "Social publishing for writers, with a custom text editor and offline-first sync",
+        "Supabase and Deno Edge Functions behind the real-time notifications and content feeds",
+        "Tuned to 120fps with Reanimated, MMKV for local persistence"
+      ],
+      "language": "TypeScript",
+      "stars": 167,
+      "forks": 27,
+      "year": "2024",
+      "repo": "https://github.com/mshivam019/StorySail",
+      "demo": "https://appetize.io/app/ois7jgwgusxskbwquhyvmickfi?device=pixel7&osVersion=13.0",
+      "demoLabel": "Run it in a browser"
+    },
+    {
+      "name": "Designered",
+      "blurb": "A canvas editor, because I wanted to know how the ones I use are built.",
+      "bullets": [
+        "Multi-layer manipulation, vector drawing and real-time rendering on Konva.js",
+        "AI image generation through Together AI, dropped straight onto the canvas",
+        "Hono.js and Drizzle ORM behind it, with auto-save and optimistic updates"
+      ],
+      "language": "TypeScript",
+      "stars": 0,
+      "forks": 0,
+      "year": "2024",
+      "repo": "https://github.com/mshivam019/designered",
+      "demo": "https://designered.vercel.app",
+      "demoLabel": "Open the editor"
+    },
+    {
+      "name": "CC-Instagram",
+      "blurb": "Instagram rebuilt in Jetpack Compose, written as my own Compose Camp submission and then used to teach it.",
+      "language": "Kotlin",
+      "stars": 19,
+      "forks": 5,
+      "year": "2022",
+      "repo": "https://github.com/mshivam019/CC-Instagram",
+      "demo": "https://appetize.io/app/4xjajkn64p2yd6um2btcsjarpu",
+      "demoLabel": "Run it in a browser"
+    },
+    {
+      "name": "2048",
+      "blurb": "The tile game, in React Native, playable in the browser.",
+      "language": "JavaScript",
+      "stars": 13,
+      "forks": 7,
+      "year": "2023",
+      "repo": "https://github.com/mshivam019/2048",
+      "demo": "https://mshivam019.github.io/2048/",
+      "demoLabel": "Play it"
+    },
+    {
+      "name": "nod-cli",
+      "blurb": "Backend scaffolding for Node.js, so the boring first hour of a project is one command.",
+      "language": "TypeScript",
+      "stars": 1,
+      "forks": 0,
+      "year": "2025",
+      "repo": "https://github.com/mshivam019/nod-cli",
+      "demo": "https://mshivam019.github.io/nod-cli/",
+      "demoLabel": "Docs"
+    },
+    {
+      "name": "Flappy-Bird",
+      "blurb": "A 2D game built to learn the Unity engine.",
+      "language": "C#",
+      "stars": 4,
+      "forks": 0,
+      "year": "2021",
+      "repo": "https://github.com/mshivam019/Flappy-Bird",
+      "demo": "https://appetize.io/app/tvd7qg4v75hvowbadsc2cy77f4",
+      "demoLabel": "Run it in a browser"
+    },
+    {
+      "name": "Meow-Speech",
+      "blurb": "A text-to-speech app for iOS, written in Swift to see how the other platform felt.",
+      "language": "Swift",
+      "stars": 3,
+      "forks": 0,
+      "year": "2022",
+      "repo": "https://github.com/mshivam019/Meow-Speech"
+    },
+    {
+      "name": "Stark",
+      "blurb": "A certificate generator, named the way a 2021 project would be.",
+      "language": "HTML",
+      "stars": 3,
+      "forks": 0,
+      "year": "2021",
+      "repo": "https://github.com/mshivam019/Stark",
+      "demo": "https://mshivam019.github.io/Stark/",
+      "demoLabel": "Generate one"
+    },
+    {
+      "name": "SpringKafka",
+      "blurb": "A working Kafka and Spring Boot example, kept small on purpose.",
+      "language": "Java",
+      "stars": 2,
+      "forks": 0,
+      "year": "2024",
+      "repo": "https://github.com/mshivam019/SpringKafka"
+    },
+    {
+      "name": "star-wars-weather-app",
+      "blurb": "An Angular weather app on OpenWeatherMap, themed the only way it could be.",
+      "language": "TypeScript",
+      "stars": 1,
+      "forks": 0,
+      "year": "2022",
+      "repo": "https://github.com/mshivam019/star-wars-weather-app",
+      "demo": "https://star-wars-weather.vercel.app",
+      "demoLabel": "Check the weather on Tatooine"
+    }
+  ]
+}

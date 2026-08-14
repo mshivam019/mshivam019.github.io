@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Geist_Mono, IBM_Plex_Sans } from "next/font/google";
-import { ViewTransition } from "react";
-import Navigation from "@/components/navigation";
+import Monogram from "@/components/monogram";
+import MonogramDefs from "@/components/monogram-defs";
+import SiteFooter from "@/components/site-footer";
 import "./globals.css";
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -71,15 +73,13 @@ export default function RootLayout({
       <body
         className={`${ibmPlexSans.variable} ${geistMono.variable} antialiased min-h-screen transition-colors duration-300`}
       >
-        <div className="page-shell max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-20">
-          <div className="site-grid">
-            <aside className="site-nav-column">
-              <Navigation />
-            </aside>
-            <ViewTransition default="page-transition">
-              <main className="editorial-main">{children}</main>
-            </ViewTransition>
-          </div>
+        <MonogramDefs />
+        <Link href="/" className="corner-monogram" aria-label="Shivam Mishra, home">
+          <Monogram size={30} />
+        </Link>
+        <div id="top" className="page-shell max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-20">
+          <main className="editorial-main">{children}</main>
+          <SiteFooter />
         </div>
       </body>
     </html>

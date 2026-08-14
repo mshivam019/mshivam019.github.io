@@ -1,38 +1,11 @@
 @import "tailwindcss";
 
 html {
-  scrollbar-gutter: stable;
   overflow-x: hidden;
+  /* a scrollbar is always present so the width never jumps between pages. The
+     act lock removes it and compensates with padding, which keeps full-screen
+     overlays truly full-bleed: a reserved gutter would leave a pale strip. */
   overflow-y: scroll;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
 }
 
 @theme inline {
@@ -155,73 +128,6 @@ html {
     position: relative;
   }
 
-  .site-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .site-nav-column {
-    min-width: 0;
-  }
-
-  .site-nav {
-    border-bottom: 1px solid color-mix(in oklch, var(--border) 88%, transparent);
-    padding-bottom: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .site-nav-list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.45rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .site-nav-link {
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    color: var(--muted-foreground);
-    border-radius: 0.35rem;
-    border: 0;
-    padding: 0.24rem 0.62rem 0.28rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    transition:
-      color var(--motion-fast) var(--ease-standard),
-      opacity var(--motion-fast) var(--ease-standard);
-  }
-
-  .site-nav-link:hover {
-    color: color-mix(in oklch, var(--primary) 48%, var(--foreground));
-  }
-
-
-  .site-nav-label {
-    transition:
-      text-shadow var(--motion-fast) var(--ease-standard),
-      color var(--motion-fast) var(--ease-standard);
-  }
-
-  .site-nav-link:hover .site-nav-label,
-  .site-nav-link.is-active .site-nav-label {
-    text-shadow: 0 0 0.015em currentColor, 0 0 0.015em currentColor;
-  }
-
-  .site-nav-link.is-active {
-    color: color-mix(in oklch, var(--primary) 62%, var(--foreground));
-  }
-
-  .site-nav-link:focus-visible {
-    outline-offset: 2px;
-  }
-
   .editorial-main {
     display: grid;
     row-gap: 1.4rem;
@@ -242,19 +148,7 @@ html {
     max-width: 64ch;
   }
 
-  .meta-text {
-    color: color-mix(in oklch, var(--muted-foreground) 86%, transparent);
-    font-size: 0.8rem;
-    letter-spacing: 0.01em;
-  }
-
-  .subtle-divider {
-    border-top: 1px solid color-mix(in oklch, var(--border) 85%, transparent);
-    margin-top: 2.25rem;
-    padding-top: 1.5rem;
-  }
-
-  .editorial-link {
+.editorial-link {
     color: inherit;
     text-decoration: underline;
     text-decoration-thickness: from-font;
@@ -274,64 +168,6 @@ html {
     text-decoration-color: color-mix(in oklch, var(--primary) 62%, transparent);
   }
 
-  .row-link {
-    transition:
-      color var(--motion-fast) var(--ease-standard),
-      transform var(--motion-fast) var(--ease-standard);
-  }
-
-  .row-link:hover {
-    transform: translateY(-1px);
-  }
-
-  @media (min-width: 860px) {
-    .site-grid {
-      grid-template-columns: minmax(130px, 160px) minmax(0, 1fr);
-      gap: 2.2rem;
-    }
-
-    .site-nav-column {
-      position: sticky;
-      top: 1.4rem;
-      align-self: start;
-    }
-
-    .site-nav {
-      border-bottom: 0;
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-left: 1px solid color-mix(in oklch, var(--border) 85%, transparent);
-      padding-left: 0.85rem;
-    }
-
-    .site-nav-list {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.48rem;
-    }
-
-    .site-nav-link {
-      width: 100%;
-      justify-content: flex-start;
-      border-radius: 0.5rem;
-      padding: 0.42rem 0.55rem;
-      font-size: 0.8rem;
-    }
-  }
-}
-
-/* View Transition Animations */
-@supports (view-transition-name: none) {
-  @media not (prefers-reduced-motion: reduce) {
-    ::view-transition-old(.page-transition) {
-      animation: hide 0.4s cubic-bezier(0.6, 0, 0.8, 1) forwards;
-    }
-
-    ::view-transition-new(.page-transition) {
-      opacity: 0;
-      animation: appear 0.6s ease 0.2s forwards;
-    }
-  }
 }
 
 @keyframes hide {
@@ -367,8 +203,2504 @@ html {
     transition-duration: 0.01ms !important;
   }
 
-  ::view-transition-old(.page-transition),
-  ::view-transition-new(.page-transition) {
-    animation: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Turtle hero: a LOGO turtle draws an enso as you scroll              */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --lime: #d7ff4f;
+  --ink: #171714;
+  --ginkgo: #c9930a;
+  --maple: #b8341f;
+  /* padma: a dusty plum, the pink lotus of Indian miniature painting.
+     Deliberately not saffron — this is a flower, not a party symbol. */
+  --lotus: #7d4f63;
+  --lotus-pod: #a8842f;
+  --turtle-ink: #4a3f42;
+  --phi: 1.618;
+}
+
+.turtle-scene {
+  position: relative;
+  /* 0.618 of the range draws the circle and opens the petals behind the
+     turtle; the remaining 0.382 holds the finished flower. 233 is Fibonacci. */
+  height: 320vh;
+}
+
+.turtle-sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: 1.5rem;
+}
+
+.turtle-grid {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 1024px) {
+  .turtle-grid {
+    /* copy : canvas = 1 : φ */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
+    gap: calc(2rem * var(--phi));
+    align-items: center;
   }
 }
+
+.turtle-copy {
+  display: grid;
+  gap: 1.1rem;
+  align-content: center;
+}
+
+.turtle-copy .page-heading {
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.turtle-stage {
+  position: relative;
+  /* no frame, no graph paper — ink sitting on the page */
+  background: radial-gradient(
+    62% 62% at 50% 46%,
+    color-mix(in oklch, var(--foreground) 3%, transparent) 0%,
+    transparent 72%
+  );
+  overflow: hidden;
+  /* 377 and 610 are consecutive Fibonacci numbers: 610/377 = φ */
+  height: 377px;
+}
+
+@media (min-width: 640px) {
+  .turtle-stage {
+    height: 466px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .turtle-stage {
+    height: min(560px, 61.8svh);
+  }
+}
+
+.turtle-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* enso brush: three layered strokes read as one ink-wash stroke */
+
+.enso {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.enso-wash {
+  stroke-width: 17;
+  opacity: 0.08;
+}
+
+.enso-mid {
+  stroke-width: 8;
+  opacity: 0.18;
+}
+
+.enso-core {
+  stroke-width: 3.4;
+  opacity: 0.92;
+}
+
+/* padma: 16 ink petals that unfurl when the circle closes */
+.turtle-lotus {
+  /* left a few degrees off true: placed by hand, not by machine */
+  transform-box: view-box;
+  transform-origin: 300px 300px;
+  transform: rotate(-6deg);
+}
+
+.lotus-petal {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.lotus-petal-outer {
+  fill: color-mix(in oklch, var(--lotus) 10%, transparent);
+  stroke: var(--ink);
+  stroke-width: 2;
+  opacity: 0.62;
+}
+
+.lotus-petal-inner {
+  fill: color-mix(in oklch, var(--lotus) 16%, transparent);
+  stroke: color-mix(in oklch, var(--lotus) 72%, var(--ink));
+  stroke-width: 1.7;
+  opacity: 0.82;
+}
+
+.lotus-vein {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: 0.26;
+}
+
+.lotus-pod-ring {
+  fill: color-mix(in oklch, var(--lotus-pod) 18%, transparent);
+  stroke: color-mix(in oklch, var(--lotus-pod) 78%, var(--ink));
+  stroke-width: 1.6;
+}
+
+.lotus-seed {
+  fill: color-mix(in oklch, var(--lotus-pod) 85%, var(--ink));
+}
+
+/* the turtle */
+
+
+.turtle-halo {
+  fill: var(--background);
+  opacity: 0.92;
+}
+
+
+/* guiding wind: long thin streaks, barely there */
+.wind-path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-dasharray: 46 190;
+  opacity: 0.16;
+  animation: wind-flow 7s linear infinite;
+}
+
+.wind-b {
+  animation-duration: 9.5s;
+  opacity: 0.11;
+}
+
+@keyframes wind-flow {
+  to {
+    stroke-dashoffset: -236;
+  }
+}
+
+/* drifting leaves */
+.leaf {
+  position: absolute;
+  display: block;
+  transform-origin: top center;
+  animation: leaf-drift var(--dur, 10s) ease-in-out var(--delay, 0s) infinite alternate;
+  pointer-events: none;
+}
+
+.leaf {
+  color: var(--ginkgo);
+}
+
+@keyframes leaf-drift {
+  from {
+    transform: translate3d(0, 0, 0) rotate(var(--r0, 0deg));
+  }
+  to {
+    transform: translate3d(var(--dx, 24px), var(--dy, 40px)) rotate(var(--r1, 30deg));
+  }
+}
+
+/* MSWLogo-style debugger, docked beneath the canvas */
+.turtle-terminal {
+  margin-top: 13px;
+  border-radius: 13px;
+  background: var(--ink);
+  color: #f2efe7;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.618;
+  overflow: hidden;
+}
+
+.terminal-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 21px;
+  padding: 5px 13px;
+  background: rgba(242, 239, 231, 0.09);
+  color: rgba(242, 239, 231, 0.65);
+  /* title : body = 1 : φ */
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.terminal-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+}
+
+.terminal-token {
+  padding: 0 5px;
+  border-radius: 3px;
+  white-space: pre;
+  color: rgba(242, 239, 231, 0.88);
+}
+
+/* the REPEAT line stays lit while the program runs, and goes quiet when done */
+.terminal-token.is-repeat {
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.turtle-terminal.is-done .terminal-token.is-repeat {
+  background: transparent;
+  color: rgba(242, 239, 231, 0.88);
+  font-weight: 400;
+}
+
+.terminal-prompt {
+  display: none;
+}
+
+.turtle-terminal.is-done .terminal-prompt {
+  display: inline-block;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 12px;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--lime);
+  animation: cursor-blink 1.1s steps(1) infinite;
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.terminal-status {
+  padding: 5px 13px;
+  border-top: 1px solid rgba(242, 239, 231, 0.16);
+  color: rgba(242, 239, 231, 0.6);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.turtle-caption {
+  margin: 0.65rem 0 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 640px) {
+  .turtle-scene {
+    height: 260vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .turtle-scene {
+    height: auto;
+  }
+
+  .turtle-sticky {
+    position: static;
+    min-height: 0;
+  }
+
+  /* the scroll loop paints the finished flower straight away */
+  .lotus-petal-unit,
+  .lotus-pod {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Act transitions: push past the bottom of a page to turn to the next */
+/* ------------------------------------------------------------------ */
+
+.act-outro {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  margin-top: calc(2rem * var(--phi));
+  padding-top: 21px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 85%, transparent);
+}
+
+.act-outro-kicker,
+.act-outro-blurb,
+.act-outro-hint {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.act-outro-link {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.act-outro-link:hover {
+  color: color-mix(in oklch, var(--lotus) 60%, var(--foreground));
+}
+
+.act-outro-blurb {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* how far along the pull gesture is */
+.act-pull {
+  display: block;
+  width: 61.8%;
+  max-width: 233px;
+  height: 2px;
+  margin-top: 5px;
+  background: color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.act-pull-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--lotus);
+  transform: scaleX(clamp(0, var(--pull, 0), 1));
+  transform-origin: left center;
+}
+
+/* the card itself */
+.act-card {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: radial-gradient(46% 62% at 50% 38%, #22211d 0%, #0d0d0b 92%) #0d0d0b;
+  color: #f2efe7;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.382s ease;
+}
+
+.act-card.is-playing {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.act-card.is-exiting {
+  opacity: 0;
+  transition: opacity 0.618s ease;
+}
+
+.act-card-inner {
+  display: grid;
+  justify-items: center;
+  gap: 13px;
+  text-align: center;
+  transform: translateY(13px);
+  transition: transform 0.618s cubic-bezier(0.16, 1, 0.3, 1) 0.09s;
+}
+
+.act-card.is-playing .act-card-inner {
+  transform: translateY(0);
+}
+
+.act-card-kicker {
+  margin: 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  /* kicker : title = 1 : φ³ */
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 231, 0.62);
+}
+
+.act-card-title {
+  margin: 0;
+  font-size: clamp(2.6rem, 11vw, 7rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+
+.act-card-rule {
+  display: block;
+  width: 61.8px;
+  height: 1px;
+  background: color-mix(in oklch, var(--lotus-pod) 75%, transparent);
+}
+
+.act-card-blurb {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(242, 239, 231, 0.66);
+}
+
+/* the static lotus used on the cards */
+.lotus-mark-outer {
+  fill: color-mix(in oklch, var(--lotus) 14%, transparent);
+  stroke: rgba(242, 239, 231, 0.62);
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+}
+
+.lotus-mark-inner {
+  fill: color-mix(in oklch, var(--lotus) 22%, transparent);
+  stroke: rgba(242, 239, 231, 0.78);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.lotus-mark-vein {
+  fill: none;
+  stroke: rgba(242, 239, 231, 0.3);
+  stroke-width: 1.4;
+}
+
+.lotus-mark-pod {
+  fill: color-mix(in oklch, var(--lotus-pod) 30%, transparent);
+  stroke: color-mix(in oklch, var(--lotus-pod) 85%, transparent);
+  stroke-width: 2;
+}
+
+.lotus-mark-seed {
+  fill: color-mix(in oklch, var(--lotus-pod) 90%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .act-card,
+  .act-card-inner {
+    transition: none;
+  }
+
+  .act-outro-hint {
+    display: none;
+  }
+
+  .act-pull {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Act nav: two arrows and the act numeral, top right                  */
+/* ------------------------------------------------------------------ */
+
+.act-nav-wrap {
+  position: fixed;
+  top: 13px;
+  right: 13px;
+  z-index: 50;
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .act-nav-wrap {
+    top: 21px;
+    right: 21px;
+  }
+}
+
+.act-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid color-mix(in oklch, var(--border) 90%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--card) 82%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.act-nav-arrow,
+.act-nav-current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.82rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    background var(--motion-fast) var(--ease-standard);
+}
+
+.act-nav-arrow:hover,
+.act-nav-current:hover {
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--foreground) 7%, transparent);
+}
+
+.act-nav-current {
+  gap: 5px;
+  padding: 0 11px;
+  letter-spacing: 0.1em;
+}
+
+.act-nav-label {
+  /* label : numeral = 1 : φ */
+  font-size: calc(0.82rem / var(--phi));
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.act-nav-numeral {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.act-index {
+  min-width: 178px;
+  padding: 8px;
+  border: 1px solid color-mix(in oklch, var(--border) 90%, transparent);
+  border-radius: 13px;
+  background: color-mix(in oklch, var(--card) 94%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 13px 34px rgba(23, 23, 20, 0.14);
+}
+
+.act-index-list {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.act-index-link {
+  display: grid;
+  grid-template-columns: 21px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: var(--muted-foreground);
+  font-size: 0.86rem;
+  text-decoration: none;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    background var(--motion-fast) var(--ease-standard);
+}
+
+.act-index-link:hover {
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--foreground) 6%, transparent);
+}
+
+.act-index-link.is-active {
+  color: var(--foreground);
+}
+
+.act-index-link.is-active .act-index-numeral {
+  color: var(--lotus);
+}
+
+.act-index-numeral {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+/* the back-link on the outro strip */
+.act-outro-back {
+  margin-top: 5px;
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.act-outro-back:hover {
+  color: var(--foreground);
+}
+
+/* pull feedback at the top edge, for the upward gesture */
+.act-pull-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: none;
+  height: 2px;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  z-index: 55;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.act-pull-top.is-pulling {
+  opacity: 1;
+}
+
+/* the cold-load act card: painted with the first frame, clears itself */
+.boot-card {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: radial-gradient(46% 62% at 50% 38%, #22211d 0%, #0d0d0b 92%) #0d0d0b;
+  color: #f2efe7;
+  pointer-events: none;
+  animation: boot-out 2.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes boot-out {
+  0%,
+  50% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.boot-card-inner {
+  transform: none;
+  animation: boot-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes boot-rise {
+  from {
+    opacity: 0;
+    transform: translateY(13px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-card {
+    display: none;
+  }
+}
+
+/* the fixed act nav must never sit on top of a heading */
+.page-shell {
+  padding-top: 72px;
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    padding-top: 88px;
+  }
+}
+
+/* outro strip: title, then one quiet meta row */
+.act-outro {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 5px;
+}
+
+.act-outro-blurb {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-family: var(--font-ibm-plex-sans), system-ui, sans-serif;
+  font-size: 0.92rem;
+}
+
+.act-outro-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+  width: 100%;
+  margin-top: 13px;
+}
+
+.act-outro-hint,
+.act-outro-back {
+  margin: 0;
+  font-size: 0.66rem;
+}
+
+.act-pull {
+  width: 100%;
+  max-width: none;
+  height: 1px;
+  margin-top: 8px;
+  background: color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+/* window chrome drawn as shapes, so it actually lines up */
+.terminal-chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(242, 239, 231, 0.55);
+}
+
+.chrome-min {
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+}
+
+.chrome-max {
+  width: 7px;
+  height: 7px;
+  border: 1px solid currentColor;
+}
+
+.chrome-close {
+  position: relative;
+  width: 8px;
+  height: 8px;
+}
+
+.chrome-close::before,
+.chrome-close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+}
+
+.chrome-close::before {
+  transform: rotate(45deg);
+}
+
+.chrome-close::after {
+  transform: rotate(-45deg);
+}
+
+/* ------------------------------------------------------------------ */
+/* Act I sections                                                      */
+/* ------------------------------------------------------------------ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.62s var(--ease-standard),
+    transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* already scrolled past: appear without the catch-up animation */
+.reveal.is-instant {
+  transition: none;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+.hero-eyebrow {
+  margin: 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 21px;
+  padding-top: 5px;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.act-section {
+  display: grid;
+  gap: 13px;
+  padding-block: clamp(3.4rem, 9vh, 5.5rem);
+  border-top: 1px solid color-mix(in oklch, var(--border) 70%, transparent);
+}
+
+.act-section-kicker {
+  margin: 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in oklch, var(--lotus) 70%, var(--muted-foreground));
+}
+
+.act-section-heading {
+  max-width: 22ch;
+  margin: 0;
+  font-size: clamp(1.75rem, 3.4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+@media (min-width: 900px) {
+  .act-section-heading {
+    max-width: 30ch;
+  }
+}
+
+.prose-column {
+  display: grid;
+  gap: 1.05rem;
+  max-width: 62ch;
+  margin-top: 8px;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: color-mix(in oklch, var(--foreground) 88%, var(--muted-foreground));
+}
+
+.prose-column p {
+  margin: 0;
+}
+
+/* the now list */
+.now-grid {
+  display: grid;
+  gap: 0;
+  margin: 21px 0 0;
+  max-width: 62ch;
+}
+
+.now-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  padding-block: 11px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 55%, transparent);
+}
+
+@media (min-width: 640px) {
+  .now-row {
+    /* label : value = 1 : φ */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
+    gap: 21px;
+    align-items: baseline;
+  }
+}
+
+.now-row dt {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.now-row dd {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* the shelves */
+.shelf-grid {
+  display: grid;
+  gap: 21px 34px;
+  margin-top: 34px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 640px) {
+  .shelf-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .shelf-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.shelf-label {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid color-mix(in oklch, var(--border) 55%, transparent);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.shelf-list {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+  color: color-mix(in oklch, var(--foreground) 86%, var(--muted-foreground));
+}
+
+/* ------------------------------------------------------------------ */
+/* Act pages: header, roles, upstream PRs                              */
+/* ------------------------------------------------------------------ */
+
+.act-header {
+  display: grid;
+  gap: 8px;
+  padding-bottom: clamp(1.6rem, 4vh, 2.6rem);
+}
+
+.act-header-kicker {
+  margin: 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in oklch, var(--lotus) 70%, var(--muted-foreground));
+}
+
+.act-header-title {
+  margin: 0 0 5px;
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+/* roles */
+.role-list {
+  display: grid;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  padding-block: 21px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+@media (min-width: 760px) {
+  .role {
+    grid-template-columns: 132px minmax(0, 1fr);
+    gap: 34px;
+  }
+}
+
+.role-rail {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+@media (min-width: 760px) {
+  .role-rail {
+    flex-direction: column;
+    gap: 5px;
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+}
+
+.role-years {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+}
+
+.role-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklch, var(--lotus) 78%, var(--foreground));
+}
+
+.role-now::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--lotus);
+}
+
+.role-company {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.role-meta {
+  margin: 3px 0 13px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground);
+}
+
+.role-achievements {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 66ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: color-mix(in oklch, var(--foreground) 86%, var(--muted-foreground));
+}
+
+.role-achievements li {
+  padding-left: 17px;
+  position: relative;
+}
+
+.role-achievements li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 1px;
+  background: color-mix(in oklch, var(--lotus) 60%, var(--border));
+}
+
+/* upstream PRs */
+.pr-list {
+  display: grid;
+  gap: 0;
+  margin: 21px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pr {
+  padding-block: 17px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+.pr-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 13px;
+}
+
+.pr-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--motion-fast) var(--ease-standard);
+}
+
+.pr-title:hover {
+  border-bottom-color: color-mix(in oklch, var(--lotus) 60%, transparent);
+}
+
+.pr-repo {
+  margin: 5px 0 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground);
+}
+
+.pr-note {
+  max-width: 68ch;
+  margin: 8px 0 0;
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: color-mix(in oklch, var(--foreground) 82%, var(--muted-foreground));
+}
+
+/* the line down the side, and a dot per stop */
+
+/* header stat row */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px 21px;
+  margin: 26px 0 0;
+  padding-top: 17px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+  max-width: 62ch;
+}
+
+@media (min-width: 640px) {
+  .stat-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.stat-row dt {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.stat-row dd {
+  margin: 3px 0 0;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.role-tag {
+  margin-left: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--foreground) 7%, transparent);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  vertical-align: 0.28em;
+}
+
+/* education + certifications */
+.paper-grid {
+  display: grid;
+  gap: 34px;
+  margin-top: 21px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 760px) {
+  .paper-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 34px 55px;
+  }
+}
+
+.cred-list {
+  display: grid;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cred-list li {
+  display: grid;
+  gap: 2px;
+}
+
+.cred-name {
+  font-size: 0.96rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.cred-meta {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  line-height: 1.45;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground);
+}
+
+/* Act III: projects */
+.project-list {
+  display: grid;
+  gap: 0;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project {
+  padding-block: 26px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+.project-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 5px 21px;
+}
+
+.project-name {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.028em;
+}
+
+.project-name a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--motion-fast) var(--ease-standard);
+}
+
+.project-name a:hover {
+  border-bottom-color: color-mix(in oklch, var(--lotus) 65%, transparent);
+}
+
+.project-meta {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted-foreground);
+}
+
+.project-blurb {
+  max-width: 62ch;
+  margin: 8px 0 0;
+  font-size: 1rem;
+  line-height: 1.62;
+  color: color-mix(in oklch, var(--foreground) 88%, var(--muted-foreground));
+}
+
+.project-bullets {
+  display: grid;
+  gap: 5px;
+  max-width: 66ch;
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92rem;
+  line-height: 1.58;
+  color: var(--muted-foreground);
+}
+
+.project-bullets li {
+  position: relative;
+  padding-left: 17px;
+}
+
+.project-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 1px;
+  background: color-mix(in oklch, var(--lotus) 55%, var(--border));
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 21px;
+  margin: 13px 0 0;
+  font-size: 0.82rem;
+}
+
+/* private practice repos */
+
+/* gists */
+
+/* Act IV: post list */
+.stat-row dd.stat-small {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.post-list {
+  display: grid;
+  gap: 0;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post {
+  border-top: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+.post-link {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 21px;
+  align-items: start;
+  gap: 13px;
+  padding-block: 21px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-index {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted-foreground);
+  padding-top: 0.34em;
+}
+
+.post-body {
+  display: grid;
+  gap: 5px;
+}
+
+.post-title {
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.24;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.post-summary {
+  max-width: 64ch;
+  font-size: 0.94rem;
+  line-height: 1.58;
+  color: var(--muted-foreground);
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 13px;
+  margin-top: 3px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.post-tags {
+  color: color-mix(in oklch, var(--lotus) 72%, var(--muted-foreground));
+}
+
+.post-arrow {
+  font-size: 1rem;
+  color: var(--muted-foreground);
+  opacity: 0;
+  transform: translateX(-5px);
+  transition:
+    opacity var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
+  padding-top: 0.18em;
+}
+
+.post-link:hover .post-arrow,
+.post-link:focus-visible .post-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.post-link:hover .post-title {
+  color: color-mix(in oklch, var(--lotus) 55%, var(--foreground));
+}
+
+/* ------------------------------------------------------------------ */
+/* Reading progress on posts                                           */
+/* ------------------------------------------------------------------ */
+
+.reading-rail {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 45;
+  height: 46svh;
+  pointer-events: none;
+}
+
+.reading-rail-track,
+.reading-rail-ink {
+  fill: none;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.reading-rail-track {
+  stroke: color-mix(in oklch, var(--foreground) 12%, transparent);
+  stroke-width: 1.5;
+}
+
+.reading-rail-ink {
+  stroke: var(--lotus);
+  stroke-width: 2;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  /* fades out at both tips so it reads as a brush stroke */
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (max-width: 900px) {
+  .reading-rail {
+    display: none;
+  }
+}
+.reading-mark {
+  position: fixed;
+  right: 14px;
+  bottom: 21px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 11px 6px 7px;
+  border: 1px solid color-mix(in oklch, var(--border) 85%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--card) 86%, transparent);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.reading-lotus {
+  display: block;
+}
+
+.reading-petal-unit,
+.reading-pod {
+  opacity: 0;
+}
+
+.reading-percent {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 560px) {
+  .reading-mark {
+    right: 13px;
+    bottom: 13px;
+    padding: 5px 9px 5px 6px;
+  }
+
+  .reading-lotus {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* hero: anchor the copy column so the whitespace reads as intent */
+@media (min-width: 1024px) {
+  .turtle-grid {
+    align-items: stretch;
+  }
+
+  .turtle-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.1rem;
+    min-height: min(560px, 61.8svh);
+  }
+
+  .hero-foot {
+    margin-top: auto;
+    padding-top: 34px;
+  }
+}
+
+.hero-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 21px;
+}
+
+.hero-now {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  max-width: 34ch;
+}
+
+.hero-now div {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 13px;
+  align-items: baseline;
+  padding-top: 8px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 55%, transparent);
+}
+
+.hero-now dt {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.hero-now dd {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: color-mix(in oklch, var(--foreground) 86%, var(--muted-foreground));
+}
+
+/* the cue, which fades the moment the turtle starts moving */
+.hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  transition:
+    opacity 0.5s var(--ease-standard),
+    transform 0.5s var(--ease-standard);
+}
+
+.hero-scroll-line {
+  display: block;
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(180deg, transparent, color-mix(in oklch, var(--lotus) 70%, transparent));
+  animation: cue-drift 2.6s ease-in-out infinite;
+}
+
+@keyframes cue-drift {
+  0%,
+  100% {
+    transform: translateY(-3px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+}
+
+.turtle-scene.is-drawing .hero-scroll {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Scrollbars: quiet by default, gone while an act card is up          */
+/* ------------------------------------------------------------------ */
+
+html {
+  /* no reserved gutter: a fixed overlay cannot paint into it, which leaves a
+     pale strip beside the act card. The scrollbar width is compensated with
+     padding at lock time instead. */
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer: the contact close                                           */
+/* ------------------------------------------------------------------ */
+
+.site-footer {
+  margin-top: clamp(3.4rem, 9vh, 6rem);
+  padding-top: 34px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 75%, transparent);
+}
+
+.footer-heading {
+  max-width: 26ch;
+  margin: 8px 0 0;
+  font-size: clamp(1.7rem, 4.4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.06;
+}
+
+.footer-heading a {
+  color: color-mix(in oklch, var(--lotus) 72%, var(--foreground));
+  text-decoration: none;
+  border-bottom: 2px solid color-mix(in oklch, var(--lotus) 30%, transparent);
+  transition: border-color var(--motion-fast) var(--ease-standard);
+}
+
+.footer-heading a:hover {
+  border-bottom-color: color-mix(in oklch, var(--lotus) 75%, transparent);
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px 34px;
+  margin-top: 55px;
+  padding-top: 17px;
+  border-top: 1px solid color-mix(in oklch, var(--border) 45%, transparent);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted-foreground);
+}
+
+.footer-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+}
+
+/* the mark sits on paper here, so it needs ink strokes rather than the card ones */
+.footer-mark .lotus-mark-outer {
+  fill: color-mix(in oklch, var(--lotus) 10%, transparent);
+  stroke: color-mix(in oklch, var(--foreground) 45%, transparent);
+  stroke-width: 3;
+}
+
+.footer-mark .lotus-mark-inner {
+  fill: color-mix(in oklch, var(--lotus) 16%, transparent);
+  stroke: color-mix(in oklch, var(--lotus) 70%, var(--foreground));
+  stroke-width: 2.6;
+}
+
+.footer-mark .lotus-mark-vein {
+  stroke: color-mix(in oklch, var(--foreground) 30%, transparent);
+}
+
+.footer-mark .lotus-mark-pod {
+  fill: color-mix(in oklch, var(--lotus-pod) 26%, transparent);
+  stroke: color-mix(in oklch, var(--lotus-pod) 80%, transparent);
+  stroke-width: 2.4;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 21px;
+}
+
+.footer-links a,
+.footer-top-link {
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.footer-links a:hover,
+.footer-top-link:hover {
+  color: var(--foreground);
+}
+
+/* ------------------------------------------------------------------ */
+/* Focus: one visible ring everywhere, keyboard only                   */
+/* ------------------------------------------------------------------ */
+
+:where(a, button, [role="button"], summary, input, textarea, select):focus-visible {
+  outline: 2px solid color-mix(in oklch, var(--lotus) 78%, var(--foreground));
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.act-nav-arrow:focus-visible,
+.act-nav-current:focus-visible,
+.act-index-link:focus-visible {
+  outline-offset: 2px;
+}
+
+.post-link:focus-visible,
+.project-name a:focus-visible {
+  outline-offset: 5px;
+}
+
+/* ------------------------------------------------------------------ */
+/* The SKM monogram                                                    */
+/* ------------------------------------------------------------------ */
+
+.monogram {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+}
+
+.monogram-dragon {
+  display: block;
+  flex: none;
+}
+
+.monogram-word {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.06em;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+/* top-left corner, mirroring the act nav on the right */
+.corner-monogram {
+  position: fixed;
+  top: 13px;
+  left: 13px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px 5px 7px;
+  border: 1px solid color-mix(in oklch, var(--border) 90%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--card) 82%, transparent);
+  backdrop-filter: blur(8px);
+  /* ink at rest, gold on hover so it rhymes with the favicon */
+  color: var(--foreground);
+  text-decoration: none;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.corner-monogram:hover,
+.corner-monogram:focus-visible {
+  border-color: color-mix(in oklch, var(--lotus) 55%, var(--border));
+  color: #a47921;
+}
+
+.corner-monogram .monogram-word {
+  font-size: 0.95rem;
+}
+
+@media (min-width: 640px) {
+  .corner-monogram {
+    top: 21px;
+    left: 21px;
+  }
+}
+
+/* in the footer the mark sits on paper and needs no chrome */
+.footer-mark .monogram {
+  color: color-mix(in oklch, var(--foreground) 78%, transparent);
+}
+
+.private-line {
+  color: var(--muted-foreground);
+}
+
+/* a PR that became a published package */
+.pr-package {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 11px;
+  padding: 4px 11px 4px 5px;
+  border: 1px solid color-mix(in oklch, var(--lotus) 30%, var(--border));
+  border-radius: 999px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  color: var(--foreground);
+  text-decoration: none;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background var(--motion-fast) var(--ease-standard);
+}
+
+.pr-package:hover {
+  border-color: color-mix(in oklch, var(--lotus) 70%, transparent);
+  background: color-mix(in oklch, var(--lotus) 7%, transparent);
+}
+
+.pr-package-tag {
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--lotus) 82%, var(--foreground));
+  color: var(--background);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+
+
+
+/* ------------------------------------------------------------------ */
+/* Paper: a baked grain over everything, so the ink sits on a surface   */
+/* ------------------------------------------------------------------ */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("/paper-grain.png");
+  background-size: 128px 128px;
+  opacity: 0.9;
+  mix-blend-mode: multiply;
+}
+
+@media (min-resolution: 2dppx) {
+  body::after {
+    /* denser fibres on hidpi so it does not read as blur */
+    background-size:  96px 96px;
+    opacity:  0.75;
+  }
+}
+
+
+
+/* ------------------------------------------------------------------ */
+/* Scroll-driven, script-free                                          */
+/*                                                                     */
+/* The scene owns a view timeline. Its "contain" phase is exactly the   */
+/* window where the sticky child is pinned, so 0-100% of that phase is  */
+/* the scroll the drawing gets. Everything below hangs off it.          */
+/* ------------------------------------------------------------------ */
+
+.turtle-scene {
+  view-timeline-name: --turtle;
+  view-timeline-axis: block;
+}
+
+/* default, and the fallback for browsers without scroll-driven CSS:
+   the finished drawing, held still */
+.enso {
+  stroke-dashoffset: 0;
+}
+
+.lotus-petal-unit,
+.lotus-pod {
+  opacity: 1;
+}
+
+.turtle-walker {
+  /* the path is in SVG user units, so resolve the motion path in that box */
+  transform-box: view-box;
+  offset-distance: 100%;
+  offset-rotate: auto;
+}
+.turtle-marker {
+  overflow: visible;
+}
+
+.status-running {
+  display: none;
+}
+
+.status-bar {
+  display: none;
+}
+
+@supports (animation-timeline: view()) {
+  .turtle-scene {
+    /* nothing to do here, the name above is the whole hookup */
+  }
+
+  .enso {
+    animation: enso-draw linear both;
+    animation-timeline: --turtle;
+    animation-range: contain 0% contain 61.8%;
+  }
+
+  @keyframes enso-draw {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* each petal gets its own slice of the range, set inline per element */
+  .lotus-petal-unit {
+    animation: petal-open linear both;
+    animation-timeline: --turtle;
+  }
+
+  @keyframes petal-open {
+    from {
+      opacity: 0;
+      transform: scale(0.618);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .lotus-pod {
+    animation: pod-land linear both;
+    animation-timeline: --turtle;
+    animation-range: contain 57.9% contain 61.8%;
+  }
+
+  @keyframes pod-land {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* the turtle rides the enso path */
+  .turtle-walker {
+    animation: turtle-walk linear both;
+    animation-timeline: --turtle;
+    animation-range: contain 0% contain 61.8%;
+  }
+
+  @keyframes turtle-walk {
+    from {
+      offset-distance: 0%;
+      opacity: 0;
+    }
+    2% {
+      opacity: 1;
+    }
+    to {
+      offset-distance: 100%;
+      opacity: 1;
+    }
+  }
+
+  /* the REPEAT line stays lit while the program runs */
+  .terminal-token.is-repeat {
+    animation: repeat-lit steps(1) both;
+    animation-timeline: --turtle;
+    animation-range: contain 61.5% contain 61.9%;
+  }
+
+  @keyframes repeat-lit {
+    from {
+      background: var(--lime);
+      color: var(--ink);
+      font-weight: 700;
+    }
+    to {
+      background: transparent;
+      color: rgba(242, 239, 231, 0.88);
+      font-weight: 400;
+    }
+  }
+
+  .terminal-prompt {
+    display: inline-block;
+    animation: prompt-in steps(1) both;
+    animation-timeline: --turtle;
+    animation-range: contain 61.5% contain 61.9%;
+  }
+
+  @keyframes prompt-in {
+    from {
+      opacity: 0;
+      visibility: hidden;
+    }
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  /* status swaps from running to done, with a progress hairline under it */
+  .status-running,
+  .status-done {
+    display: block;
+    animation: status-swap steps(1) both;
+    animation-timeline: --turtle;
+    animation-range: contain 61.5% contain 61.9%;
+  }
+
+  .status-running {
+    animation-name: status-hide;
+  }
+
+  .status-done {
+    animation-name: status-show;
+  }
+
+  @keyframes status-hide {
+    from {
+      opacity: 1;
+      height: auto;
+    }
+    to {
+      opacity: 0;
+      height: 0;
+    }
+  }
+
+  @keyframes status-show {
+    from {
+      opacity: 0;
+      height: 0;
+    }
+    to {
+      opacity: 1;
+      height: auto;
+    }
+  }
+
+  .status-bar {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    transform-origin: left center;
+    background: color-mix(in oklch, var(--lime) 70%, transparent);
+    animation: status-fill linear both;
+    animation-timeline: --turtle;
+    animation-range: contain 0% contain 61.8%;
+  }
+
+  @keyframes status-fill {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .terminal-status {
+    position: relative;
+  }
+
+  /* the scroll cue fades as soon as the pen goes down */
+  .hero-scroll {
+    animation: cue-out linear both;
+    animation-timeline: --turtle;
+    animation-range: contain 0% contain 6%;
+  }
+
+  @keyframes cue-out {
+    to {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enso,
+  .lotus-petal-unit,
+  .lotus-pod,
+  .turtle-walker,
+  .status-bar,
+  .hero-scroll,
+  .terminal-prompt,
+  .status-running,
+  .status-done,
+  .terminal-token.is-repeat {
+    animation: none !important;
+  }
+
+  .enso {
+    stroke-dashoffset: 0;
+  }
+
+  .turtle-walker {
+    offset-distance: 100%;
+  }
+}
+
+
+
+/* ------------------------------------------------------------------ */
+/* Scroll-driven, part two: reveals, the act index, live counters       */
+/* ------------------------------------------------------------------ */
+
+/* registered so they can be animated and printed by a counter */
+@property --read {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --iter {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: true;
+}
+
+/* the act index popover, on a <details> instead of a click handler */
+.act-index-details {
+  position: relative;
+}
+
+.act-index-details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.act-index-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.act-index-details .act-index {
+  position: absolute;
+  top: calc(100% + 11px);
+  right: -3px;
+}
+
+.act-index-details[open] .act-index {
+  animation: index-in 0.18s var(--ease-standard) both;
+}
+
+@keyframes index-in {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+
+/* reveals: no observer, just a view timeline per block */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 58%;
+    }
+
+    @keyframes reveal-in {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+
+  /* ITER counter in the terminal: a custom property counted up by scroll and
+     printed with a CSS counter, so the readout is live without script */
+  .turtle-scene {
+    animation: iter-count linear both;
+    animation-timeline: --turtle;
+    animation-range: contain 0% contain 61.8%;
+  }
+
+  @keyframes iter-count {
+    to {
+      --iter: 120;
+    }
+  }
+
+  .status-running {
+    counter-reset: iter var(--iter);
+  }
+
+  .status-running::before {
+    content: "ITER " counter(iter) "/120";
+  }
+
+  .status-running::after {
+    content: "· PEN DOWN";
+  }
+
+  /* reading progress: the rail, the petals and the number */
+  .reading-rail-ink {
+    animation: rail-ink linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes rail-ink {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .reading-petal-unit,
+  .reading-pod {
+    animation: petal-open linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  .reading-pod {
+    animation-range: 94% 100%;
+  }
+
+  .reading-mark {
+    animation: read-count linear both;
+    animation-timeline: scroll(root block);
+    counter-reset: read var(--read);
+  }
+
+  @keyframes read-count {
+    to {
+      --read: 100;
+    }
+  }
+
+  .reading-percent::after {
+    content: counter(read) "%";
+  }
+}
+
+/* without scroll-driven support: show the finished states, no numbers */
+@supports not (animation-timeline: view()) {
+  .reading-rail-ink {
+    stroke-dashoffset: 0;
+  }
+
+  .reading-percent {
+    display: none;
+  }
+
+  .status-running {
+    display: none;
+  }
+}
+
+
+
+/* ------------------------------------------------------------------ */
+/* Cross-document view transitions: the MPA version, no router needed  */
+/* ------------------------------------------------------------------ */
+
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: page-out 0.32s cubic-bezier(0.6, 0, 0.8, 1) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-in 0.46s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
+  }
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* The turtle: warmer than the ink it draws with, and plated           */
+/* ------------------------------------------------------------------ */
+
+.turtle-shell {
+  fill: var(--turtle-ink);
+}
+
+.turtle-head,
+.turtle-limb {
+  fill: color-mix(in oklch, var(--turtle-ink) 88%, transparent);
+  stroke: color-mix(in oklch, var(--turtle-ink) 88%, transparent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.turtle-plates {
+  fill: none;
+  stroke: var(--background);
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  opacity: 0.72;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cursor wind, with no script                                         */
+/*                                                                     */
+/* Twelve invisible zones tile the canvas. Hovering one sets the wind   */
+/* direction on its later siblings, and the transition does the easing, */
+/* so the leaves and streaks lean toward the pointer and drift back.    */
+/* ------------------------------------------------------------------ */
+
+.wind-zone {
+  position: absolute;
+  z-index: 3;
+  width: 25%;
+  height: 33.34%;
+}
+
+.wind-zone:nth-child(1) { left: 0; top: 0 }
+.wind-zone:nth-child(2) { left: 25%; top: 0 }
+.wind-zone:nth-child(3) { left: 50%; top: 0 }
+.wind-zone:nth-child(4) { left: 75%; top: 0 }
+.wind-zone:nth-child(5) { left: 0; top: 33.33% }
+.wind-zone:nth-child(6) { left: 25%; top: 33.33% }
+.wind-zone:nth-child(7) { left: 50%; top: 33.33% }
+.wind-zone:nth-child(8) { left: 75%; top: 33.33% }
+.wind-zone:nth-child(9) { left: 0; top: 66.66% }
+.wind-zone:nth-child(10) { left: 25%; top: 66.66% }
+.wind-zone:nth-child(11) { left: 50%; top: 66.66% }
+.wind-zone:nth-child(12) { left: 75%; top: 66.66% }
+
+.leaf-wind {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  transform: translate3d(var(--wx, 0px), var(--wy, 0px), 0) rotate(var(--wr, 0deg));
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.turtle-svg .wind-path {
+  transform: translate3d(calc(var(--wx, 0px) * 1.9), calc(var(--wy, 0px) * 0.7), 0);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* each zone pushes the air its own way: columns drive x, rows drive y */
+.wind-zone:nth-child(4n + 1):hover ~ .leaf-wind,
+.wind-zone:nth-child(4n + 1):hover ~ .turtle-svg .wind-path {
+  --wx: -30px;
+  --wr: -7deg;
+}
+
+.wind-zone:nth-child(4n + 2):hover ~ .leaf-wind,
+.wind-zone:nth-child(4n + 2):hover ~ .turtle-svg .wind-path {
+  --wx: -10px;
+  --wr: -2.5deg;
+}
+
+.wind-zone:nth-child(4n + 3):hover ~ .leaf-wind,
+.wind-zone:nth-child(4n + 3):hover ~ .turtle-svg .wind-path {
+  --wx: 10px;
+  --wr: 2.5deg;
+}
+
+.wind-zone:nth-child(4n):hover ~ .leaf-wind,
+.wind-zone:nth-child(4n):hover ~ .turtle-svg .wind-path {
+  --wx: 30px;
+  --wr: 7deg;
+}
+
+.wind-zone:nth-child(-n + 4):hover ~ .leaf-wind,
+.wind-zone:nth-child(-n + 4):hover ~ .turtle-svg .wind-path {
+  --wy: -16px;
+}
+
+.wind-zone:nth-child(n + 5):nth-child(-n + 8):hover ~ .leaf-wind,
+.wind-zone:nth-child(n + 5):nth-child(-n + 8):hover ~ .turtle-svg .wind-path {
+  --wy: 0px;
+}
+
+.wind-zone:nth-child(n + 9):hover ~ .leaf-wind,
+.wind-zone:nth-child(n + 9):hover ~ .turtle-svg .wind-path {
+  --wy: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf-wind,
+  .turtle-svg .wind-path {
+    transition: none;
+    transform: none;
+  }
+}
+
+@media (hover: none) {
+  .wind-zone {
+    display: none;
+  }
+}
+
+
+/* ------------------------------------------------------------------ */
+/* The scrollbar during an act card                                    */
+/*                                                                     */
+/* A scrollbar is browser chrome: an overlay cannot paint over it, and  */
+/* with no JavaScript there is nothing to lock scrolling with. Two CSS  */
+/* moves solve it. The card spans 100vw, which includes the scrollbar   */
+/* column, so no pale strip is left beside it. And the thumb itself is  */
+/* animated to transparent for exactly as long as the card is up, on    */
+/* the same 2.1s clock, so nothing floats over the black.               */
+/* ------------------------------------------------------------------ */
+
+html {
+  animation: boot-scrollbar 2.1s steps(1) both;
+}
+
+@keyframes boot-scrollbar {
+  0%,
+  50% {
+    /* thumb invisible, and the track painted the card's own ink: a transparent
+       track just shows the paper behind it, which is the pale gutter */
+    scrollbar-color: transparent #0d0d0b;
+  }
+  100% {
+    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
+  }
+}
+
+.boot-card {
+  /* 100vw covers the scrollbar column; 100% would stop short of it */
+  left: 0;
+  width: 100vw;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    animation: none;
+    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
+  }
+}
+

@@ -1,0 +1,35 @@
+[
+  {
+    "repo": "livekit/agents-js",
+    "number": 1038,
+    "title": "Sarvam AI TTS plugin",
+    "state": "merged",
+    "date": "2026-02-13",
+    "note": "This is the PR that created the plugin. It ships on npm as @livekit/agents-plugin-sarvam, and without it there is no Sarvam support in the framework at all: 11 Indian languages, 45+ voices, one-shot REST synthesis and WebSocket streaming with sentence tokenisation.",
+    "package": "https://www.npmjs.com/package/@livekit/agents-plugin-sarvam",
+    "packageLabel": "@livekit/agents-plugin-sarvam"
+  },
+  {
+    "repo": "livekit/agents-js",
+    "number": 1046,
+    "title": "Sarvam AI STT plugin",
+    "state": "merged",
+    "date": "2026-02-14",
+    "note": "Speech to text on the same plugin. 22+ Indian languages, five transcription modes, WebSocket streaming with VAD events and reconnect on idle."
+  },
+  {
+    "repo": "livekit/agents-js",
+    "number": 1057,
+    "title": "Explicit Sarvam WS and REST toggles",
+    "state": "merged",
+    "date": "2026-02-17",
+    "note": "The streaming and REST paths both existed but you could not choose between them. Now you can, and the default behaviour is unchanged."
+  },
+  {
+    "repo": "ReactNativeNews/React-Native-Apps",
+    "number": 238,
+    "title": "Added two apps to the showcase",
+    "state": "merged",
+    "date": "2025-01-19"
+  }
+]

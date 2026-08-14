@@ -20,7 +20,7 @@ There's also the observability trap. Vercel shows you logs in the dashboard. Fee
 
 And the per-seat pricing. Want to add another developer to your team? That's $20/month per seat. Viewers are free, but viewers can't do anything useful. So your teammate who just needs to check a deployment log or restart a failed build? Either pay for their seat or make them a viewer who can only stare at the dashboard.
 
-And then there's the recent Vercel security breach. April 2026. A compromised AI tool let attackers pivot through OAuth into Vercel's internal systems, exposing customer environment variables. The irony of an AI tool being the entry point at a platform that hosts AI products is hard to miss.
+And then there's the recent Vercel security breach. April 2026. A compromised AI tool let attackers pivot through OAuth into Vercel's internal systems, exposing customer environment variables. An AI tool was the way in, at a platform that hosts AI products for a living.
 
 This is the business model. Give away the easy stuff. Charge for the hard stuff you'll actually need.
 
@@ -64,7 +64,7 @@ But wait. Supabase had PgBouncer built in. Connection pooling, included. On Auro
 
 I used [Better Auth](https://better-auth.com/docs/guides/supabase-migration-guide) for this. They have a dedicated Supabase migration guide with a full migration script that handles users, identities, passwords, anonymous sessions and social providers. The API maps cleanly. `signIn.email` replaces `signInWithPassword`, sessions work without wiring middleware from scratch and the anonymous plugin is a drop-in for `signInAnonymously`. Since Supabase and Better Auth both use bcrypt, your users' passwords work without forcing a reset. It's not zero effort, but it's the closest thing to a clean path I found.
 
-This is also why I'd avoid replacing Supabase Auth with another auth service like Clerk or Auth0. Swapping one vendor for another just moves the lock-in around. Now your user data lives in Clerk's database instead of Supabase's. You can't query it alongside your app data. You pay per MAU. And if you ever want to leave, you're doing this migration all over again. Auth should live in your code and your database. Better Auth gets this right. It's a library, not a service. You own your user table.
+This is also why I wouldn't swap Supabase Auth for Clerk or Auth0. That just moves the lock-in into someone else's database. Better Auth avoids that. It's a library, not a service, so your user table stays yours.
 
 **Step 2**: Now your Aurora instance is in a VPC. Your backend on Vercel can't reach it. No static IP, no VPC peering unless you're on Enterprise. So you need to move the backend too.
 
@@ -84,6 +84,6 @@ If I could go back, I'd start with AWS from day one. Not because Supabase and Ve
 
 If starting on AWS isn't an option (maybe the team is small, maybe you need to validate first), then the compromise is: move just the database to Aurora as early as possible, keep everything else on Vercel and pay for that static IP. $100/month hurts but weeks of migration hurt more. Once the DB is isolated and the immediate compliance boxes are checked, then evaluate whether the backend really needs to move.
 
-The truth is: managed platforms optimize for the 0→1 journey. They make starting easy and growing expensive. The pricing isn't accidental. It's designed so that by the time you hit the limits, you're too deep to leave easily.
+Managed platforms optimize for the 0→1 journey. They make starting easy and growing expensive. The pricing isn't accidental. It's designed so that by the time you hit the limits, you're too deep to leave easily.
 
 Know this going in. Ship fast on Supabase and Vercel. But the moment someone mentions SOC2 or HIPAA, start your migration plan. Don't wait until it's an emergency.

@@ -7,27 +7,54 @@
     "isCurrent": true,
     "achievements": [
       "Designed the database schema and service architecture for an automated recruitment platform",
-      "Built AI interview agents with LiveKit web APIs and a state machine backend that maintains context across conversation turns",
-      "Built a test and assessment platform with an in-house proctoring solution for secure exam delivery",
-      "Built voice agents and SIP trunking infrastructure with LiveKit (JS and Python) and Sarvam",
-      "Built a custom call recording system for LiveKit, replacing the expensive built-in option",
-      "Designed the LLM integration layer, balancing token costs against response accuracy",
-      "Led migration from Supabase to AWS: Aurora PostgreSQL, SAM and serverless Node.js on Lambda",
-      "Set up VPC networking with NAT gateways and CloudFront; hardened against CSRF, XSS and OWASP threats"
+      "Built AI interview agents with LiveKit web APIs and a state machine backend that holds context across conversation turns",
+      "Built a test and assessment platform with in-house proctoring for secure exam delivery",
+      "Built voice agents and SIP trunking infrastructure with LiveKit, in both JS and Python, and Sarvam",
+      "Replaced LiveKit's built-in call recording with our own after the managed option got expensive",
+      "Designed the LLM integration layer, trading token cost against response accuracy",
+      "Led the migration from Supabase to AWS: Aurora PostgreSQL, SAM and serverless Node.js on Lambda, with VPC networking, NAT gateways, security groups and CloudFront",
+      "Hardened the platform against CSRF and XSS to meet OWASP compliance"
     ]
   },
   {
     "company": "Terribly Tiny Tales",
     "role": "Software Engineer",
     "location": "Bengaluru",
-    "startDate": "2023-06-01",
+    "startDate": "2024-06-01",
     "endDate": "2025-06-01",
-    "isCurrent": false,
     "achievements": [
-      "Led a full rebuild of the student dashboard, adding points, streaks and leaderboard mechanics",
-      "Integrated Razorpay UPI Mandates with Node.js for recurring subscription payments",
-      "Migrated the TTT Tribe App to Expo SDK 51 and reworked media uploads for AWS S3",
-      "Rebuilt landing pages with Next.js ISR and ISG, cutting First Contentful Paint by 40%"
+      "Led a full rebuild of the student dashboard with real-time rankings, progress tracking and a redesigned interface",
+      "Integrated Razorpay UPI Mandates with Node.js for recurring subscriptions, plus webhooks that fire WhatsApp and email retention workflows off payment outcomes",
+      "Migrated the TTT Tribe app to Expo SDK 51 and reworked the media upload layer for multi-format audio and video on S3",
+      "Rebuilt high-traffic landing pages on Next.js ISR and ISG for faster loads and better SEO"
+    ]
+  },
+  {
+    "company": "Terribly Tiny Tales",
+    "role": "Software Engineer Intern",
+    "location": "Bengaluru",
+    "startDate": "2023-06-01",
+    "endDate": "2024-05-01",
+    "kind": "internship",
+    "achievements": [
+      "Built interactive microsites for brand collaborations with Hershey's and Manipal that took 40,000+ submissions, with GenAI APIs behind the personalised bits",
+      "Took ownership of the TTT community app in React Native, added universal app linking and wired up Mixpanel and Crashlytics",
+      "Built the scholarship testing engine and the onboarding flows, and automated notification and retention loops on cron with Twilio and Mailgun"
+    ]
+  },
+  {
+    "company": "Google Developer Student Club, LPU",
+    "role": "Android Lead",
+    "location": "Phagwara, Punjab",
+    "startDate": "2020-09-01",
+    "endDate": "2022-12-01",
+    "kind": "community",
+    "achievements": [
+      "Joined as a member and worked on Vertos Buddy, the club's Android app, as that year's submission",
+      "Moved onto the Android team, then led it",
+      "Ran Compose Camp with the club and taught students to build Android interfaces in Jetpack Compose",
+      "Built CC-Instagram, a Compose rebuild of Instagram, as my own camp submission",
+      "Won the first Thursday Trivia of the camp, and helped run CompeteNCompose, a mini hackathon with other GDSCs"
     ]
   }
 ]

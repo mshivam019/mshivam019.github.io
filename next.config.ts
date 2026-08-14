@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   experimental: {
-    viewTransition: true,
     mdxRs: { mdxType: "gfm" },
   },
 };

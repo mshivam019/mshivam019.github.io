@@ -1,0 +1,44 @@
+export const metadata = {
+  title: "Two React Native apps, and the four things I actually learned",
+  description:
+    "Migrating an ancient Expo app, building a community app from scratch, and what analytics events, MMKV and a webview bridge taught me about structure.",
+  alternates: {
+    canonical: "/writing/react-native-notes",
+  },
+};
+
+I spent a couple of years mostly in React Native and Expo. Two apps took up most of that: an old Tribe app that needed dragging into the present, and a community app I built from an empty folder. Everything below came out of those two, and none of it is what I expected to learn.
+
+## Migrating the old app was mostly archaeology
+
+The Tribe app had been sitting untouched long enough that the interesting problem was not the code I was writing, it was the code nobody had written for two years. Expo SDK upgrades are fine one at a time. Several at once, across a native module or two, is a different exercise: half the libraries you depend on have been rewritten, renamed or abandoned, and the app has opinions baked in from an era where those libraries behaved differently.
+
+The thing that made it tractable was refusing to fix anything unrelated while I was in there. Get it building, get it launching, get it on the new SDK, ship that. Then start improving. Mixing a migration with a redesign is how migrations die.
+
+## Analytics is what finally sold me on dependency injection
+
+I had read about dependency injection the way most people do, in an example involving a `Logger` class, and thought it was a lot of ceremony for very little.
+
+Then the analytics requirements arrived. Mixpanel. Google Analytics through GTM. Crash reporting. Events on screens, on gestures, on payment outcomes, on things that had not been invented yet when I wrote the screen. Every one of those tools wants initialising differently, wants a slightly different event shape, and cannot be present in tests.
+
+Sprinkling `mixpanel.track()` through components works exactly until the second provider shows up. Then you are editing forty files to add one more call, your components know the names of vendors, and nothing can be tested without a network. Passing a single tracking interface into the app and letting the implementation be swapped is the entire lesson, and it took a plethora of analytics events for me to feel why it matters rather than just agree with it.
+
+## Zustand only proved itself when I changed the storage under it
+
+I started with Zustand persisting through AsyncStorage, which is the default path and is fine until you look at what it costs. It is async, it is JSON in and JSON out, and on a cold start you are waiting on the bridge to rehydrate state before you can render anything honest.
+
+Swapping the persistence layer to MMKV, which is synchronous and quick, was a small change: a storage adapter, not a rewrite. Every component that read from the store kept working, and the store's shape never changed. That is when the library sold itself to me. Not the API, which is pleasant enough, but the fact that I could replace something as fundamental as where state lives and the rest of the app never found out.
+
+Cold start stopped being a loading state, which users notice more than any feature I shipped that quarter.
+
+## A webview is a real escape hatch if you treat the bridge seriously
+
+Some screens are always going to be web. Content that changes without a store release, a flow another team owns, something that exists already and does not need rebuilding in native views.
+
+The trick is not the webview, it is the conversation across it. `postMessage` in both directions, one small message protocol with a `type` on every message, and the native side treating anything arriving from the page as untrusted input. Injected JavaScript to bridge the gap where the page cannot be changed, and a handler on the React Native side that switches on message type rather than trying to guess. Once that is in place a webview stops being a compromise and becomes a component you can hand real responsibilities to. I keep [a version of that webview in a gist](https://gist.github.com/mshivam019), because I have needed it more than once.
+
+## What I would tell myself at the start
+
+Migrate first and improve second. Put an interface in front of anything a vendor owns. Choose state libraries by how easily you can rip out their assumptions, not by their API surface. And do not be precious about webviews.
+
+If you want the other half of my opinions about this ecosystem, they are in [Dropping JavaScript support is a mistake](/writing/dropping-js-support), which covers why I passed on a couple of otherwise excellent libraries.

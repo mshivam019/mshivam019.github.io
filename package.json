@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postbuild": "node scripts/strip-js.mjs"
   },
   "dependencies": {
     "@next/mdx": "^16.1.6",
@@ -24,8 +25,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
-    "typescript": "^5",
+    "playwright": "^1.62.1",
+    "postcss": "^8.5.6",
     "tailwindcss": "^4.2.0",
-    "postcss": "^8.5.6"
+    "typescript": "^5"
   }
 }

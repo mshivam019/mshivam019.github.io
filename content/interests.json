@@ -1,0 +1,53 @@
+{
+  "now": [
+    {
+      "label": "Reading",
+      "value": "Thus Spoke Zarathustra, and Meditations"
+    },
+    {
+      "label": "Just finished",
+      "value": "Siddhartha, Hermann Hesse"
+    },
+    {
+      "label": "Always in the bag",
+      "value": "Tao Te Ching"
+    },
+    {
+      "label": "On the TV",
+      "value": "cricket, and F1 when I catch it"
+    }
+  ],
+  "shelves": [
+    {
+      "label": "Science fiction",
+      "items": [
+        "Asimov",
+        "Foundation",
+        "The Last Question",
+        "All You Zombies"
+      ]
+    },
+    {
+      "label": "Games",
+      "items": [
+        "Ghost of Tsushima",
+        "Uncharted",
+        "Assassin's Creed II",
+        "Black Flag",
+        "Most Wanted (2005)"
+      ]
+    },
+    {
+      "label": "Watched in any language",
+      "items": [
+        "Dark, in German",
+        "Money Heist, in Spanish",
+        "Frieren",
+        "Fullmetal Alchemist: Brotherhood",
+        "It's Okay to Not Be Okay",
+        "The Office",
+        "Brooklyn Nine-Nine"
+      ]
+    }
+  ]
+}
