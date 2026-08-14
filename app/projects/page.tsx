@@ -21,7 +21,9 @@ export default async function ProjectsPage() {
           <p>
             Everything here I built because I wanted to know how something worked, and the fastest
             way I know to find out is to build one. A few of them turned out to be useful to other
-            people, which is still the part that surprises me.
+            people, which is still the part that surprises me. Behind these sit a pile of private
+            practice repos — the Udacity coffee app that started Android for me, Compose
+            experiments, a Unity runner, a Go backend — which were never meant for anyone else.
           </p>
         </div>
 
@@ -85,28 +87,6 @@ export default async function ProjectsPage() {
               </li>
             ))}
           </ul>
-        </section>
-      </div>
-
-      <div className="reveal">
-        <section className="act-section">
-          <p className="act-section-kicker">Not in the open</p>
-          <h2 className="act-section-heading">The practice repos, private</h2>
-          <div className="prose-column">
-            <p>
-              These were never meant for anyone else. They are the trail of learning a platform by
-              building on it, roughly in the order I got from Java to whatever I am doing this week.
-            </p>
-          </div>
-
-          <div className="prose-column">
-            <p className="private-line">
-              JustJava, the Udacity coffee app that started Android for me. Compose practice in
-              Grocery-List and RPS. A Unity endless runner. An AIML chatbot. A Go backend with JWT,
-              Spring Boot CRUD, two things in C++, IMDB scraping in Python. Then the useful ones I
-              still run: a media tracker, an outing planner, a Wails desktop template.
-            </p>
-          </div>
         </section>
       </div>
 

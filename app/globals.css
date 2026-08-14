@@ -371,12 +371,10 @@ html {
 
 /* the turtle */
 
-
 .turtle-halo {
   fill: var(--background);
   opacity: 0.92;
 }
-
 
 /* guiding wind: long thin streaks, barely there */
 .wind-path {
@@ -1550,9 +1548,6 @@ html {
   margin: 13px 0 0;
   font-size: 0.82rem;
 }
-
-/* private practice repos */
-
 /* gists */
 
 /* Act IV: post list */
@@ -2027,10 +2022,6 @@ html {
   color: color-mix(in oklch, var(--foreground) 78%, transparent);
 }
 
-.private-line {
-  color: var(--muted-foreground);
-}
-
 /* a PR that became a published package */
 .pr-package {
   display: inline-flex;
@@ -2065,9 +2056,6 @@ html {
   text-transform: uppercase;
 }
 
-
-
-
 /* ------------------------------------------------------------------ */
 /* Paper: a baked grain over everything, so the ink sits on a surface   */
 /* ------------------------------------------------------------------ */
@@ -2091,8 +2079,6 @@ body::after {
     opacity:  0.75;
   }
 }
-
-
 
 /* ------------------------------------------------------------------ */
 /* Scroll-driven, script-free                                          */
@@ -2351,8 +2337,6 @@ body::after {
   }
 }
 
-
-
 /* ------------------------------------------------------------------ */
 /* Scroll-driven, part two: reveals, the act index, live counters       */
 /* ------------------------------------------------------------------ */
@@ -2510,8 +2494,6 @@ body::after {
   }
 }
 
-
-
 /* ------------------------------------------------------------------ */
 /* Cross-document view transitions: the MPA version, no router needed  */
 /* ------------------------------------------------------------------ */
@@ -2662,7 +2644,6 @@ body::after {
     display: none;
   }
 }
-
 
 /* ------------------------------------------------------------------ */
 /* The scrollbar during an act card                                    */
