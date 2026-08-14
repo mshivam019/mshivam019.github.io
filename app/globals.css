@@ -2960,7 +2960,10 @@ html {
       animation: ink-dry linear both;
       animation-duration: auto;
       animation-timeline: view();
-      animation-range: entry 18% cover 42%;
+      /* entry-based, not cover-based: anything near the end of the page never
+         travels far enough up the viewport to finish a cover range, which left
+         the footer heading permanently half-inked */
+      animation-range: entry 12% entry 88%;
     }
 
     /* the act titles dry in the plum the site signs things with */

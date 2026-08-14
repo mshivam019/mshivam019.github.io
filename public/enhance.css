@@ -21,6 +21,14 @@ html {
   container-type: scroll-state;
 }
 
+/* the mark animates its own box too, not just the wordmark inside it */
+.act-nav-mark {
+  transition:
+    width 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .act-nav-mark .monogram-word {
   overflow: hidden;
   max-width: 3.4em;
@@ -35,6 +43,17 @@ html {
     max-width: 0;
     opacity: 0;
     margin-left: -4px;
+  }
+
+  /* with the wordmark gone the pill has no reason to stay a lozenge: square the
+     mark off so it settles into a circle and gives the space back */
+  .act-nav-mark {
+    width: 34px;
+    padding-inline: 0;
+  }
+
+  .act-nav-mark .monogram {
+    gap: 0;
   }
 }
 
