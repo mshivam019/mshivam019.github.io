@@ -25,8 +25,7 @@ const PATH_LEN = 1000;
 const ARC = ITERATIONS * TURN;
 
 /* the circle finishes at 1/φ of the scene, the rest holds the finished image */
-const PHI = 1.618033988749895;
-const DRAW_END = (100 / PHI).toFixed(2); // 61.80 (%)
+const DRAW_END = "84.00"; // the drawing finishes here; the rest is a short hold
 
 interface Pt {
   x: number;
@@ -213,7 +212,7 @@ export default function TurtleHero({ children }: { children: ReactNode }) {
               </div>
               <div className="terminal-body">
                 {PROGRAM.map((line) => (
-                  <span key={line} className={`terminal-token ${line.startsWith("REPEAT") ? "is-repeat" : ""}`}>
+                  <span key={line} className={`terminal-token ${line === "FD 11" || line === "RT 3" ? "is-running" : ""}`}>
                     {line}
                   </span>
                 ))}

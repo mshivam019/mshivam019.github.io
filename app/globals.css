@@ -226,7 +226,7 @@ html {
   position: relative;
   /* 0.618 of the range draws the circle and opens the petals behind the
      turtle; the remaining 0.382 holds the finished flower. 233 is Fibonacci. */
-  height: 320vh;
+  height: 250vh;
 }
 
 .turtle-sticky {
@@ -460,14 +460,15 @@ html {
   color: rgba(242, 239, 231, 0.88);
 }
 
-/* the REPEAT line stays lit while the program runs, and goes quiet when done */
-.terminal-token.is-repeat {
+/* the loop body is what runs 120 times, so that is what stays lit; the REPEAT
+   line is a declaration and the bracket is punctuation */
+.terminal-token.is-running {
   background: var(--lime);
   color: var(--ink);
   font-weight: 700;
 }
 
-.turtle-terminal.is-done .terminal-token.is-repeat {
+.turtle-terminal.is-done .terminal-token.is-running {
   background: transparent;
   color: rgba(242, 239, 231, 0.88);
   font-weight: 400;
@@ -514,7 +515,7 @@ html {
 
 @media (max-width: 640px) {
   .turtle-scene {
-    height: 260vh;
+    height: 210vh;
   }
 }
 
@@ -877,14 +878,17 @@ html {
   background: radial-gradient(46% 62% at 50% 38%, #22211d 0%, #0d0d0b 92%) #0d0d0b;
   color: #f2efe7;
   pointer-events: none;
-  animation: boot-out 2.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: boot-out 2.1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
 }
 
 @keyframes boot-out {
   0%,
-  50% {
+  42% {
     opacity: 1;
     visibility: visible;
+  }
+  99% {
+    opacity: 0;
   }
   100% {
     opacity: 0;
@@ -894,7 +898,18 @@ html {
 
 .boot-card-inner {
   transform: none;
-  animation: boot-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* the type leaves just ahead of the card, so it reads as a lift rather than
+     a curtain dropping */
+  animation:
+    boot-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both,
+    boot-lift 0.85s cubic-bezier(0.33, 1, 0.68, 1) 1s both;
+}
+
+@keyframes boot-lift {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes boot-rise {
@@ -2082,7 +2097,7 @@ body::after {
     animation: enso-draw linear both;
     animation-duration: auto;
     animation-timeline: --turtle;
-    animation-range: contain 0% contain 61.8%;
+    animation-range: contain 0% contain 84%;
   }
 
   @keyframes enso-draw {
@@ -2116,7 +2131,7 @@ body::after {
     animation: pod-land linear both;
     animation-duration: auto;
     animation-timeline: --turtle;
-    animation-range: contain 57.9% contain 61.8%;
+    animation-range: contain 80% contain 84%;
   }
 
   @keyframes pod-land {
@@ -2133,7 +2148,7 @@ body::after {
     animation: turtle-walk linear both;
     animation-duration: auto;
     animation-timeline: --turtle;
-    animation-range: contain 0% contain 61.8%;
+    animation-range: contain 0% contain 84%;
   }
 
   @keyframes turtle-walk {
@@ -2150,12 +2165,12 @@ body::after {
     }
   }
 
-  /* the REPEAT line stays lit while the program runs */
-  .terminal-token.is-repeat {
+  /* the loop body is what runs, not the declaration */
+  .terminal-token.is-running {
     animation: repeat-lit steps(1) both;
     animation-duration: auto;
     animation-timeline: --turtle;
-    animation-range: contain 61.5% contain 61.9%;
+    animation-range: contain 83.6% contain 84.2%;
   }
 
   @keyframes repeat-lit {
@@ -2176,7 +2191,7 @@ body::after {
     animation: prompt-in steps(1) both;
     animation-duration: auto;
     animation-timeline: --turtle;
-    animation-range: contain 61.5% contain 61.9%;
+    animation-range: contain 83.6% contain 84.2%;
   }
 
   @keyframes prompt-in {
@@ -2197,7 +2212,7 @@ body::after {
     animation: status-swap steps(1) both;
     animation-duration: auto;
     animation-timeline: --turtle;
-    animation-range: contain 61.5% contain 61.9%;
+    animation-range: contain 83.6% contain 84.2%;
   }
 
   .status-running {
@@ -2242,7 +2257,7 @@ body::after {
     animation: status-fill linear both;
     animation-duration: auto;
     animation-timeline: --turtle;
-    animation-range: contain 0% contain 61.8%;
+    animation-range: contain 0% contain 84%;
   }
 
   @keyframes status-fill {
@@ -2284,7 +2299,7 @@ body::after {
   .terminal-prompt,
   .status-running,
   .status-done,
-  .terminal-token.is-repeat {
+  .terminal-token.is-running {
     animation: none !important;
   }
 
@@ -2387,7 +2402,7 @@ body::after {
     animation: iter-count linear both;
     animation-duration: auto;
     animation-timeline: --turtle;
-    animation-range: contain 0% contain 61.8%;
+    animation-range: contain 0% contain 84%;
   }
 
   @keyframes iter-count {
@@ -2988,3 +3003,50 @@ html {
   }
 }
 
+
+/* ------------------------------------------------------------------ */
+/* The control gets out of the way once you start reading              */
+/*                                                                     */
+/* Scroll-driven rather than a scroll-state container query: same       */
+/* effect, but supported since Chrome 115 instead of 133. Only the      */
+/* wordmark animates. The pill narrows because its contents narrow, so  */
+/* it goes lozenge to circle in one move rather than resizing the mark  */
+/* and its padding on separate clocks, which read as two stages.        */
+/* ------------------------------------------------------------------ */
+
+.act-nav-mark .monogram-word {
+  overflow: hidden;
+  max-width: 3.4em;
+}
+
+@supports (animation-timeline: scroll()) {
+  .act-nav-mark .monogram-word {
+    animation: mark-fold steps(1) both;
+    animation-duration: auto;
+    animation-timeline: scroll(root block);
+    /* snap, do not ease: a gradual fold reads as lag on a mouse wheel. steps(1)
+       flips it once, at a fixed point in the scroll. */
+    animation-range: 0px 56px;
+  }
+
+  @keyframes mark-fold {
+    from {
+      max-width: 3.4em;
+      opacity: 1;
+      margin-left: 0;
+    }
+    to {
+      max-width: 0;
+      opacity: 0;
+      margin-left: -1px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .act-nav-mark .monogram-word {
+    animation: none;
+    max-width: 3.4em;
+    opacity: 1;
+  }
+}

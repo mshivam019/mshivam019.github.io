@@ -7,57 +7,6 @@
  */
 
 /* ------------------------------------------------------------------ */
-/* 1. The control gets out of the way once you start reading           */
-/*                                                                     */
-/* A scroll-state container query lets an element restyle itself based  */
-/* on its scroll port. At the top of a page the mark reads SKM. in      */
-/* full; the moment there is anything above you, the wordmark folds     */
-/* away and leaves just the dragon.                                    */
-/* ------------------------------------------------------------------ */
-
-/* the query has to be asked of a real scroll container, and the page itself is
-   the thing doing the scrolling */
-html {
-  container-type: scroll-state;
-}
-
-/* the mark animates its own box too, not just the wordmark inside it */
-.act-nav-mark {
-  transition:
-    width 0.42s cubic-bezier(0.4, 0, 0.2, 1),
-    padding 0.42s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.act-nav-mark .monogram-word {
-  overflow: hidden;
-  max-width: 3.4em;
-  transition:
-    max-width 0.42s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    margin-left 0.42s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@container scroll-state(scrollable: top) {
-  .act-nav-mark .monogram-word {
-    max-width: 0;
-    opacity: 0;
-    margin-left: -4px;
-  }
-
-  /* with the wordmark gone the pill has no reason to stay a lozenge: square the
-     mark off so it settles into a circle and gives the space back */
-  .act-nav-mark {
-    width: 34px;
-    padding-inline: 0;
-  }
-
-  .act-nav-mark .monogram {
-    gap: 0;
-  }
-}
-
-/* ------------------------------------------------------------------ */
 /* 2. One highlight that slides between the acts                       */
 /*                                                                     */
 /* The hovered item lends its name and its size to a single pill via    */
@@ -153,7 +102,7 @@ html {
 
   @media (max-width: 640px) {
     .act-nav-shell .act-nav {
-      width: auto;
+      width: 0;
       max-height: none;
       height: 0;
       animation-name: nav-peek-auto-tall;
@@ -167,21 +116,27 @@ html {
     .act-nav-toggle:checked ~ .act-nav-shell .act-nav {
       max-height: none;
       height: auto;
+      width: auto;
     }
 
+    /* the width has to open with the height. Animating height alone leaves a
+       box that grows but stays 0 wide, so the peek showed an empty pill. */
     @keyframes nav-peek-auto-tall {
       0%,
       12% {
         height: 0;
+        width: 0;
         opacity: 0;
       }
       22%,
       72% {
         height: auto;
+        width: auto;
         opacity: 1;
       }
       100% {
         height: 0;
+        width: 0;
         opacity: 0;
       }
     }
