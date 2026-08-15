@@ -1,3 +1,9 @@
+# pnpm 11 syntax. `packages` is listed as well so that pnpm 9, which Vercel
+# still selects for older projects, does not reject the file for having no
+# packages field. Both readers are happy with this.
+packages:
+  - .
+
 allowBuilds:
   sharp: true
   unrs-resolver: true
