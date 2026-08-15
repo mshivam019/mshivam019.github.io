@@ -3,6 +3,12 @@ import ActChrome from "@/components/act-chrome";
 import TurtleHero from "@/components/turtle-hero";
 import { getInterests, getProfile } from "@/lib/content";
 
+/* the site is served from GitHub Pages and mirrored on Vercel; canonicals keep
+   the two from competing in search */
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default async function Home() {
   const profile = await getProfile();
   const interests = await getInterests();

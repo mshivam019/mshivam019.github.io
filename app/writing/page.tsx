@@ -5,6 +5,7 @@ export const metadata = {
   title: "Writing",
   description:
     "Notes on architecture, migrations and the trade-offs behind shipping software that has to keep working.",
+  alternates: { canonical: "/writing" },
 };
 
 function formatDate(dateString: string) {

@@ -21,20 +21,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # version comes from the packageManager field in package.json, so the
+      # runner and a local machine can never drift apart
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '22'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
+      # postbuild strips every script and fails the build if one survives,
+      # so a broken zero-JS guarantee cannot reach production
       - name: Build
-        run: npm run build
+        run: pnpm build
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

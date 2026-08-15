@@ -5,6 +5,7 @@ export const metadata = {
   title: "Experience",
   description:
     "Where I have worked, what I shipped there, and the open source contributions that carry my name.",
+  alternates: { canonical: "/experience" },
 };
 
 interface Experience {
