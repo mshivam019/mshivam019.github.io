@@ -1,5 +1,4 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import Link from "next/link";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
@@ -34,9 +33,9 @@ const components = {
     const className = "editorial-link";
     if (href?.startsWith("/")) {
       return (
-        <Link href={href} className={className} {...props}>
+        <a href={href} className={className} {...props}>
           {children}
-        </Link>
+        </a>
       );
     }
     return (

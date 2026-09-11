@@ -70,8 +70,6 @@ function petalRange(i: number) {
   return `contain ${from}% contain ${to}%`;
 }
 
-const PROGRAM = ["PD", "REPEAT 120 [", "FD 11", "RT 3", "]"];
-
 const LEAVES = [
   { x: "7%", y: "12%", size: 34, opacity: 0.5, dur: "13s", delay: "0s", dx: "30px", dy: "44px", r0: "-16deg", r1: "22deg" },
   { x: "88%", y: "9%", size: 24, opacity: 0.36, dur: "16s", delay: "-4s", dx: "-24px", dy: "50px", r0: "12deg", r1: "-28deg" },
@@ -199,32 +197,6 @@ export default function TurtleHero({ children }: { children: ReactNode }) {
                   </span>
                 </span>
               ))}
-            </div>
-
-            <div className="turtle-terminal" aria-hidden="true">
-              <div className="terminal-title">
-                <span>MSWLogo — PADMA.LOGO</span>
-                <span className="terminal-chrome">
-                  <span className="chrome-min" />
-                  <span className="chrome-max" />
-                  <span className="chrome-close" />
-                </span>
-              </div>
-              <div className="terminal-body">
-                {PROGRAM.map((line) => (
-                  <span key={line} className={`terminal-token ${line === "FD 11" || line === "RT 3" ? "is-running" : ""}`}>
-                    {line}
-                  </span>
-                ))}
-                <span className="terminal-token terminal-prompt">
-                  ? <span className="terminal-cursor" />
-                </span>
-              </div>
-              <div className="terminal-status">
-                <span className="status-running" />
-                <span className="status-done">DONE · 120 STEPS · 0 ERRORS</span>
-                <span className="status-bar" />
-              </div>
             </div>
 
             <p className="turtle-caption">LOGO was the first language I ever wrote.</p>

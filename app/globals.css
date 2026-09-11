@@ -266,6 +266,67 @@ html {
   line-height: 1.02;
 }
 
+/* the name is a brush mark, not set type; the text underneath is for readers.
+   It is sized against the column, not the font, and coloured as ink so it
+   reads as one stroke family with the enso. */
+.hero-name {
+  margin: 0;
+  line-height: 0;
+}
+
+.hero-name-mark {
+  display: block;
+  width: clamp(11.5rem, 42vw, 15rem);
+  height: auto;
+  color: var(--ink);
+  /* the tail of the S runs left of the letter body; pull it back so the
+     body, not the tail, aligns with the copy */
+  margin-left: -0.35rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-name-mark {
+    width: clamp(12.5rem, 17vw, 15.5rem);
+  }
+
+  /* a short window: the mark is nearly square, so height is what costs */
+  @media (max-height: 700px) {
+    .hero-name-mark {
+      width: 11rem;
+    }
+  }
+}
+
+/* written in, on arrival: each line is uncovered left to right in the
+   direction of the hand, and comes in wet, so it sharpens as it lands. The
+   clip resolves against the path's own box, which is what makes one rule
+   serve two lines of different widths. */
+@media (prefers-reduced-motion: no-preference) {
+  .name-line {
+    clip-path: inset(-6% 0 -6% 0);
+    animation:
+      name-write 0.9s cubic-bezier(0.4, 0, 0.3, 1) both,
+      name-dry 1.2s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+
+  .name-line:nth-child(2) {
+    animation-delay: 0.7s, 0.7s;
+  }
+
+  @keyframes name-write {
+    from {
+      clip-path: inset(-6% 100% -6% 0);
+    }
+  }
+
+  @keyframes name-dry {
+    from {
+      filter: blur(1.6px);
+      opacity: 0.55;
+    }
+  }
+}
+
 .turtle-stage {
   position: relative;
   /* no frame, no graph paper — ink sitting on the page */
@@ -326,10 +387,8 @@ html {
 
 /* padma: 16 ink petals that unfurl when the circle closes */
 .turtle-lotus {
-  /* left a few degrees off true: placed by hand, not by machine */
   transform-box: view-box;
   transform-origin: 300px 300px;
-  transform: rotate(-6deg);
 }
 
 .lotus-petal {
@@ -420,96 +479,11 @@ html {
   }
 }
 
-/* MSWLogo-style debugger, docked beneath the canvas */
-.turtle-terminal {
-  margin-top: 13px;
-  border-radius: 13px;
-  background: var(--ink);
-  color: #f2efe7;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 12px;
-  line-height: 1.618;
-  overflow: hidden;
-}
-
-.terminal-title {
-  display: flex;
-  justify-content: space-between;
-  gap: 21px;
-  padding: 5px 13px;
-  background: rgba(242, 239, 231, 0.09);
-  color: rgba(242, 239, 231, 0.65);
-  /* title : body = 1 : φ */
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.terminal-body {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 13px;
-}
-
-.terminal-token {
-  padding: 0 5px;
-  border-radius: 3px;
-  white-space: pre;
-  color: rgba(242, 239, 231, 0.88);
-}
-
-/* the loop body is what runs 120 times, so that is what stays lit; the REPEAT
-   line is a declaration and the bracket is punctuation */
-.terminal-token.is-running {
-  background: var(--lime);
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.turtle-terminal.is-done .terminal-token.is-running {
-  background: transparent;
-  color: rgba(242, 239, 231, 0.88);
-  font-weight: 400;
-}
-
-.terminal-prompt {
-  display: none;
-}
-
-.turtle-terminal.is-done .terminal-prompt {
-  display: inline-block;
-}
-
-.terminal-cursor {
-  display: inline-block;
-  width: 7px;
-  height: 12px;
-  margin-left: 2px;
-  vertical-align: -2px;
-  background: var(--lime);
-  animation: cursor-blink 1.1s steps(1) infinite;
-}
-
-@keyframes cursor-blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-.terminal-status {
-  padding: 5px 13px;
-  border-top: 1px solid rgba(242, 239, 231, 0.16);
-  color: rgba(242, 239, 231, 0.6);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-}
-
+/* one line under the canvas, and why it is there */
 .turtle-caption {
   margin: 0.65rem 0 0;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
   color: var(--muted-foreground);
 }
 
@@ -599,112 +573,7 @@ html {
   transform-origin: left center;
 }
 
-/* the card itself */
-.act-card {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  display: grid;
-  place-items: center;
-  padding: 1.5rem;
-  background: radial-gradient(46% 62% at 50% 38%, #22211d 0%, #0d0d0b 92%) #0d0d0b;
-  color: #f2efe7;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.382s ease;
-}
-
-.act-card.is-playing {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.act-card.is-exiting {
-  opacity: 0;
-  transition: opacity 0.618s ease;
-}
-
-.act-card-inner {
-  display: grid;
-  justify-items: center;
-  gap: 13px;
-  text-align: center;
-  transform: translateY(13px);
-  transition: transform 0.618s cubic-bezier(0.16, 1, 0.3, 1) 0.09s;
-}
-
-.act-card.is-playing .act-card-inner {
-  transform: translateY(0);
-}
-
-.act-card-kicker {
-  margin: 0;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  /* kicker : title = 1 : φ³ */
-  font-size: 0.72rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: rgba(242, 239, 231, 0.62);
-}
-
-.act-card-title {
-  margin: 0;
-  font-size: clamp(2.6rem, 11vw, 7rem);
-  font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 0.95;
-}
-
-.act-card-rule {
-  display: block;
-  width: 61.8px;
-  height: 1px;
-  background: color-mix(in oklch, var(--lotus-pod) 75%, transparent);
-}
-
-.act-card-blurb {
-  margin: 0;
-  font-size: 0.9rem;
-  color: rgba(242, 239, 231, 0.66);
-}
-
-/* the static lotus used on the cards */
-.lotus-mark-outer {
-  fill: color-mix(in oklch, var(--lotus) 14%, transparent);
-  stroke: rgba(242, 239, 231, 0.62);
-  stroke-width: 2.4;
-  stroke-linejoin: round;
-}
-
-.lotus-mark-inner {
-  fill: color-mix(in oklch, var(--lotus) 22%, transparent);
-  stroke: rgba(242, 239, 231, 0.78);
-  stroke-width: 2;
-  stroke-linejoin: round;
-}
-
-.lotus-mark-vein {
-  fill: none;
-  stroke: rgba(242, 239, 231, 0.3);
-  stroke-width: 1.4;
-}
-
-.lotus-mark-pod {
-  fill: color-mix(in oklch, var(--lotus-pod) 30%, transparent);
-  stroke: color-mix(in oklch, var(--lotus-pod) 85%, transparent);
-  stroke-width: 2;
-}
-
-.lotus-mark-seed {
-  fill: color-mix(in oklch, var(--lotus-pod) 90%, transparent);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .act-card,
-  .act-card-inner {
-    transition: none;
-  }
-
   .act-outro-hint {
     display: none;
   }
@@ -735,101 +604,56 @@ html {
   }
 }
 
-.act-nav-arrow,
-.act-nav-current {
-  display: inline-flex;
+/* the four acts, inline. Numerals in mono, and only the current act carries
+   its title, so the row has one label and never changes width on hover. */
+.act-nav-list {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  min-width: 34px;
-  height: 34px;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--muted-foreground);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.82rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    color var(--motion-fast) var(--ease-standard),
-    background var(--motion-fast) var(--ease-standard);
-}
-
-.act-nav-arrow:hover,
-.act-nav-current:hover {
-  color: var(--foreground);
-  background: color-mix(in oklch, var(--foreground) 7%, transparent);
-}
-
-.act-nav-current {
-  gap: 5px;
-  padding: 0 11px;
-  letter-spacing: 0.1em;
-}
-
-.act-nav-label {
-  /* label : numeral = 1 : φ */
-  font-size: calc(0.82rem / var(--phi));
-  text-transform: uppercase;
-  opacity: 0.6;
-}
-
-.act-nav-numeral {
-  color: var(--foreground);
-  font-weight: 600;
-}
-
-.act-index {
-  min-width: 178px;
-  padding: 8px;
-  border: 1px solid color-mix(in oklch, var(--border) 90%, transparent);
-  border-radius: 13px;
-  background: color-mix(in oklch, var(--card) 94%, transparent);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 13px 34px rgba(23, 23, 20, 0.14);
-}
-
-.act-index-list {
-  display: grid;
   gap: 2px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.act-index-link {
-  display: grid;
-  grid-template-columns: 21px 1fr;
+.act-nav-item {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
-  border-radius: 8px;
+  gap: 7px;
+  height: 34px;
+  min-width: 34px;
+  padding: 0 11px;
+  border-radius: 999px;
   color: var(--muted-foreground);
-  font-size: 0.86rem;
   text-decoration: none;
+  white-space: nowrap;
   transition:
     color var(--motion-fast) var(--ease-standard),
     background var(--motion-fast) var(--ease-standard);
 }
 
-.act-index-link:hover {
+.act-nav-item:hover {
   color: var(--foreground);
-  background: color-mix(in oklch, var(--foreground) 6%, transparent);
+  background: color-mix(in oklch, var(--foreground) 7%, transparent);
 }
 
-.act-index-link.is-active {
+.act-nav-item.is-active {
   color: var(--foreground);
 }
 
-.act-index-link.is-active .act-index-numeral {
+.act-nav-numeral {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.act-nav-item.is-active .act-nav-numeral {
   color: var(--lotus);
 }
 
-.act-index-numeral {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  opacity: 0.8;
+.act-nav-title {
+  font-size: 0.84rem;
+  letter-spacing: -0.01em;
 }
 
 /* the back-link on the outro strip */
@@ -865,68 +689,6 @@ html {
 
 .act-pull-top.is-pulling {
   opacity: 1;
-}
-
-/* the cold-load act card: painted with the first frame, clears itself */
-.boot-card {
-  position: fixed;
-  inset: 0;
-  z-index: 70;
-  display: grid;
-  place-items: center;
-  padding: 1.5rem;
-  background: radial-gradient(46% 62% at 50% 38%, #22211d 0%, #0d0d0b 92%) #0d0d0b;
-  color: #f2efe7;
-  pointer-events: none;
-  animation: boot-out 2.1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-}
-
-@keyframes boot-out {
-  0%,
-  42% {
-    opacity: 1;
-    visibility: visible;
-  }
-  99% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-.boot-card-inner {
-  transform: none;
-  /* the type leaves just ahead of the card, so it reads as a lift rather than
-     a curtain dropping */
-  animation:
-    boot-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both,
-    boot-lift 0.85s cubic-bezier(0.33, 1, 0.68, 1) 1s both;
-}
-
-@keyframes boot-lift {
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes boot-rise {
-  from {
-    opacity: 0;
-    transform: translateY(13px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .boot-card {
-    display: none;
-  }
 }
 
 /* the fixed act nav must never sit on top of a heading */
@@ -977,50 +739,6 @@ html {
   background: color-mix(in oklch, var(--border) 60%, transparent);
 }
 
-/* window chrome drawn as shapes, so it actually lines up */
-.terminal-chrome {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: rgba(242, 239, 231, 0.55);
-}
-
-.chrome-min {
-  width: 8px;
-  height: 1px;
-  background: currentColor;
-}
-
-.chrome-max {
-  width: 7px;
-  height: 7px;
-  border: 1px solid currentColor;
-}
-
-.chrome-close {
-  position: relative;
-  width: 8px;
-  height: 8px;
-}
-
-.chrome-close::before,
-.chrome-close::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-}
-
-.chrome-close::before {
-  transform: rotate(45deg);
-}
-
-.chrome-close::after {
-  transform: rotate(-45deg);
-}
 
 /* ------------------------------------------------------------------ */
 /* Act I sections                                                      */
@@ -1107,85 +825,6 @@ html {
 
 .prose-column p {
   margin: 0;
-}
-
-/* the now list */
-.now-grid {
-  display: grid;
-  gap: 0;
-  margin: 21px 0 0;
-  max-width: 62ch;
-}
-
-.now-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 2px;
-  padding-block: 11px;
-  border-top: 1px solid color-mix(in oklch, var(--border) 55%, transparent);
-}
-
-@media (min-width: 640px) {
-  .now-row {
-    /* label : value = 1 : φ */
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
-    gap: 21px;
-    align-items: baseline;
-  }
-}
-
-.now-row dt {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-}
-
-.now-row dd {
-  margin: 0;
-  font-size: 1rem;
-}
-
-/* the shelves */
-.shelf-grid {
-  display: grid;
-  gap: 21px 34px;
-  margin-top: 34px;
-  grid-template-columns: minmax(0, 1fr);
-}
-
-@media (min-width: 640px) {
-  .shelf-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .shelf-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.shelf-label {
-  margin: 0 0 8px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid color-mix(in oklch, var(--border) 55%, transparent);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-}
-
-.shelf-list {
-  display: grid;
-  gap: 3px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 0.95rem;
-  color: color-mix(in oklch, var(--foreground) 86%, var(--muted-foreground));
 }
 
 /* ------------------------------------------------------------------ */
@@ -1286,11 +925,11 @@ html {
   letter-spacing: -0.02em;
 }
 
+/* metadata lines are set in the text face: mono is for kickers, numerals and
+   code, not for every quiet line, or the pages read as a dashboard */
 .role-meta {
   margin: 3px 0 13px;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
+  font-size: 0.82rem;
   color: var(--muted-foreground);
 }
 
@@ -1358,9 +997,7 @@ html {
 
 .pr-repo {
   margin: 5px 0 0;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
+  font-size: 0.8rem;
   color: var(--muted-foreground);
 }
 
@@ -1370,41 +1007,6 @@ html {
   font-size: 0.92rem;
   line-height: 1.62;
   color: color-mix(in oklch, var(--foreground) 82%, var(--muted-foreground));
-}
-
-/* the line down the side, and a dot per stop */
-
-/* header stat row */
-.stat-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 13px 21px;
-  margin: 26px 0 0;
-  padding-top: 17px;
-  border-top: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
-  max-width: 62ch;
-}
-
-@media (min-width: 640px) {
-  .stat-row {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.stat-row dt {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-}
-
-.stat-row dd {
-  margin: 3px 0 0;
-  font-size: 1.7rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1;
 }
 
 .role-tag {
@@ -1421,25 +1023,11 @@ html {
   vertical-align: 0.28em;
 }
 
-/* education + certifications */
-.paper-grid {
-  display: grid;
-  gap: 34px;
-  margin-top: 21px;
-  grid-template-columns: minmax(0, 1fr);
-}
-
-@media (min-width: 760px) {
-  .paper-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 34px 55px;
-  }
-}
-
+/* education */
 .cred-list {
   display: grid;
   gap: 13px;
-  margin: 0;
+  margin: 13px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -1456,10 +1044,8 @@ html {
 }
 
 .cred-meta {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
   line-height: 1.45;
-  font-size: 0.66rem;
-  letter-spacing: 0.04em;
+  font-size: 0.8rem;
   color: var(--muted-foreground);
 }
 
@@ -1504,10 +1090,9 @@ html {
 }
 
 .project-meta {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
+  font-size: 0.8rem;
   color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
 }
 
 .project-blurb {
@@ -1552,15 +1137,7 @@ html {
   margin: 13px 0 0;
   font-size: 0.82rem;
 }
-/* gists */
-
 /* Act IV: post list */
-.stat-row dd.stat-small {
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-}
-
 .post-list {
   display: grid;
   gap: 0;
@@ -1616,10 +1193,7 @@ html {
   flex-wrap: wrap;
   gap: 5px 13px;
   margin-top: 3px;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.64rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.78rem;
   color: var(--muted-foreground);
 }
 
@@ -1780,10 +1354,7 @@ html {
 }
 
 .hero-now dt {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 0.78rem;
   color: var(--muted-foreground);
 }
 
@@ -1897,29 +1468,6 @@ html {
   gap: 13px;
 }
 
-/* the mark sits on paper here, so it needs ink strokes rather than the card ones */
-.footer-mark .lotus-mark-outer {
-  fill: color-mix(in oklch, var(--lotus) 10%, transparent);
-  stroke: color-mix(in oklch, var(--foreground) 45%, transparent);
-  stroke-width: 3;
-}
-
-.footer-mark .lotus-mark-inner {
-  fill: color-mix(in oklch, var(--lotus) 16%, transparent);
-  stroke: color-mix(in oklch, var(--lotus) 70%, var(--foreground));
-  stroke-width: 2.6;
-}
-
-.footer-mark .lotus-mark-vein {
-  stroke: color-mix(in oklch, var(--foreground) 30%, transparent);
-}
-
-.footer-mark .lotus-mark-pod {
-  fill: color-mix(in oklch, var(--lotus-pod) 26%, transparent);
-  stroke: color-mix(in oklch, var(--lotus-pod) 80%, transparent);
-  stroke-width: 2.4;
-}
-
 .footer-links {
   display: flex;
   flex-wrap: wrap;
@@ -1938,6 +1486,26 @@ html {
   color: var(--foreground);
 }
 
+/* the colophon line: the one claim the build enforces, stated once */
+.footer-note {
+  margin: 21px 0 0;
+  max-width: 62ch;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.footer-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in oklch, var(--muted-foreground) 55%, transparent);
+}
+
+.footer-note a:hover {
+  color: var(--foreground);
+}
+
 /* ------------------------------------------------------------------ */
 /* Focus: one visible ring everywhere, keyboard only                   */
 /* ------------------------------------------------------------------ */
@@ -1948,10 +1516,9 @@ html {
   border-radius: 3px;
 }
 
-.act-nav-arrow:focus-visible,
-.act-nav-current:focus-visible,
-.act-index-link:focus-visible {
+.act-nav-item:focus-visible {
   outline-offset: 2px;
+  border-radius: 999px;
 }
 
 .post-link:focus-visible,
@@ -2080,14 +1647,6 @@ body::after {
   overflow: visible;
 }
 
-.status-running {
-  display: none;
-}
-
-.status-bar {
-  display: none;
-}
-
 @supports (animation-timeline: view()) {
   .turtle-scene {
     /* nothing to do here, the name above is the whole hookup */
@@ -2165,114 +1724,6 @@ body::after {
     }
   }
 
-  /* the loop body is what runs, not the declaration */
-  .terminal-token.is-running {
-    animation: repeat-lit steps(1) both;
-    animation-duration: auto;
-    animation-timeline: --turtle;
-    animation-range: contain 83.6% contain 84.2%;
-  }
-
-  @keyframes repeat-lit {
-    from {
-      background: var(--lime);
-      color: var(--ink);
-      font-weight: 700;
-    }
-    to {
-      background: transparent;
-      color: rgba(242, 239, 231, 0.88);
-      font-weight: 400;
-    }
-  }
-
-  .terminal-prompt {
-    display: inline-block;
-    animation: prompt-in steps(1) both;
-    animation-duration: auto;
-    animation-timeline: --turtle;
-    animation-range: contain 83.6% contain 84.2%;
-  }
-
-  @keyframes prompt-in {
-    from {
-      opacity: 0;
-      visibility: hidden;
-    }
-    to {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-
-  /* status swaps from running to done, with a progress hairline under it */
-  .status-running,
-  .status-done {
-    display: block;
-    animation: status-swap steps(1) both;
-    animation-duration: auto;
-    animation-timeline: --turtle;
-    animation-range: contain 83.6% contain 84.2%;
-  }
-
-  .status-running {
-    animation-name: status-hide;
-  }
-
-  .status-done {
-    animation-name: status-show;
-  }
-
-  @keyframes status-hide {
-    from {
-      opacity: 1;
-      height: auto;
-    }
-    to {
-      opacity: 0;
-      height: 0;
-    }
-  }
-
-  @keyframes status-show {
-    from {
-      opacity: 0;
-      height: 0;
-    }
-    to {
-      opacity: 1;
-      height: auto;
-    }
-  }
-
-  .status-bar {
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 1px;
-    width: 100%;
-    transform-origin: left center;
-    background: color-mix(in oklch, var(--lime) 70%, transparent);
-    animation: status-fill linear both;
-    animation-duration: auto;
-    animation-timeline: --turtle;
-    animation-range: contain 0% contain 84%;
-  }
-
-  @keyframes status-fill {
-    from {
-      transform: scaleX(0);
-    }
-    to {
-      transform: scaleX(1);
-    }
-  }
-
-  .terminal-status {
-    position: relative;
-  }
-
   /* the scroll cue fades as soon as the pen goes down */
   .hero-scroll {
     animation: cue-out linear both;
@@ -2294,12 +1745,7 @@ body::after {
   .lotus-petal-unit,
   .lotus-pod,
   .turtle-walker,
-  .status-bar,
-  .hero-scroll,
-  .terminal-prompt,
-  .status-running,
-  .status-done,
-  .terminal-token.is-running {
+  .hero-scroll {
     animation: none !important;
   }
 
@@ -2329,46 +1775,6 @@ body::after {
   inherits: true;
 }
 
-/* the act index popover, on a <details> instead of a click handler */
-.act-index-details {
-  position: relative;
-}
-
-.act-index-details > summary {
-  list-style: none;
-  cursor: pointer;
-}
-
-.act-index-details > summary::-webkit-details-marker {
-  display: none;
-}
-
-.act-index-details .act-index {
-  /* fixed, not absolute: the collapsing panel clips its overflow, and a fixed
-     child is positioned against the viewport, so it escapes that clip */
-  position: fixed;
-  top: 70px;
-  right: 21px;
-}
-
-@media (max-width: 640px) {
-  .act-index-details .act-index {
-    top: 104px;
-    right: 13px;
-  }
-}
-
-.act-index-details[open] .act-index {
-  animation: index-in 0.18s var(--ease-standard) both;
-}
-
-@keyframes index-in {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-}
-
 /* reveals: no observer, just a view timeline per block */
 .reveal {
   opacity: 1;
@@ -2381,7 +1787,21 @@ body::after {
       animation: reveal-in linear both;
       animation-duration: auto;
       animation-timeline: view();
-      animation-range: entry 8% entry 58%;
+      /* a fixed distance, not a share of the element's own height. A
+         percentage range scales with the block: a phone-height list of roles
+         sat at 15% of its entry at the top of the page, nearly invisible, and
+         needed most of a screen of scrolling to appear. 144px of travel is
+         the same short fade for a one-line note and a three-screen list. */
+      animation-range: entry 8px entry 144px;
+    }
+
+    /* The first section under a page header is on screen the moment the page
+       opens, so a scroll-driven fade on it has nothing to reveal. It is also
+       the one place a view transition can show a seam: if the timeline
+       resolves a frame later than the snapshot, the block pops. Do not
+       animate it; let it simply be there. */
+    .act-header + .reveal {
+      animation: none;
     }
 
     @keyframes reveal-in {
@@ -2484,34 +1904,167 @@ body::after {
 }
 
 /* ------------------------------------------------------------------ */
-/* Cross-document view transitions: the MPA version, no router needed  */
+/* The act card on a cold load                                         */
+/*                                                                     */
+/* Painted with the first frame and cleared by its own animation, so   */
+/* it needs no hydration and no script. Cross-document view            */
+/* transitions were tried in its place and removed: on a phone the     */
+/* hand-off from snapshot to live page never read as clean. The card   */
+/* has no such seam because it is simply part of the page.             */
 /* ------------------------------------------------------------------ */
 
-@view-transition {
-  navigation: auto;
+.boot-card {
+  position: fixed;
+  inset: 0;
+  /* 100vw covers the scrollbar column; 100% would stop short of it */
+  left: 0;
+  width: 100vw;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: radial-gradient(46% 62% at 50% 38%, #22211d 0%, #0d0d0b 92%) #0d0d0b;
+  color: #f2efe7;
+  pointer-events: none;
+  animation: boot-out 2.1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  ::view-transition-old(root) {
-    animation: page-out 0.32s cubic-bezier(0.6, 0, 0.8, 1) both;
+@keyframes boot-out {
+  0%,
+  42% {
+    opacity: 1;
+    visibility: visible;
   }
-
-  ::view-transition-new(root) {
-    animation: page-in 0.46s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
-@keyframes page-out {
+.act-card-inner {
+  display: grid;
+  justify-items: center;
+  gap: 13px;
+  text-align: center;
+  /* the type leaves just ahead of the card, so it reads as a lift rather than
+     a curtain dropping */
+  animation:
+    boot-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both,
+    boot-lift 0.85s cubic-bezier(0.33, 1, 0.68, 1) 1s both;
+}
+
+@keyframes boot-lift {
   to {
     opacity: 0;
-    filter: blur(3px);
+    transform: translateY(-10px);
   }
 }
 
-@keyframes page-in {
+@keyframes boot-rise {
   from {
     opacity: 0;
-    filter: blur(3px);
+    transform: translateY(13px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.act-card-kicker {
+  margin: 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  /* kicker : title = 1 : φ³ */
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 231, 0.62);
+}
+
+.act-card-title {
+  margin: 0;
+  font-size: clamp(2.6rem, 11vw, 7rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+
+.act-card-rule {
+  display: block;
+  width: 61.8px;
+  height: 1px;
+  background: color-mix(in oklch, var(--lotus-pod) 75%, transparent);
+}
+
+.act-card-blurb {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(242, 239, 231, 0.66);
+}
+
+/* the static lotus on the card */
+.lotus-mark-outer {
+  fill: color-mix(in oklch, var(--lotus) 14%, transparent);
+  stroke: rgba(242, 239, 231, 0.62);
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+}
+
+.lotus-mark-inner {
+  fill: color-mix(in oklch, var(--lotus) 22%, transparent);
+  stroke: rgba(242, 239, 231, 0.78);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.lotus-mark-vein {
+  fill: none;
+  stroke: rgba(242, 239, 231, 0.3);
+  stroke-width: 1.4;
+}
+
+.lotus-mark-pod {
+  fill: color-mix(in oklch, var(--lotus-pod) 30%, transparent);
+  stroke: color-mix(in oklch, var(--lotus-pod) 85%, transparent);
+  stroke-width: 2;
+}
+
+.lotus-mark-seed {
+  fill: color-mix(in oklch, var(--lotus-pod) 90%, transparent);
+}
+
+/* The scrollbar while the card is up. A scrollbar is browser chrome: the
+   card cannot paint over it, and with no script there is nothing to lock
+   scrolling with. So the thumb goes transparent and the track takes the
+   card's own ink for as long as the card is opaque. The flip back is timed
+   to the card's fade (which runs 42%-99%, easing out fast), not to its end:
+   held to 100% the gutter stayed black for a beat after the card had gone. */
+html {
+  animation: boot-scrollbar 2.1s linear both;
+}
+
+@keyframes boot-scrollbar {
+  0%,
+  60% {
+    scrollbar-color: transparent #0d0d0b;
+  }
+  60.1%,
+  100% {
+    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-card {
+    display: none;
+  }
+
+  html {
+    animation: none;
+    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
   }
 }
 
@@ -2635,47 +2188,6 @@ body::after {
 }
 
 /* ------------------------------------------------------------------ */
-/* The scrollbar during an act card                                    */
-/*                                                                     */
-/* A scrollbar is browser chrome: an overlay cannot paint over it, and  */
-/* with no JavaScript there is nothing to lock scrolling with. Two CSS  */
-/* moves solve it. The card spans 100vw, which includes the scrollbar   */
-/* column, so no pale strip is left beside it. And the thumb itself is  */
-/* animated to transparent for exactly as long as the card is up, on    */
-/* the same 2.1s clock, so nothing floats over the black.               */
-/* ------------------------------------------------------------------ */
-
-html {
-  animation: boot-scrollbar 2.1s steps(1) both;
-}
-
-@keyframes boot-scrollbar {
-  0%,
-  50% {
-    /* thumb invisible, and the track painted the card's own ink: a transparent
-       track just shows the paper behind it, which is the pale gutter */
-    scrollbar-color: transparent #0d0d0b;
-  }
-  100% {
-    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
-  }
-}
-
-.boot-card {
-  /* 100vw covers the scrollbar column; 100% would stop short of it */
-  left: 0;
-  width: 100vw;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    animation: none;
-    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
-  }
-}
-
-
-/* ------------------------------------------------------------------ */
 /* Act controls: the mark opens them, with no script                   */
 /* ------------------------------------------------------------------ */
 
@@ -2713,7 +2225,9 @@ html {
   color: #a47921;
 }
 
-/* the controls themselves, folded away until asked for */
+/* the controls themselves, folded away until asked for. Closing waits a
+   beat, so a pointer that clips the edge on its way past does not fold the
+   panel under the hand that was about to use it. */
 .act-nav-shell .act-nav {
   display: flex;
   align-items: center;
@@ -2722,23 +2236,34 @@ html {
   opacity: 0;
   overflow: hidden;
   transition:
-    max-width 0.42s var(--ease-standard),
-    opacity 0.28s var(--ease-standard);
+    max-width 0.42s var(--ease-standard) 0.16s,
+    opacity 0.28s var(--ease-standard) 0.16s;
 }
 
 .act-nav-shell:hover .act-nav,
 .act-nav-shell:focus-within .act-nav,
 .act-nav-toggle:checked ~ .act-nav-shell .act-nav {
-  max-width: 260px;
+  max-width: 320px;
   opacity: 1;
+  transition-delay: 0s;
+}
+
+/* the pointer always wins over the peek: this outranks the peek rule below
+   on specificity, so hovering mid-peek hands control straight to the
+   transition instead of letting the animation snap the panel shut */
+.act-nav-wrap .act-nav-shell:hover .act-nav,
+.act-nav-wrap .act-nav-shell:focus-within .act-nav,
+.act-nav-toggle:checked ~ .act-nav-shell.act-nav-shell .act-nav {
+  animation: none;
 }
 
 /*
- * A single peek on load so the controls are discoverable. No fill mode, so once
- * it finishes the rules above take over and hover still works.
+ * A single peek on arrival, on the first act only, so the control is
+ * discoverable once and then leaves you alone. No fill mode, so once it
+ * finishes the rules above take over. Hover cancels it outright, above.
  */
 @media (prefers-reduced-motion: no-preference) {
-  .act-nav-shell .act-nav {
+  .act-nav-shell.is-first .act-nav {
     animation: nav-peek 3.4s var(--ease-standard) 2.3s;
   }
 
@@ -2750,7 +2275,7 @@ html {
     }
     22%,
     72% {
-      max-width: 260px;
+      max-width: 320px;
       opacity: 1;
     }
     100% {
@@ -2760,52 +2285,69 @@ html {
   }
 }
 
-/* on a phone the controls drop underneath the mark instead of running off it */
+/* On a phone the pill never changes size. The acts drop in beneath it as a
+   row of their own, fading and settling by a few pixels. Animating the
+   pill's box here (height, then width, on separate clocks) was what read as
+   it collapsing on one axis and then the other. */
 @media (max-width: 640px) {
   .act-nav-shell {
-    flex-direction: column;
-    /* centred, or the mark strands itself against the right edge of the
-       wider controls row once the panel opens */
-    align-items: center;
-    gap: 0;
-    padding: 3px;
-    border-radius: 21px;
+    position: relative;
   }
 
   .act-nav-shell .act-nav {
-    max-height: 0;
-    max-width: 200px;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    max-width: none;
+    width: auto;
+    height: auto;
+    padding: 3px;
+    border: 1px solid color-mix(in oklch, var(--border) 90%, transparent);
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--card) 96%, transparent);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px color-mix(in oklch, var(--ink) 10%, transparent);
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
     transition:
-      max-height 0.42s var(--ease-standard),
-      opacity 0.28s var(--ease-standard);
+      opacity 0.22s var(--ease-standard),
+      transform 0.22s var(--ease-standard),
+      visibility 0s linear 0.22s;
+    visibility: hidden;
   }
 
-  .act-nav-shell:hover .act-nav,
-.act-nav-shell:focus-within .act-nav,
-.act-nav-toggle:checked ~ .act-nav-shell .act-nav {
-    max-height: 44px;
-    padding-top: 2px;
+  .act-nav-shell:focus-within .act-nav,
+  .act-nav-toggle:checked ~ .act-nav-shell .act-nav {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    visibility: visible;
+    transition-delay: 0s;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .act-nav-shell .act-nav {
-      animation: nav-peek-tall 3.4s var(--ease-standard) 2.3s;
+    .act-nav-shell.is-first .act-nav {
+      animation: nav-peek-drop 3.4s var(--ease-standard) 2.3s;
     }
 
-    @keyframes nav-peek-tall {
+    @keyframes nav-peek-drop {
       0%,
       12% {
-        max-height: 0;
         opacity: 0;
+        transform: translateY(-6px);
+        visibility: visible;
       }
       22%,
       72% {
-        max-height: 44px;
         opacity: 1;
+        transform: none;
+        visibility: visible;
       }
       100% {
-        max-height: 0;
         opacity: 0;
+        transform: translateY(-6px);
+        visibility: visible;
       }
     }
   }
@@ -2939,14 +2481,6 @@ html {
   text-decoration: none;
 }
 
-/* the index sits over body copy on a phone, so it cannot be see-through */
-@media (max-width: 640px) {
-  .act-index {
-    background: var(--card);
-    box-shadow: 0 16px 40px color-mix(in oklch, var(--ink) 26%, transparent);
-  }
-}
-
 /* ------------------------------------------------------------------ */
 /* Ink that dries: headings fill in as they arrive                     */
 /*                                                                     */
@@ -3017,6 +2551,12 @@ html {
 .act-nav-mark .monogram-word {
   overflow: hidden;
   max-width: 3.4em;
+  /* optical centring. The padding is equal, but the eye discounts the low
+     full stop, so the word reads as sitting left in the pill. Pull it toward
+     the dragon by a hair and give back the stop's width on the right. Done on
+     the word, not the padding, so the folded circle stays centred. */
+  margin-left: -1px;
+  margin-right: -2px;
 }
 
 @supports (animation-timeline: scroll()) {
@@ -3033,12 +2573,16 @@ html {
     from {
       max-width: 3.4em;
       opacity: 1;
-      margin-left: 0;
+      margin-left: -1px;
+      margin-right: -2px;
     }
     to {
       max-width: 0;
       opacity: 0;
-      margin-left: -1px;
+      /* cancel the flex gap too, so the folded pill is a true circle around
+         the dragon rather than one carrying a 4px ghost of the word */
+      margin-left: -4px;
+      margin-right: 0;
     }
   }
 }

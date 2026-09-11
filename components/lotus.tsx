@@ -43,7 +43,7 @@ export function lotusGeometry(ensoRadius: number) {
   };
 }
 
-/* A static lotus, for anywhere that isn't the scroll canvas. */
+/* A static lotus, for the card that plays on a cold load. */
 export function LotusMark({ size = 46 }: { size?: number }) {
   const g = lotusGeometry(210);
   const box = g.outerLen * 1.06;
@@ -55,27 +55,25 @@ export function LotusMark({ size = 46 }: { size?: number }) {
       viewBox={`${-box} ${-box} ${box * 2} ${box * 2}`}
       aria-hidden="true"
     >
-      <g transform="rotate(-6)">
-        {LOTUS_RING.map((a) => (
-          <g key={`o${a}`} transform={`rotate(${a})`}>
-            <path className="lotus-mark-outer" d={g.outer} />
-            <path className="lotus-mark-vein" d={g.vein} />
-          </g>
-        ))}
-        {LOTUS_RING.map((a) => (
-          <path key={`i${a}`} className="lotus-mark-inner" transform={`rotate(${a + 22.5})`} d={g.inner} />
-        ))}
-        <circle className="lotus-mark-pod" r={g.podR.toFixed(1)} />
-        {LOTUS_SEEDS.map((a) => (
-          <circle
-            key={`s${a}`}
-            className="lotus-mark-seed"
-            r={g.seedDot.toFixed(2)}
-            cx={(g.seedR * Math.sin((a * Math.PI) / 180)).toFixed(2)}
-            cy={(-g.seedR * Math.cos((a * Math.PI) / 180)).toFixed(2)}
-          />
-        ))}
-      </g>
+      {LOTUS_RING.map((a) => (
+        <g key={`o${a}`} transform={`rotate(${a})`}>
+          <path className="lotus-mark-outer" d={g.outer} />
+          <path className="lotus-mark-vein" d={g.vein} />
+        </g>
+      ))}
+      {LOTUS_RING.map((a) => (
+        <path key={`i${a}`} className="lotus-mark-inner" transform={`rotate(${a + 22.5})`} d={g.inner} />
+      ))}
+      <circle className="lotus-mark-pod" r={g.podR.toFixed(1)} />
+      {LOTUS_SEEDS.map((a) => (
+        <circle
+          key={`s${a}`}
+          className="lotus-mark-seed"
+          r={g.seedDot.toFixed(2)}
+          cx={(g.seedR * Math.sin((a * Math.PI) / 180)).toFixed(2)}
+          cy={(-g.seedR * Math.cos((a * Math.PI) / 180)).toFixed(2)}
+        />
+      ))}
     </svg>
   );
 }

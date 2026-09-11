@@ -61,11 +61,14 @@ app/
     page.tsx
   globals.css           nearly all styling, in one file
 components/
-  acts.ts               the four acts: the single source of order
+  acts.ts               the four acts: the single source of order, and keys
   act-chrome.tsx        boot card + nav + outro + nudge for an act
+  act-title.tsx         an act's kicker and page title, from acts.ts
+  boot-card.tsx         the act card on a cold load, cleared by CSS
   act-nav.tsx           the SKM mark and its controls
-  turtle-hero.tsx       the enso, the padma, the terminal
-  lotus.tsx             padma geometry, shared by hero, cards, reading mark
+  turtle-hero.tsx       the enso and the padma
+  name-mark.tsx         the name as brush outlines (see below)
+  lotus.tsx             padma geometry, shared by hero and reading mark
   skm-path.ts           the traced dragon path, single source
 content/*.json          all copy that is data rather than prose
 public/enhance.css      CSS too new for the bundler (see below)
@@ -88,15 +91,57 @@ know the route. That is what keeps the act chrome server-rendered.
 
 ### `public/enhance.css`
 
-Lightning CSS (Next's minifier) cannot parse `@container scroll-state()` and
-hard-fails the build. Three enhancements therefore live in a plain stylesheet
-linked from `<head>`, bypassing the bundler:
+Lightning CSS (Next's minifier) cannot parse some newer syntax and hard-fails
+the build. Two enhancements therefore live in a plain stylesheet linked from
+`<head>`, bypassing the bundler:
 
-1. `scroll-state` — folds the wordmark away while reading
-2. anchor positioning — one pill sliding between acts
-3. `interpolate-size` — the nav panel opens to content width
+1. anchor positioning — one highlight sliding between the act numerals
+2. `interpolate-size` — the nav panel opens to content width
 
 All optional. Unsupported browsers get the previous behaviour.
+
+### The name mark
+
+The hero name is not type. `components/name-mark.tsx` holds "Shivam Mishra"
+as two SVG paths, generated once, offline, from a brush font (Sthayos, 1001
+Fonts personal-use licence, which permits conversion to SVG with unchanged
+glyphs). No web font ships. The real text sits in the `<h1>` as `sr-only`.
+To regenerate: render the string with opentype.js at 400 units/em, run svgo
+at precision 0, keep one path per line. Do not commit the font.
+
+### Arriving on a page
+
+Every act opens under a dark card (`BootCard`): lotus, act number, title,
+blurb. It is painted with the first frame and clears itself with a CSS
+animation over 2.1s, so it is simply part of the page and has no seam. The
+scrollbar thumb goes transparent and the track takes the card's ink for as
+long as the card is opaque, timed to the card's fade (60%), not its end.
+
+Cross-document view transitions (`@view-transition`, shared-element titles,
+an ink-band and a paper-edge page turn) were all built and removed. They
+worked on desktop; on a phone the hand-off from snapshot to live page never
+read as clean, and no CSS on our side can control that frame. Do not bring
+them back without a phone in hand. Links are plain `<a>`, never `next/link`;
+with no JavaScript shipped there is no client router for it to drive.
+
+### The corner nav
+
+One level of disclosure. Hovering the mark (or tapping it, via a checkbox)
+opens the four acts inline as numerals; the current act carries its title, so
+the row never changes width on hover. A load-time peek runs on Act I only and
+any hover cancels it. Closing is delayed 160ms. On a phone the pill never
+changes size: the acts drop in beneath it as their own row, animating only
+opacity and a few pixels of travel (animating the box collapsed one axis and
+then the other). Do not nest a second disclosure (a `<details>`, a dropdown)
+inside the panel; the previous version did and could not be made to feel
+solid without script.
+
+## Editorial
+
+The pages are meant to be short. Data lives in `content/*.json`; the long
+autobiography lives in one post (`/writing/how-it-started`), not on the front
+page. No stat rows, no meta-commentary about what is missing. Mono is for
+kickers, numerals and code; metadata lines are set in the text face.
 
 ## Gotchas, each learned by getting it wrong
 
@@ -106,13 +151,22 @@ All optional. Unsupported browsers get the previous behaviour.
 - **Use `entry`-based ranges, not `cover`**, for anything that might sit near
   the end of a page. A `cover` range needs the element to travel up the
   viewport; the last element never can, so it freezes part-way.
+- **Use pixel offsets, not percentages, on ranges for tall blocks.** A
+  percentage of `entry` scales with the element's own height: on a phone a
+  three-screen list of roles sat at 15% of its entry at the top of the page,
+  a third visible, and popped when the view transition handed over to the
+  live page. `entry 8px entry 144px` is the same short fade at any height.
+  Percentages are fine for one-line headings.
 - **A closed `<details>` does not render its children.** Hover can never reveal
   them and its links leave the accessibility tree. For hover-or-tap disclosure
   use a checkbox + label and clip the panel instead.
 - **`overflow: hidden` clips popovers.** A collapsing panel will eat a dropdown
   inside it; make the dropdown `position: fixed` so it escapes.
-- **A transparent scrollbar track shows the page behind it.** During the black
-  act card the track must be painted, or a pale strip appears beside it.
+- **A transparent scrollbar track shows the page behind it.** Any full-bleed
+  dark overlay must paint the track too, or a pale strip appears beside it.
+  (The boot card that taught this is gone; the lesson stands.)
+- **`app/globals.css` is LF.** It shipped with mixed line endings once, which
+  made exact-match edits fail silently in one region. Keep it normalised.
 - **`scroll-state` must be asked of a real scroll container** — `html` here. A
   `position: fixed` element is neither scrollable nor stuck and never matches.
 - **Headless Chromium uses overlay scrollbars**, which hides gutter bugs

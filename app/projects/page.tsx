@@ -1,3 +1,4 @@
+import ActTitle from "@/components/act-title";
 import { getProjects } from "@/lib/content";
 
 export const metadata = {
@@ -9,43 +10,18 @@ export const metadata = {
 
 export default async function ProjectsPage() {
   const projects = await getProjects();
-  const totalStars = projects.public.reduce((sum, p) => sum + p.stars, 0);
-  const totalForks = projects.public.reduce((sum, p) => sum + p.forks, 0);
-  const languages = new Set(projects.public.map((p) => p.language)).size;
 
   return (
     <>
       <header className="act-header">
-        <p className="act-header-kicker">Act III</p>
-        <h1 className="act-header-title">The Work</h1>
+        <ActTitle href="/projects" />
         <div className="prose-column">
           <p>
             Everything here I built because I wanted to know how something worked, and the fastest
             way I know to find out is to build one. A few of them turned out to be useful to other
-            people, which is still the part that surprises me. Behind these sit a pile of private
-            practice repos — the Udacity coffee app that started Android for me, Compose
-            experiments, a Unity runner, a Go backend — which were never meant for anyone else.
+            people, which is still the part that surprises me.
           </p>
         </div>
-
-        <dl className="stat-row">
-          <div>
-            <dt>Public projects</dt>
-            <dd>{projects.public.length}</dd>
-          </div>
-          <div>
-            <dt>Stars</dt>
-            <dd>{totalStars}</dd>
-          </div>
-          <div>
-            <dt>Forks</dt>
-            <dd>{totalForks}</dd>
-          </div>
-          <div>
-            <dt>Languages</dt>
-            <dd>{languages}</dd>
-          </div>
-        </dl>
       </header>
 
       <div className="reveal">
@@ -97,9 +73,9 @@ export default async function ProjectsPage() {
           <h2 className="act-section-heading">Small tools that fell out of the work</h2>
           <div className="prose-column">
             <p>
-              A Bitbucket to GitHub org migration, OCR on a Node server, a submission similarity
-              checker, a mojibake cleaner, React Native deep linking and a Zustand store wired to
-              MMKV. Too small to be repositories, so they live as{" "}
+              A Bitbucket to GitHub org migration, OCR on a Node server, an xlsx to JSON converter,
+              a submission similarity checker, a mojibake cleaner, React Native deep linking and a
+              Zustand store wired to MMKV. Too small to be repositories, so they live as{" "}
               <a href="https://gist.github.com/mshivam019" className="editorial-link">
                 gists
               </a>

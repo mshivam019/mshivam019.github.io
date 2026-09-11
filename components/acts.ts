@@ -5,16 +5,19 @@
 export interface Act {
   href: string;
   act: string;
+  /* stable id, independent of the title's wording */
+  key: string;
   title: string;
   blurb: string;
 }
 
 export const ACTS: Act[] = [
-  { href: "/", act: "I", title: "The Turtle", blurb: "where the drawing starts" },
-  { href: "/experience", act: "II", title: "The Road", blurb: "what shipping taught me" },
-  { href: "/projects", act: "III", title: "The Work", blurb: "things that exist now" },
-  { href: "/writing", act: "IV", title: "Field Notes", blurb: "thinking out loud" },
+  { href: "/", act: "I", key: "turtle", title: "The Turtle", blurb: "where the drawing starts" },
+  { href: "/experience", act: "II", key: "road", title: "The Road", blurb: "what shipping taught me" },
+  { href: "/projects", act: "III", key: "work", title: "The Work", blurb: "things that exist now" },
+  { href: "/writing", act: "IV", key: "notes", title: "Field Notes", blurb: "thinking out loud" },
 ];
+
 
 export function actIndex(pathname: string | null): number {
   if (!pathname) return -1;

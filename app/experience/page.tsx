@@ -1,4 +1,4 @@
-import Link from "next/link";
+import ActTitle from "@/components/act-title";
 import { getContributions, getCredentials, getExperiences } from "@/lib/content";
 
 export const metadata = {
@@ -40,44 +40,14 @@ export default async function ExperiencePage() {
   const experiences = (await getExperiences()) as Experience[];
   const contributions = await getContributions();
   const { education } = await getCredentials();
-  const merged = contributions
-    .filter((c) => c.state === "merged")
-    .reduce((total, c) => total + (c.prCount ?? 1), 0);
-  const upstreamRepos = new Set(contributions.map((c) => c.repo)).size;
-  const jobs = experiences.filter((e) => e.kind !== "community").length;
 
   return (
     <>
       <header className="act-header">
-        <p className="act-header-kicker">Act II</p>
-        <h1 className="act-header-title">The Road</h1>
+        <ActTitle href="/experience" />
         <div className="prose-column">
-          <p>
-            My contribution graph undersells this. It only counts default branches, and most of
-            what I have built lived somewhere else: feature branches on someone else&apos;s
-            branching model, private repos, and products that have since been shut down. So here is
-            the version with the work in it.
-          </p>
+          <p>Where I have worked, what shipped there, and the fixes that went upstream.</p>
         </div>
-
-        <dl className="stat-row">
-          <div>
-            <dt>Roles</dt>
-            <dd>{jobs}</dd>
-          </div>
-          <div>
-            <dt>Merged upstream</dt>
-            <dd>{merged}</dd>
-          </div>
-          <div>
-            <dt>Projects contributed to</dt>
-            <dd>{upstreamRepos}</dd>
-          </div>
-          <div>
-            <dt>Shipping since</dt>
-            <dd>2022</dd>
-          </div>
-        </dl>
       </header>
 
       <div className="reveal">
@@ -157,71 +127,18 @@ export default async function ExperiencePage() {
 
       <div className="reveal">
         <section className="act-section">
-          <p className="act-section-kicker">Not on the graph</p>
-          <h2 className="act-section-heading">The work you cannot link to</h2>
-          <div className="prose-column">
-            <p>
-              The Tribe app rebuild, the student dashboard, the recruitment platform, the proctored
-              test engine, the SIP trunking, the call recording system we wrote because the managed
-              option got expensive. None of that sits in a public repo I can hand you, and some of
-              it no longer exists to be handed over.
-            </p>
-            <p>
-              It lives in private repositories I don&apos;t own, on branches that were never the
-              default. That is the plain reason my profile looks quiet: the commits exist, my
-              account just isn&apos;t where they landed.
-            </p>
-            <p>
-              What I can point at is the trail around it: the plugins above, a{" "}
-              <Link href="/writing/moving-away-from-supabase" className="editorial-link">
-                write-up of the AWS migration
-              </Link>
-              , and{" "}
-              <a href="https://gist.github.com/mshivam019" className="editorial-link">
-                a dozen gists
-              </a>{" "}
-              of the small tools that fell out of the work. A Bitbucket to GitHub org migration
-              script, OCR on a Node server, an xlsx to JSON converter, a mojibake cleaner, a
-              submission similarity checker.
-            </p>
-          </div>
-        </section>
-      </div>
-
-      <div className="reveal">
-        <section className="act-section">
-          <p className="act-section-kicker">School</p>
-          <h2 className="act-section-heading">Where I was taught, and what I stopped collecting</h2>
-
-          <div className="paper-grid">
-            <ul className="cred-list">
-              {education.map((e) => (
-                <li key={e.school}>
-                  <span className="cred-name">{e.qualification}</span>
-                  <span className="cred-meta">
-                    {e.school} · {e.period}
-                    {e.note ? ` · ${e.note}` : ""}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="prose-column">
-              <p>
-                There is no certificate list here on purpose, and I did collect the usual set:
-                GitHub Foundations, AWS Academy Cloud Foundations, Google&apos;s IT Support and
-                Project Management specialisations, a couple of Google Cloud tracks, and the Android
-                certifications I earned through Google&apos;s own programmes.
-              </p>
-              <p>
-                Not one of them tells you whether I can build the thing. I let the Android one lapse
-                on purpose and I won&apos;t renew the others as they expire. In an era where a model
-                will pass any multiple-choice exam you put in front of it, a badge proves less every
-                year. A merged pull request says more, so the section above is the one I would rather
-                be judged on.
-              </p>
-            </div>
-          </div>
+          <p className="act-section-kicker">Education</p>
+          <ul className="cred-list">
+            {education.map((e) => (
+              <li key={e.school}>
+                <span className="cred-name">{e.qualification}</span>
+                <span className="cred-meta">
+                  {e.school} · {e.period}
+                  {e.note ? ` · ${e.note}` : ""}
+                </span>
+              </li>
+            ))}
+          </ul>
         </section>
       </div>
     </>

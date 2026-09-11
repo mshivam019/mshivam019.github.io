@@ -62,7 +62,6 @@ export async function getContributions(): Promise<Contribution[]> {
 
 export interface Interests {
   now: { label: string; value: string }[];
-  shelves: { label: string; items: string[] }[];
 }
 
 export async function getInterests(): Promise<Interests> {

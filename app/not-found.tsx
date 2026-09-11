@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ACTS } from "@/components/acts";
 
 export const metadata = {
@@ -24,7 +23,7 @@ export default function NotFound() {
         <ol className="post-list">
           {ACTS.map((act, i) => (
             <li key={act.href} className="post">
-              <Link href={act.href} className="post-link">
+              <a href={act.href} className="post-link">
                 <span className="post-index">{String(i + 1).padStart(2, "0")}</span>
                 <span className="post-body">
                   <span className="post-title">{act.title}</span>
@@ -34,7 +33,7 @@ export default function NotFound() {
                 <span className="post-arrow" aria-hidden="true">
                   →
                 </span>
-              </Link>
+              </a>
             </li>
           ))}
         </ol>

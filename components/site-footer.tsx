@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Monogram from "@/components/monogram";
 
 const EMAIL = "mshivam019@gmail.com";
@@ -26,13 +25,19 @@ export default function SiteFooter() {
           <a href="https://github.com/mshivam019">GitHub</a>
           <a href="https://linkedin.com/in/mshivam019">LinkedIn</a>
           <a href="https://drive.google.com/file/d/1aVHDpp9r0Ueh1fbjUgI9Lwi51pHo9UtV/view">Résumé</a>
-          <Link href="/writing">Writing</Link>
+          <a href="/writing">Writing</a>
         </nav>
 
         <a href="#top" className="footer-top-link">
           Back to top ↑
         </a>
       </div>
+
+      <p className="footer-note">
+        HTML and CSS only. This site ships no JavaScript; everything that moves is drawn by the
+        browser from your scroll.{" "}
+        <a href="https://github.com/mshivam019/mshivam019.github.io">Source</a>
+      </p>
     </footer>
   );
 }

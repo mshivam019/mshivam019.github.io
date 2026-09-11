@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { type Act } from "@/components/acts";
 
 /*
@@ -8,7 +7,7 @@ import { type Act } from "@/components/acts";
  */
 export default function ActNudge({ next }: { next: Act }) {
   return (
-    <Link href={next.href} className="act-nudge">
+    <a href={next.href} className="act-nudge">
       <span className="act-nudge-kicker">Next</span>
       <span className="act-nudge-title">
         Act {next.act} · {next.title}
@@ -16,6 +15,6 @@ export default function ActNudge({ next }: { next: Act }) {
       <span className="act-nudge-arrow" aria-hidden="true">
         →
       </span>
-    </Link>
+    </a>
   );
 }

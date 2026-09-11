@@ -1,5 +1,13 @@
 export const posts = [
   {
+    slug: "how-it-started",
+    title: "A turtle, and a computer that shouldn't have been there yet",
+    date: "2026-09-11",
+    summary:
+      "The long version of who I am: LOGO at school, a computer that arrived early, a literature minor, and the books and shows that stuck.",
+    tags: ["Personal"],
+  },
+  {
     slug: "react-native-notes",
     title: "Two React Native apps, and the four things I actually learned",
     date: "2026-08-14",
