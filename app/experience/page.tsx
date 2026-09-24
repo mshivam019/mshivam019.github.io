@@ -99,6 +99,7 @@ export default async function ExperiencePage() {
                 <div className="pr-head">
                   <a
                     className="pr-title"
+                    target="_blank"
                     href={
                       c.number
                         ? `https://github.com/${c.repo}/pull/${c.number}`
@@ -114,7 +115,7 @@ export default async function ExperiencePage() {
                 </p>
                 {c.note ? <p className="pr-note">{c.note}</p> : null}
                 {c.package ? (
-                  <a className="pr-package" href={c.package}>
+                  <a className="pr-package" href={c.package} target="_blank">
                     <span className="pr-package-tag">npm</span>
                     {c.packageLabel ?? c.package}
                   </a>

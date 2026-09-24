@@ -25,8 +25,8 @@ export default async function Home() {
 
         <p className="section-intro">
           I&apos;m a {profile.role} at{" "}
-          <a href="https://insideiim.com" className="editorial-link">
-            InsideIIM | AltUni Labs
+          <a href="https://altunilabs.ai" className="editorial-link" target="_blank">
+            AltUni Labs
           </a>
           , building across web, mobile and AI. Whatever the product needs.
         </p>
@@ -35,15 +35,16 @@ export default async function Home() {
           <a href={`mailto:${profile.email}`} className="editorial-link">
             Email
           </a>
-          <a href="https://github.com/mshivam019" className="editorial-link">
+          <a href="https://github.com/mshivam019" className="editorial-link" target="_blank">
             GitHub
           </a>
-          <a href="https://linkedin.com/in/mshivam019" className="editorial-link">
+          <a href="https://linkedin.com/in/mshivam019" className="editorial-link" target="_blank">
             LinkedIn
           </a>
           <a
             href="https://drive.google.com/file/d/1aVHDpp9r0Ueh1fbjUgI9Lwi51pHo9UtV/view"
             className="editorial-link"
+            target="_blank"
           >
             Résumé
           </a>
@@ -74,16 +75,16 @@ export default async function Home() {
           <div className="prose-column">
             <p>
               Two years at{" "}
-              <a href="https://terriblytinytales.com" className="editorial-link">
+              <a href="https://terriblytinytales.com" className="editorial-link" target="_blank">
                 Terribly Tiny Tales
               </a>{" "}
               rebuilding their learning platform and mobile app from the ground up. Now at{" "}
-              <a href="https://insideiim.com" className="editorial-link">
-                InsideIIM | AltUni Labs
+              <a href="https://altunilabs.ai" className="editorial-link" target="_blank">
+                AltUni Labs
               </a>
               , where most of my time goes to AI recruitment pipelines: CV parsing, AI-run tests,
               AI interviews, on LangChain and{" "}
-              <a href="https://livekit.io" className="editorial-link">
+              <a href="https://livekit.io" className="editorial-link" target="_blank">
                 LiveKit
               </a>
               . Along the way a VAPT audit pushed me into DevOps; I moved everything off Supabase

@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
               <li key={p.name} className="project">
                 <div className="project-head">
                   <h2 className="project-name">
-                    <a href={p.repo}>{p.name}</a>
+                    <a href={p.repo} target="_blank">{p.name}</a>
                   </h2>
                   <span className="project-meta">
                     {p.language} · {p.year}
@@ -52,11 +52,11 @@ export default async function ProjectsPage() {
                 ) : null}
 
                 <p className="project-links">
-                  <a href={p.repo} className="editorial-link">
+                  <a href={p.repo} className="editorial-link" target="_blank">
                     Source
                   </a>
                   {p.demo ? (
-                    <a href={p.demo} className="editorial-link">
+                    <a href={p.demo} className="editorial-link" target="_blank">
                       {p.demoLabel ?? "Live"}
                     </a>
                   ) : null}
@@ -76,7 +76,7 @@ export default async function ProjectsPage() {
               A Bitbucket to GitHub org migration, OCR on a Node server, an xlsx to JSON converter,
               a submission similarity checker, a mojibake cleaner, React Native deep linking and a
               Zustand store wired to MMKV. Too small to be repositories, so they live as{" "}
-              <a href="https://gist.github.com/mshivam019" className="editorial-link">
+              <a href="https://gist.github.com/mshivam019" className="editorial-link" target="_blank">
                 gists
               </a>
               .

@@ -22,9 +22,9 @@ export default function SiteFooter() {
 
         <nav className="footer-links" aria-label="Elsewhere">
           <a href={`mailto:${EMAIL}`}>Email</a>
-          <a href="https://github.com/mshivam019">GitHub</a>
-          <a href="https://linkedin.com/in/mshivam019">LinkedIn</a>
-          <a href="https://drive.google.com/file/d/1aVHDpp9r0Ueh1fbjUgI9Lwi51pHo9UtV/view">Résumé</a>
+          <a href="https://github.com/mshivam019" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/mshivam019" target="_blank">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/1aVHDpp9r0Ueh1fbjUgI9Lwi51pHo9UtV/view" target="_blank">Résumé</a>
           <a href="/writing">Writing</a>
         </nav>
 
@@ -36,7 +36,7 @@ export default function SiteFooter() {
       <p className="footer-note">
         HTML and CSS only. This site ships no JavaScript; everything that moves is drawn by the
         browser from your scroll.{" "}
-        <a href="https://github.com/mshivam019/mshivam019.github.io">Source</a>
+        <a href="https://github.com/mshivam019/mshivam019.github.io" target="_blank">Source</a>
       </p>
     </footer>
   );
