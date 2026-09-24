@@ -9,8 +9,8 @@
         "Tuned to 120fps with Reanimated, MMKV for local persistence"
       ],
       "language": "TypeScript",
-      "stars": 167,
-      "forks": 27,
+      "stars": 166,
+      "forks": 28,
       "year": "2024",
       "repo": "https://github.com/mshivam019/StorySail",
       "demo": "https://appetize.io/app/ois7jgwgusxskbwquhyvmickfi?device=pixel7&osVersion=13.0",
@@ -75,35 +75,6 @@
       "repo": "https://github.com/mshivam019/Flappy-Bird",
       "demo": "https://appetize.io/app/tvd7qg4v75hvowbadsc2cy77f4",
       "demoLabel": "Run it in a browser"
-    },
-    {
-      "name": "Meow-Speech",
-      "blurb": "Text to speech on iOS, written in Swift because I wanted to know how the other platform felt from the inside rather than through React Native's abstractions.",
-      "language": "Swift",
-      "stars": 3,
-      "forks": 0,
-      "year": "2022",
-      "repo": "https://github.com/mshivam019/Meow-Speech"
-    },
-    {
-      "name": "Stark",
-      "blurb": "Generates certificates from a template in the browser, so a batch can be produced without a designer, a backend, or opening Photoshop a hundred times.",
-      "language": "HTML",
-      "stars": 3,
-      "forks": 0,
-      "year": "2021",
-      "repo": "https://github.com/mshivam019/Stark",
-      "demo": "https://mshivam019.github.io/Stark/",
-      "demoLabel": "Generate one"
-    },
-    {
-      "name": "SpringKafka",
-      "blurb": "A Kafka producer and consumer on Spring Boot, deliberately small: the version I wanted to find when I was working out how the pieces fit, instead of a framework demo with everything switched on.",
-      "language": "Java",
-      "stars": 2,
-      "forks": 0,
-      "year": "2024",
-      "repo": "https://github.com/mshivam019/SpringKafka"
     },
     {
       "name": "star-wars-weather-app",
